@@ -5,10 +5,10 @@ The account had 110 followers when `gh api users/kimjooyoon` was observed on
 useful public contributions. Follower changes alone do not establish causation.
 No follow-for-follow, bulk outreach, duplicate PRs or acceptance claims.
 
-## Yaegi operator assignment, submitted draft
+## Yaegi operator assignment, ready for review
 
 - Existing report: https://github.com/traefik/yaegi/issues/1736
-- Submitted draft: https://github.com/traefik/yaegi/pull/1738
+- Submission: https://github.com/traefik/yaegi/pull/1738
 - Original: `fcb76d1ece0c3edc2548c39aa5b170475d2261bb`
 - Patch: `837f584b6e751e3fa9770063687a43e0df4246fa`
 - Independent author of the issue: `rohanthewiz`; credit the existing report.
@@ -23,9 +23,10 @@ No follow-for-follow, bulk outreach, duplicate PRs or acceptance claims.
   and `go test -short -race ./interp` pass (4.6s and 10.6s locally). The initial noncanonical layout also produced import-path failures.
 - Wider checks caught a draft regression on blank assignments; it was fixed
   before this final patch revision and three discard cases preserve that boundary.
-- Acceptance: not merged. Upstream CLA is pending and requires the account owner's
-  own agreement. No legal agreement was signed by the agent.
-- AI authorship is disclosed in the draft; upstream review policy remains upstream's.
+- Status observed 2026-10-22 (Asia/Seoul): CLA reports success and the unchanged
+  patch is ready for review. Upstream Actions still require first-contributor approval.
+  The agent did not sign a legal agreement. The submission is not merged.
+- AI authorship is disclosed in the PR; upstream review policy remains upstream's.
 
 CI in this repository reproduces the focused before/after evidence. It cannot
 authorize merging to an external project. The current Python/Gooo arithmetic
@@ -44,3 +45,12 @@ or general language equivalence is claimed.
 - `tools/verify_chroma.py` runs full tests, Gooo fixture race tests and metadata freshness against the exact submission. Its CI proof does not include lint; the lint claim above is local only.
 - Fork workflow activation did not start a run during observation. Independent proof therefore runs in this existing workbench's CI, retaining stdout, stderr and file hashes. Fork PRs are not counted as upstream acceptance.
 - AI assistance is disclosed in the upstream PR and commit trailer.
+
+## Public entry points, observed 2026-10-22
+
+The [public profile](https://github.com/kimjooyoon) now links the verified
+consumer release and this workbench. The existing introduction and project
+links were preserved. [Profile commit 1797621](https://github.com/kimjooyoon/kimjooyoon/commit/1797621142f9ce810e3f99cde2fefb46de68b713)
+binds the edit; the new links were observed on the rendered profile. The release
+manifest hash was checked against the published asset before adding its link.
+This establishes a discovery route; it is not evidence of adoption or follower growth.
