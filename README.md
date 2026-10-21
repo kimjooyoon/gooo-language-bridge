@@ -5,6 +5,20 @@ Gooo owns the semantic activity and stable identity; an independent language
 runtime supplies finite expected observations. Every run keeps source hashes,
 compiler identity, runtime identity, exit codes and the original Gooo receipt.
 
+## Try source highlighting
+
+With Go 1.25+, download the release's [floor.gooo sample](https://github.com/kimjooyoon/gooo-language-bridge/releases/download/examples/highlight-gooo/v0.1.1/floor.gooo)
+and render it without cloning this repository or installing a Gooo compiler:
+
+```sh
+go run github.com/kimjooyoon/gooo-language-bridge/examples/highlight-gooo@v0.1.1 floor.gooo > floor.html
+```
+
+Open the self-contained HTML file in a browser, or use `-format json` for tokens.
+The [consumer guide](examples/highlight-gooo/README.md) explains installation,
+stdin, source preservation and scope. Highlighting is separate from executing
+the semantic comparisons below.
+
 ## First bridge: Python integer floor division
 
 `bridges/python-floor/main.gooo` expresses Python-style floor division using
@@ -29,7 +43,7 @@ Read [String length across Go and Python](docs/string-length-units.md) for the
 executable example, counterexamples and scope. These are encoding units;
 graphemes, display width, normalization and JavaScript execution are excluded.
 
-## Reproduce
+## Reproduce the semantic comparisons
 
 Requires Python 3.9+ and Go 1.27.3; no model, API key, service or paid runner.
 

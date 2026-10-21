@@ -22,6 +22,29 @@ var source embed.FS
 
 const maxSourceBytes = 4 << 20
 
+type stopOnErrorLexer struct {
+	chroma.Lexer
+	err error
+}
+
+func (l *stopOnErrorLexer) Tokenise(options *chroma.TokeniseOptions, text string) (chroma.Iterator, error) {
+	iterator, err := l.Lexer.Tokenise(options, text)
+	if err != nil {
+		return nil, err
+	}
+	return func() chroma.Token {
+		if l.err != nil {
+			return chroma.EOF
+		}
+		token := iterator()
+		if token.Type == chroma.Error {
+			l.err = fmt.Errorf("unrecognised source character %q", token.Value)
+			return chroma.EOF
+		}
+		return token
+	}, nil
+}
+
 func render(text, format string, output io.Writer) error {
 	if format != "html" && format != "json" {
 		return fmt.Errorf("unknown format %q (use html or json)", format)
@@ -34,16 +57,18 @@ func render(text, format string, output io.Writer) error {
 		return err
 	}
 	// Gooo raw strings preserve original line endings.
-	iterator, err := chroma.Coalesce(lexer).Tokenise(&chroma.TokeniseOptions{State: "root", EnsureLF: false}, text)
+	// Reject raw Error tokens before Coalesce reads ahead across an invalid run.
+	checked := &stopOnErrorLexer{Lexer: lexer}
+	iterator, err := chroma.Coalesce(checked).Tokenise(&chroma.TokeniseOptions{State: "root", EnsureLF: false}, text)
 	if err != nil {
 		return err
 	}
 	tokens := iterator.Tokens()
+	if checked.err != nil {
+		return checked.err
+	}
 	var original strings.Builder
 	for _, token := range tokens {
-		if token.Type == chroma.Error {
-			return fmt.Errorf("unrecognised source character %q", token.Value)
-		}
 		original.WriteString(token.Value)
 	}
 	if original.String() != text {
