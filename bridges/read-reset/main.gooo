@@ -1,0 +1,25 @@
+package readreset
+namespace readreset
+
+entity Observation id "urn:gooo:read-reset:observation" fields {
+    field outer_op id "urn:gooo:read-reset:outer-op" type string required one
+    field middle_op id "urn:gooo:read-reset:middle-op" type string required one
+    field inner_op id "urn:gooo:read-reset:inner-op" type string required one
+    field has_reset id "urn:gooo:read-reset:has-reset" type boolean required one
+    field has_error id "urn:gooo:read-reset:has-error" type boolean required one
+}
+entity Text id "urn:gooo:type:string"
+
+# Linear chains with at most three net.OpError nodes, empty-padded at the end.
+activity Classify(Observation) -> Text id "urn:gooo:read-reset:classify" computes `
+if !input.has_error {return "NO_LOG"}
+if !input.has_reset {return "ERROR"}
+if input.outer_op == "read" {return "DEBUG"}
+if input.outer_op == "readfrom" || input.outer_op == "writeto" {
+    if input.middle_op == "read" {return "DEBUG"}
+    if input.middle_op == "readfrom" || input.middle_op == "writeto" {
+        if input.inner_op == "read" {return "DEBUG"}
+    }
+}
+return "ERROR"
+`

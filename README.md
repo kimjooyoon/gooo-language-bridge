@@ -117,3 +117,17 @@ python3 tools/verify_chroma_go_numbers.py
 This retains the original failing regression, patched/race passes, full tests and
 native token observations under `evidence/chroma-go-numbers/`. The submitted Go
 lexer patch and the Gooo language lexer are separate contributions.
+
+## Proposed criterion study: wrapped TCP read resets
+
+The [Traefik criterion packet](proposals/traefik-read-reset/README.md) preserves
+original source, a two-file proposed diff and a real loopback TCP reset reproducer.
+It compares sixteen native decisions with a bounded Gooo policy, including
+`NO_LOG` for nil errors and controls that keep write failures in ERROR.
+
+```sh
+python3 tools/verify_read_reset.py --gooo .bin/gooo
+```
+
+This is an owned, unsubmitted proposal. Its standalone checks do not replace
+Traefik's full validation or human-authored upstream conversation requirements.
