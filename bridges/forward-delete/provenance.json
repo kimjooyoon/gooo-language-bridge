@@ -1,0 +1,15 @@
+{
+  "schema": "gooo-language-bridge/provenance/v1",
+  "project": "Bubbles forward-delete newline regression",
+  "source": "https://github.com/charmbracelet/bubbles",
+  "license": "MIT; source and LICENSE are fetched together at the exact revisions and retained in evidence.",
+  "original_revision": "c3bde0d166c2ca607d9864493453fd77bdcae7e4",
+  "submitted_revision": "c328d151ef791e224ebff53d664fbfa7586796fe",
+  "submission": "https://github.com/charmbracelet/bubbles/pull/1072",
+  "status": "Submitted; upstream acceptance is not established by this verifier.",
+  "domain": "Eight first-line Delete inputs with valid UTF-8 and scalar-boundary cursor positions; no selection.",
+  "activity_id": "urn:gooo:editing:delete-forward-scalar",
+  "native_cursor_unit": "rune index; observer records UTF-8 byte offset before calling Update.",
+  "gooo_cursor_unit": "byte offset at a scalar boundary",
+  "fixture_sha256": "99d0db32ffc2e359a2798c453948fa634a534d81ec4bf4b0ec249cbd4bd62938"
+}

@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {"package_path": "bridge/editing", "activity": "Delete"},
+  "packages": [{
+    "path": "bridge/editing", "name": "forwarddelete",
+    "imports": [], "sources": ["main.gooo"]
+  }]
+}

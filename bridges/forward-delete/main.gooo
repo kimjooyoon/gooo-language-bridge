@@ -1,0 +1,24 @@
+package forwarddelete
+namespace forwarddelete
+
+entity CursorText id "urn:gooo:editing:cursor-text" fields {
+    field text id "urn:gooo:editing:text" type string required one
+    field byte_column id "urn:gooo:editing:byte-column" type integer required one
+}
+entity Text id "urn:gooo:type:string"
+
+# Valid UTF-8, at a scalar boundary in the first line; at most 1024 bytes.
+# Delete one scalar at the cursor. A newline is deleted only when it is there.
+activity Delete(CursorText) -> Text id "urn:gooo:editing:delete-forward-scalar" computes `
+let start = input.byte_column
+if start >= int64(len(input.text)) {return input.text}
+let end = start + 1
+let offset = 0
+for offset = 0; offset < 4; offset = offset + 1 {
+    end = start + offset + 1
+    if end >= int64(len(input.text)) {return input.text[:start] + input.text[end:]}
+    let value = int64(input.text[end])
+    if value < 128 || value >= 192 {return input.text[:start] + input.text[end:]}
+}
+return input.text[:start] + input.text[end:]
+`
