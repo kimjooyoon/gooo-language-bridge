@@ -116,6 +116,8 @@ def packets(response, candidates, now):
         issue = repository['i%d' % i]
         if type(issue['number']) is not int or issue['number'] != int(number) or issue['url'].lower() != ('https://github.com/' + repo + '/issues/' + number).lower():
             raise ValueError('issue identity mismatch')
+        if not isinstance(issue['body'], str):
+            raise ValueError('issue body must be text')
         if issue['state'] not in ('OPEN', 'CLOSED'):
             raise ValueError('unknown issue state')
         merged = repository['pullRequests']
@@ -148,6 +150,7 @@ def packets(response, candidates, now):
             'recent_merge': bool(witnesses),
         }
         result.append({'candidate': candidate, 'url': issue['url'], 'title': issue['title'],
+                       'issue_body': issue['body'],
                        'observation': observation, 'expected_review_reason': review(observation),
                        'recent_merge_witnesses': witnesses, 'linked_prs': references,
                        'recent_comments': comments['nodes'],
