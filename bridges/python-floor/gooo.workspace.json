@@ -1,0 +1,17 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {
+    "package_path": "bridge/python",
+    "activity": "FloorDivide"
+  },
+  "packages": [
+    {
+      "path": "bridge/python",
+      "name": "pyfloor",
+      "imports": [],
+      "sources": [
+        "main.gooo"
+      ]
+    }
+  ]
+}

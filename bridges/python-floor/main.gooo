@@ -1,0 +1,10 @@
+package pyfloor
+namespace pyfloor
+entity Integer id "urn:gooo:type:integer"
+activity FloorDivide(Integer, Integer) -> Integer id "urn:gooo:bridge:python:floor-divide" computes `let quotient=input0/input1
+let remainder=input0-quotient*input1
+if remainder != 0 {
+if input0 < 0 {if input1 > 0 {quotient=quotient-1}}
+if input0 > 0 {if input1 < 0 {quotient=quotient-1}}
+}
+return quotient`

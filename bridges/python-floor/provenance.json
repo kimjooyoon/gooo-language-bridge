@@ -1,0 +1,11 @@
+{
+  "schema": "gooo-language-bridge/provenance/v1",
+  "upstream": "https://github.com/python/cpython",
+  "revision": "60403a5409ff2c3f3b07dd2ca91a7a3e096839c7",
+  "reference": "https://github.com/python/cpython/blob/60403a5409ff2c3f3b07dd2ca91a7a3e096839c7/Doc/reference/expressions.rst",
+  "license": "PSF-2.0",
+  "derivation": "Independently authored bounded behavioral adapter; no upstream implementation copied.",
+  "scope": "Integer floor division only; dividend -7..7, divisor -4..4 excluding zero. Not Python arbitrary precision, exceptions, floats or full language equivalence.",
+  "compiler": "v0.6.38-dev",
+  "go": "1.27.3"
+}
