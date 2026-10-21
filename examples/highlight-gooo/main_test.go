@@ -99,3 +99,44 @@ func TestLexerMatchesSubmittedSource(t *testing.T) {
 		t.Fatal("bundled lexer differs from its recorded source")
 	}
 }
+
+type iteratorLexer struct {
+	chroma.Lexer
+	iterator chroma.Iterator
+}
+
+func (l iteratorLexer) Tokenise(*chroma.TokeniseOptions, string) (chroma.Iterator, error) {
+	return l.iterator, nil
+}
+
+func TestStopsBeforeCoalescingPastFirstError(t *testing.T) {
+	reads := 0
+	raw := func() chroma.Token {
+		reads++
+		switch reads {
+		case 1:
+			return chroma.Token{Type: chroma.NameOther, Value: "valid"}
+		case 2:
+			return chroma.Token{Type: chroma.Error, Value: "?"}
+		default:
+			t.Fatal("lexer read beyond the first Error token")
+			return chroma.EOF
+		}
+	}
+	checked := &stopOnErrorLexer{Lexer: iteratorLexer{iterator: raw}}
+	iterator, err := chroma.Coalesce(checked).Tokenise(nil, "valid?ignored")
+	if err != nil {
+		t.Fatal(err)
+	}
+	iterator.Tokens()
+	if reads != 2 || checked.err == nil || checked.err.Error() != `unrecognised source character "?"` {
+		t.Fatal("first error was not preserved", reads, checked.err)
+	}
+	for _, format := range []string{"html", "json"} {
+		var output bytes.Buffer
+		err := render("entity Text\n?"+strings.Repeat("?", 64<<10), format, &output)
+		if err == nil || err.Error() != checked.err.Error() || output.Len() != 0 {
+			t.Fatal("expected first-character diagnostic without partial output", format, err)
+		}
+	}
+}
