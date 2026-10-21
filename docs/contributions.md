@@ -55,6 +55,29 @@ binds the edit; the new links were observed on the rendered profile. The release
 manifest hash was checked against the published asset before adding its link.
 This establishes a discovery route; it is not evidence of adoption or follower growth.
 
+## Chroma prefixed Go imaginary literals, submitted
+
+- Upstream: https://github.com/alecthomas/chroma/pull/1411
+- Original: `ef614fb8afe8ccf3f2b2cb45117c543a3ce8832b`.
+- Patch: `9eeba90bf714797853d60a5e815f8db33c00ae35`.
+- Recent maintainer merges: #1387/#1393 improved Go numeric forms; #1407 merged
+  October 18. Searches found no existing prefixed-imaginary patch before submission.
+- Four Go lexer rules preserve `i` in binary, octal, hexadecimal and hexadecimal-float
+  imaginary tokens, consistent with decimal imaginary classification.
+- New fixture: eleven corrected forms and seven unchanged decimal/non-imaginary
+  controls. All eighteen expressions compile in native Go; its scanner emits one
+  `IMAG` token for each affected literal. The fixture fails on the unchanged base.
+- Local full Chroma tests, Go fixture race tests and pinned lint pass on macOS
+  arm64. No existing fixture changes, metadata changes or Gooo dependency.
+- `tools/verify_chroma_go_numbers.py` retains original/patch token observations,
+  native compilation, the failing/passing regression, targeted race and full tests.
+  Independent CI does not replace upstream approval; no acceptance is claimed.
+- AI authorship is disclosed in the upstream PR and commit trailer.
+
+The [Go specification](https://go.dev/ref/spec#Imaginary_literals) permits these
+forms. This is a lexical classification fix, not complex-number evaluation in
+Gooo or a general Go lexer correctness proof.
+
 ## Additional Yaegi boundary observation, 2026-10-22
 
 The same patch corrects assignments into a host struct interface field, a host
