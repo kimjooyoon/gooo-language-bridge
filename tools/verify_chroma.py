@@ -45,6 +45,10 @@ def main():
                     if actual != SOURCE:
                         raise ValueError('source identity mismatch')
                     summary['go'] = subprocess.check_output(['go', 'version'], cwd=work, timeout=10).decode().strip()
+            bundled = ROOT / 'examples/highlight-gooo/gooo.xml'
+            if bundled.read_bytes() != (work / 'lexers/embedded/gooo.xml').read_bytes():
+                raise ValueError('consumer lexer differs from the submitted source')
+            summary['consumer_lexer_sha256'] = hashlib.sha256(bundled.read_bytes()).hexdigest()
             fixtures = work / 'lexers/testdata/gooo'
             summary['fixtures'] = []
             for actual in sorted(fixtures.glob('*.actual')):

@@ -1,0 +1,9 @@
+{
+  "schema": "gooo-language-bridge/lexer-source/v1",
+  "source": "https://github.com/alecthomas/chroma/pull/1410",
+  "revision": "f2224b4a0bd96f64da4cd9a92b293d81aaaf71cd",
+  "path": "lexers/embedded/gooo.xml",
+  "sha256": "69efd28868b832517a33f7e8758463d476440a734634811cb0c6e63d5c4d6e66",
+  "runtime": "github.com/alecthomas/chroma/v2@v2.27.0",
+  "status": "Submitted lexer; upstream acceptance unproven."
+}

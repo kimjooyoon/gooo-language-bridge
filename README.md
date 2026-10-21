@@ -59,6 +59,8 @@ See the [contribution ledger](docs/contributions.md) for scope and acceptance st
 
 [Chroma #1410](https://github.com/alecthomas/chroma/pull/1410) adds Gooo source
 highlighting through a standalone XML lexer, with no Gooo runtime dependency.
+Try the [published-Chroma consumer](examples/highlight-gooo/README.md) now: it renders
+self-contained HTML or source-preserving JSON tokens without building a Chroma fork.
 
 ```sh
 python3 tools/verify_chroma.py
