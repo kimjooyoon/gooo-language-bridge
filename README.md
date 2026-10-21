@@ -50,7 +50,7 @@ python3 tools/verify_yaegi.py
 ```
 
 This fetches the pinned original and patch revisions, injects the same regression
-tests, and requires eight original failures followed by ten patched passes and
-ten race-checked passes. Original JSON test events are retained in
+tests, and requires eight original failures followed by thirteen patched passes and
+thirteen race-checked passes. Original JSON test events are retained in
 `evidence/yaegi-1736/`. This focused regression does not certify Yaegi's full suite.
 See the [contribution ledger](docs/contributions.md) for scope and acceptance status.

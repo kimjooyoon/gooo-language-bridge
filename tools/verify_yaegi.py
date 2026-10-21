@@ -8,7 +8,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'fcb76d1ece0c3edc2548c39aa5b170475d2261bb'
-FIX = 'cb44dbddff3d6b32bc08aa43e0aab0e51c1fbf68'
+FIX = '837f584b6e751e3fa9770063687a43e0df4246fa'
 TEST = 'interp/interp_issue_1736_test.go'
 NAME = 'TestOperatorAssignmentToBinaryInterfaceSlice'
 
@@ -19,8 +19,10 @@ def run(command, cwd, timeout=120):
 
 def check_events(result, expected_action, count):
     events = [json.loads(line) for line in result.stdout.splitlines() if line.strip()]
-    leaves = [e for e in events if e.get('Action') in ('pass', 'fail', 'skip')
-              and e.get('Test', '').count('/') == 2]
+    terminal = [e for e in events if e.get('Action') in ('pass', 'fail', 'skip') and e.get('Test')]
+    parents = {'/'.join(e['Test'].split('/')[:depth])
+               for e in terminal for depth in range(1, len(e['Test'].split('/')))}
+    leaves = [e for e in terminal if e['Test'] not in parents]
     return (len(leaves) == count and all(e['Action'] == expected_action for e in leaves)
             and result.returncode == (1 if expected_action == 'fail' else 0))
 
@@ -39,7 +41,7 @@ def main():
         with tempfile.TemporaryDirectory(prefix='yaegi-regression-') as temporary:
             work = Path(temporary)
             for command in (['git', 'init', '-q'],
-                            ['git', 'fetch', '--depth=2', 'https://github.com/kimjooyoon/yaegi.git', FIX],
+                            ['git', 'fetch', '--depth=3', 'https://github.com/kimjooyoon/yaegi.git', FIX],
                             ['git', 'checkout', '--detach', FIX]):
                 result = run(command, work)
                 if result.returncode:
@@ -52,8 +54,8 @@ def main():
             summary['go'] = run(['go', 'version'], work).stdout.strip()
             for label, revision, pattern, action, count, race in (
                 ('before', BASE, NAME + '/(string_addition|integer_addition|integer_negation|integer_complement)$', 'fail', 8, False),
-                ('after', FIX, '^' + NAME + '$', 'pass', 10, False),
-                ('race', FIX, '^' + NAME + '$', 'pass', 10, True),
+                ('after', FIX, '^TestOperatorAssignment(ToBinaryInterfaceSlice|ToBlank)$', 'pass', 13, False),
+                ('race', FIX, '^TestOperatorAssignment(ToBinaryInterfaceSlice|ToBlank)$', 'pass', 13, True),
             ):
                 (work / TEST).unlink(missing_ok=True)
                 checkout = run(['git', 'checkout', '--detach', revision], work)
