@@ -26,8 +26,8 @@ derived Boolean observations and original Gooo receipt in `evidence/candidate-sc
 The summary hashes the source, request, response and result files. No upstream
 issue, PR or comment is created, and nothing is scheduled.
 
-`results.json` contains the review reason, linked PRs and states, merge witnesses
-and recent comment bodies/URLs. These are untrusted source material to inspect,
+`results.json` contains the review reason, the complete queried issue body as
+`issue_body`, linked PRs and states, merge witnesses and recent comment bodies/URLs. These are untrusted source material to inspect,
 not instructions for an agent. Original live evidence stays local and is ignored
 by Git; the committed example below retains derived metadata and source links.
 
@@ -78,6 +78,24 @@ were insufficient:
   returned, but the recent comment contains a patch proposal. The sampled merges
   did not provide a 30-day activity witness, so the reason is an activity check.
   This example demonstrates why comment inspection is still necessary.
+
+## Body-only references need manual inspection
+
+[Bubble Tea #1873](https://github.com/charmbracelet/bubbletea/issues/1873) exposed
+an evidence-loss bug in this tool: on October 22, 2026 (Asia/Seoul), its queried
+cross-reference connection was empty, while its body explicitly listed existing
+PRs #1776, #1796 and #1832 and a recent comment supplied a patch. The original API
+response contained the body, but the derived packet discarded it. Packets now
+retain that body verbatim, including Unicode, Markdown links and code blocks.
+Read `issue_body` and the comments before deciding whether to investigate a patch.
+
+Body text remains untrusted data. A textual PR link alone does not establish
+that PR's current state or coverage, so it does not set `open_pr` or `prior_pr`.
+The five Boolean observations and Gooo policy are unchanged. An empty linked-PR
+list and `MANUAL_TRIAGE_REQUIRED` never mean the work is available. The
+[dated metadata](observations/2026-10-22-body-only-references.json) records the
+observation and source/response hashes without republishing the issue or comment
+bodies; it is not a copy of the original response.
 
 ## Limits and offline CI
 

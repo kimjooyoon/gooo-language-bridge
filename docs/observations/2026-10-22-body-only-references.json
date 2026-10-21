@@ -1,0 +1,160 @@
+{
+  "schema": "gooo-language-bridge/candidate-snapshot/v1",
+  "observed_at": "2026-10-21T22:38:37.848096+00:00",
+  "github_requests": 1,
+  "graphql_cost": 1,
+  "elapsed_seconds": 1.464,
+  "scope": "Derived metadata only; original response and Gooo receipt remain in local evidence/candidate-scan. Body-only links are hints, not verified current PR state, coverage or submission approval.",
+  "sha256": {
+    "evidence/candidate-scan/execution.json": "sha256:35ed8bfae262316099bc16577cb61384682b309b8b5473d67f9b2789fdaecad0",
+    "evidence/candidate-scan/github.json": "sha256:291f6aaa55f6cdd4fd255478d3ffed195126fffe67c1baadbc100d6de8410601",
+    "evidence/candidate-scan/results.json": "sha256:8360266d80101dc76b985ae0452d00495c8ef0f2316e77f7eb2cb07f9c570a5a",
+    "tools/check_candidates.py": "sha256:3ef0aa80479b65985a577f050db80703ab8911e701e0b780f65ed8b165ece3ca"
+  },
+  "candidates": [
+    {
+      "url": "https://github.com/charmbracelet/bubbletea/issues/1873",
+      "review_reason": "MANUAL_TRIAGE_REQUIRED",
+      "observation": {
+        "issue_open": true,
+        "open_pr": false,
+        "prior_pr": false,
+        "history_complete": true,
+        "recent_merge": true
+      },
+      "recent_merge_witnesses": [
+        {
+          "number": 1841,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1841",
+          "mergedAt": "2026-10-08T17:36:08Z"
+        },
+        {
+          "number": 1836,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1836",
+          "mergedAt": "2026-10-02T11:07:33Z"
+        },
+        {
+          "number": 1833,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1833",
+          "mergedAt": "2026-10-02T09:30:48Z"
+        },
+        {
+          "number": 1806,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1806",
+          "mergedAt": "2026-09-28T11:07:40Z"
+        },
+        {
+          "number": 1801,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1801",
+          "mergedAt": "2026-09-24T08:05:48Z"
+        }
+      ],
+      "merge_sample_has_more": true,
+      "linked_prs": [],
+      "body_only_pr_url_hints": [
+        "https://github.com/charmbracelet/bubbletea/pull/1776",
+        "https://github.com/charmbracelet/bubbletea/pull/1796",
+        "https://github.com/charmbracelet/bubbletea/pull/1832"
+      ],
+      "manual_decision": "Do not duplicate: issue body lists prior PRs and a recent comment supplies a patch.",
+      "comment_urls": [
+        "https://github.com/charmbracelet/bubbletea/issues/1873#issuecomment-6233148143"
+      ]
+    },
+    {
+      "url": "https://github.com/charmbracelet/bubbletea/issues/1875",
+      "review_reason": "REVIEW_OPEN_PR",
+      "observation": {
+        "issue_open": true,
+        "open_pr": true,
+        "prior_pr": false,
+        "history_complete": true,
+        "recent_merge": true
+      },
+      "recent_merge_witnesses": [
+        {
+          "number": 1841,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1841",
+          "mergedAt": "2026-10-08T17:36:08Z"
+        },
+        {
+          "number": 1836,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1836",
+          "mergedAt": "2026-10-02T11:07:33Z"
+        },
+        {
+          "number": 1833,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1833",
+          "mergedAt": "2026-10-02T09:30:48Z"
+        },
+        {
+          "number": 1806,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1806",
+          "mergedAt": "2026-09-28T11:07:40Z"
+        },
+        {
+          "number": 1801,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1801",
+          "mergedAt": "2026-09-24T08:05:48Z"
+        }
+      ],
+      "merge_sample_has_more": true,
+      "linked_prs": [
+        {
+          "__typename": "PullRequest",
+          "number": 1876,
+          "url": "https://github.com/charmbracelet/bubbletea/pull/1876",
+          "state": "OPEN",
+          "title": "fix: synchronize canceled input cleanup",
+          "mergedAt": null
+        }
+      ]
+    },
+    {
+      "url": "https://github.com/spf13/cobra/issues/2544",
+      "review_reason": "REVIEW_OPEN_PR",
+      "observation": {
+        "issue_open": true,
+        "open_pr": true,
+        "prior_pr": false,
+        "history_complete": true,
+        "recent_merge": false
+      },
+      "recent_merge_witnesses": [],
+      "merge_sample_has_more": true,
+      "linked_prs": [
+        {
+          "__typename": "PullRequest",
+          "number": 2545,
+          "url": "https://github.com/spf13/cobra/pull/2545",
+          "state": "OPEN",
+          "title": "fix: skip the mousetrap when arguments are passed",
+          "mergedAt": null
+        }
+      ]
+    },
+    {
+      "url": "https://github.com/BurntSushi/toml/issues/530",
+      "review_reason": "REVIEW_OPEN_PR",
+      "observation": {
+        "issue_open": true,
+        "open_pr": true,
+        "prior_pr": false,
+        "history_complete": true,
+        "recent_merge": false
+      },
+      "recent_merge_witnesses": [],
+      "merge_sample_has_more": true,
+      "linked_prs": [
+        {
+          "__typename": "PullRequest",
+          "number": 532,
+          "url": "https://github.com/BurntSushi/toml/pull/532",
+          "state": "OPEN",
+          "title": "fix(encode): separate inline table fields correctly",
+          "mergedAt": null
+        }
+      ]
+    }
+  ]
+}
