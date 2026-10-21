@@ -1,0 +1,154 @@
+{
+  "schema": "gooo-language-bridge/candidate-snapshot/v1",
+  "observed_at": "2026-10-21T21:02:40.100589+00:00",
+  "github_requests": 1,
+  "graphql_cost": 1,
+  "elapsed_seconds": 1.819,
+  "scope": "Derived metadata only; original API response and Gooo receipt remain in local evidence/candidate-scan. This snapshot is not the original response or a submission approval.",
+  "sha256": {
+    "bridges/contribution-review/gooo.workspace.json": "sha256:a267af2fa38bf5f624c7b74714955b8ba1b1f01ea33b48a8041fa93a20bc8c3e",
+    "bridges/contribution-review/main.gooo": "sha256:18542af0396d06605fc9b5e71031e2c7daff6bb147781c5a96bd02aca2689cf1",
+    "bridges/contribution-review/provenance.json": "sha256:fdfba7ade7f22cf6e2c49b195ed9796e4a56be9e19117190c5c23e014e075f8c",
+    "evidence/candidate-scan/execution.json": "sha256:f08c06d43f8e8bf4d877f2405fe42fe9c78f422fb01d09d4b0c43550fa202dc2",
+    "evidence/candidate-scan/github.json": "sha256:013a8714d8067918be42345216197d87d5976d52223649d99ab19661aa98b585",
+    "tools/check_candidates.py": "sha256:b8a96ec0d90af59bc53844820bea816154b791ce621f5745f676683fc0e21a37"
+  },
+  "candidates": [
+    {
+      "url": "https://github.com/spf13/pflag/issues/413",
+      "review_reason": "REVIEW_OPEN_PR",
+      "observation": {
+        "issue_open": true,
+        "open_pr": true,
+        "prior_pr": true,
+        "history_complete": true,
+        "recent_merge": true
+      },
+      "recent_merge_witnesses": [
+        {
+          "number": 526,
+          "url": "https://github.com/spf13/pflag/pull/526",
+          "mergedAt": "2026-10-20T07:29:24Z"
+        }
+      ],
+      "merge_sample_has_more": true,
+      "linked_prs": [
+        {
+          "url": "https://github.com/spf13/pflag/pull/414",
+          "state": "OPEN",
+          "mergedAt": null
+        },
+        {
+          "url": "https://github.com/spf13/pflag/pull/489",
+          "state": "CLOSED",
+          "mergedAt": null
+        },
+        {
+          "url": "https://github.com/spf13/pflag/pull/493",
+          "state": "OPEN",
+          "mergedAt": null
+        },
+        {
+          "url": "https://github.com/spf13/pflag/pull/509",
+          "state": "CLOSED",
+          "mergedAt": null
+        },
+        {
+          "url": "https://github.com/spf13/pflag/pull/528",
+          "state": "OPEN",
+          "mergedAt": null
+        }
+      ],
+      "recent_comment_urls": [],
+      "recent_merge_witness_count": 8
+    },
+    {
+      "url": "https://github.com/spf13/pflag/issues/312",
+      "review_reason": "REVIEW_OPEN_PR",
+      "observation": {
+        "issue_open": true,
+        "open_pr": true,
+        "prior_pr": true,
+        "history_complete": false,
+        "recent_merge": true
+      },
+      "recent_merge_witnesses": [
+        {
+          "number": 526,
+          "url": "https://github.com/spf13/pflag/pull/526",
+          "mergedAt": "2026-10-20T07:29:24Z"
+        }
+      ],
+      "merge_sample_has_more": true,
+      "linked_prs": [
+        {
+          "url": "https://github.com/spf13/pflag/pull/486",
+          "state": "CLOSED",
+          "mergedAt": null
+        },
+        {
+          "url": "https://github.com/spf13/pflag/pull/491",
+          "state": "OPEN",
+          "mergedAt": null
+        },
+        {
+          "url": "https://github.com/devsy-org/devsy/pull/726",
+          "state": "MERGED",
+          "mergedAt": "2026-07-23T15:25:37Z"
+        }
+      ],
+      "recent_comment_urls": [
+        "https://github.com/spf13/pflag/issues/312#issuecomment-3591803089",
+        "https://github.com/spf13/pflag/issues/312#issuecomment-4859390360",
+        "https://github.com/spf13/pflag/issues/312#issuecomment-4862570148"
+      ],
+      "recent_merge_witness_count": 8
+    },
+    {
+      "url": "https://github.com/go-git/go-git/issues/2496",
+      "review_reason": "REVIEW_OPEN_PR",
+      "observation": {
+        "issue_open": true,
+        "open_pr": true,
+        "prior_pr": false,
+        "history_complete": true,
+        "recent_merge": true
+      },
+      "recent_merge_witnesses": [
+        {
+          "number": 2532,
+          "url": "https://github.com/go-git/go-git/pull/2532",
+          "mergedAt": "2026-10-21T15:19:57Z"
+        }
+      ],
+      "merge_sample_has_more": true,
+      "linked_prs": [
+        {
+          "url": "https://github.com/go-git/go-git/pull/2497",
+          "state": "OPEN",
+          "mergedAt": null
+        }
+      ],
+      "recent_comment_urls": [],
+      "recent_merge_witness_count": 20
+    },
+    {
+      "url": "https://github.com/yuin/goldmark/issues/614",
+      "review_reason": "CHECK_MAINTENANCE_ACTIVITY",
+      "observation": {
+        "issue_open": true,
+        "open_pr": false,
+        "prior_pr": false,
+        "history_complete": true,
+        "recent_merge": false
+      },
+      "recent_merge_witnesses": [],
+      "merge_sample_has_more": true,
+      "linked_prs": [],
+      "recent_comment_urls": [
+        "https://github.com/yuin/goldmark/issues/614#issuecomment-6321482181"
+      ],
+      "recent_merge_witness_count": 0
+    }
+  ]
+}

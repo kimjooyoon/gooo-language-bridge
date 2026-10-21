@@ -1,0 +1,9 @@
+{
+  "schema": "gooo-language-bridge/provenance/v1",
+  "derivation": "Independently authored conservative review policy. This expresses this workbench's contributor workflow, not upstream project policy or language equivalence.",
+  "proposal": "https://github.com/kimjooyoon/gooo-language-bridge/issues/10",
+  "api_reference": "https://docs.github.com/en/graphql/guides/using-pagination-in-the-graphql-api",
+  "observation_sources": "Original GitHub GraphQL response and request retained for each explicit live invocation; no upstream implementation copied.",
+  "scope": "Five Boolean observations produce a next-review reason. All 32 combinations are checked offline. References can be contextual, history is bounded and lack of a recent sampled merge does not establish inactivity. No decision approves submission or declares unclaimed work.",
+  "compiler": "v0.6.38-dev"
+}

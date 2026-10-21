@@ -48,6 +48,11 @@ GitHub's run and commit metadata provide the execution context.
 
 ## Project management
 
+Before starting a candidate, use the [read-only contribution check](docs/contribution-candidate-check.md)
+to collect recent merge witnesses, linked open/closed PRs and recent comments in
+one bounded GitHub query. Gooo assigns a next-review reason; it never approves
+submission or declares the work unclaimed. Offline CI checks all 32 policy inputs.
+
 Use Issues for bounded bridge proposals and counterexamples, and PRs for source.
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](ROADMAP.md).
 This project complements the [Gooo engine](https://github.com/kimjooyoon/meta-ontology-go)

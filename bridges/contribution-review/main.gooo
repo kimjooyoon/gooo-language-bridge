@@ -1,0 +1,21 @@
+package contributionreview
+namespace contributionreview
+
+entity Observation id "urn:gooo:contribution:observation" fields {
+    field issue_open id "urn:gooo:contribution:issue-open" type boolean required one
+    field open_pr id "urn:gooo:contribution:open-pr" type boolean required one
+    field prior_pr id "urn:gooo:contribution:prior-pr" type boolean required one
+    field history_complete id "urn:gooo:contribution:history-complete" type boolean required one
+    field recent_merge id "urn:gooo:contribution:recent-merge" type boolean required one
+}
+entity Text id "urn:gooo:type:string"
+
+# Reasons for further inspection; no output authorizes an upstream submission.
+activity Review(Observation) -> Text id "urn:gooo:contribution:review" computes `
+if !input.issue_open {return "ISSUE_CLOSED"}
+if input.open_pr {return "REVIEW_OPEN_PR"}
+if input.prior_pr {return "REVIEW_PRIOR_PR"}
+if !input.history_complete {return "REVIEW_TRUNCATED_HISTORY"}
+if !input.recent_merge {return "CHECK_MAINTENANCE_ACTIVITY"}
+return "MANUAL_TRIAGE_REQUIRED"
+`
