@@ -90,3 +90,16 @@ race-checks the Gooo fixtures, verifies generated metadata and checks that all
 128 expected tokens reconstruct the two source fixtures without Error tokens.
 Logs and hashes are retained under `evidence/chroma-gooo/`. Upstream CI approval
 and acceptance remain separate from this independent proof.
+
+[Chroma #1411](https://github.com/alecthomas/chroma/pull/1411) also corrects Go
+imaginary literals such as `0b10i` and `0x1p-2i` being split before their `i`.
+Native Go compilation and scanner output independently establish the eighteen-case
+fixture's input scope; eleven token streams change and seven controls stay equal.
+
+```sh
+python3 tools/verify_chroma_go_numbers.py
+```
+
+This retains the original failing regression, patched/race passes, full tests and
+native token observations under `evidence/chroma-go-numbers/`. The submitted Go
+lexer patch and the Gooo language lexer are separate contributions.
