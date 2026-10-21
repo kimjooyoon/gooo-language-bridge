@@ -38,3 +38,19 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](ROADMAP.md).
 This project complements the [Gooo engine](https://github.com/kimjooyoon/meta-ontology-go)
 and existing ecosystem projects. Upstream acceptance is decided by each upstream
 project; a local passing bridge is never counted as an accepted contribution.
+
+## Upstream work
+
+[Yaegi #1738](https://github.com/traefik/yaegi/pull/1738) fixes an existing
+interpreter report: operator assignments to compiled interface slices can lose
+the stored value and return a nil pointer. The draft introduces no Gooo dependency.
+
+```sh
+python3 tools/verify_yaegi.py
+```
+
+This fetches the pinned original and patch revisions, injects the same regression
+tests, and requires eight original failures followed by ten patched passes and
+ten race-checked passes. Original JSON test events are retained in
+`evidence/yaegi-1736/`. This focused regression does not certify Yaegi's full suite.
+See the [contribution ledger](docs/contributions.md) for scope and acceptance status.

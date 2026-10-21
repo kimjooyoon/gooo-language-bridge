@@ -30,6 +30,7 @@ jobs:
         run: GOBIN="$PWD/.bin" GOTOOLCHAIN=go1.27.3 go install github.com/kimjooyoon/meta-ontology-go/cmd/gooo@v0.6.38-dev
       - run: python3 -m unittest discover -s tests
       - run: python3 tools/verify.py --gooo .bin/gooo
+      - run: python3 tools/verify_yaegi.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
