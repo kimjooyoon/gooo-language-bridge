@@ -35,17 +35,17 @@ The executing Python runtime is recorded separately: it is not claimed to be tha
 
 `bridges/text-length/main.gooo` gives UTF-8 bytes, Unicode code points and UTF-16
 code units separate stable field identities. For `🙂` these are **4, 1, 2**;
-for `가` they are **3, 1, 1**. The native Go reference and Python operations
+for `가` they are **3, 1, 1**. Native Go, Python and Node.js operations
 independently check all three fields on 27 inputs, including encoding boundaries
 and 1024-byte strings. A 1025-byte input must be rejected.
 
-Read [String length across Go and Python](docs/string-length-units.md) for the
+Read [String length across Go, Python and JavaScript](docs/string-length-units.md) for the
 executable example, counterexamples and scope. These are encoding units;
-graphemes, display width, normalization and JavaScript execution are excluded.
+graphemes, display width, normalization and browser engines are excluded.
 
 ## Reproduce the semantic comparisons
 
-Requires Python 3.9+ and Go 1.27.3; no model, API key, service or paid runner.
+Requires Python 3.9+, Go 1.27.3 and Node.js 22.23.1; no model, API key, service or paid runner.
 
 ```sh
 mkdir -p .bin

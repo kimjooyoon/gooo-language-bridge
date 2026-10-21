@@ -2,7 +2,7 @@
 from copy import deepcopy
 import unittest
 
-from tools.compare_text_length import ACTIVITY, FIELDS, compare, corpus, python_lengths
+from tools.compare_text_length import ACTIVITY, FIELDS, compare, compare_javascript, corpus, python_lengths
 
 
 class TextLengthEvidenceTests(unittest.TestCase):
@@ -50,6 +50,37 @@ class TextLengthEvidenceTests(unittest.TestCase):
         for native in ([], self.native * 2):
             with self.assertRaises(ValueError):
                 compare(self.rows, native, self.receipt, 0)
+
+    def test_javascript_observations_require_complete_input_identity(self):
+        observed = {'runtime': {'node': 'v22.23.1', 'v8': 'observed', 'unicode': 'observed'},
+                    'rows': deepcopy(self.native)}
+        self.assertEqual(set(compare_javascript(self.rows, observed)), {'astral'})
+        for mutation in ('missing', 'duplicate', 'wrong-text', 'wrong-id'):
+            changed = deepcopy(observed)
+            if mutation == 'missing':
+                changed['rows'].clear()
+            elif mutation == 'duplicate':
+                changed['rows'] *= 2
+            elif mutation == 'wrong-text':
+                changed['rows'][0]['text'] = 'x'
+            else:
+                changed['rows'][0]['id'] = 'other'
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                compare_javascript(self.rows, changed)
+
+    def test_javascript_unit_and_runtime_corruption_is_rejected(self):
+        observed = {'runtime': {'node': 'v22.23.1', 'v8': 'observed', 'unicode': 'observed'},
+                    'rows': deepcopy(self.native)}
+        for values in ({'code_points': 2, 'utf16_units': 1}, {'code_points': True}):
+            changed = deepcopy(observed)
+            changed['rows'][0]['lengths'].update(values)
+            with self.subTest(values=values), self.assertRaises(ValueError):
+                compare_javascript(self.rows, changed)
+        for runtime in ({}, [], {'node': 'v22.23.1', 'v8': '', 'unicode': 'observed'}):
+            changed = deepcopy(observed)
+            changed['runtime'] = runtime
+            with self.subTest(runtime=runtime), self.assertRaises(ValueError):
+                compare_javascript(self.rows, changed)
 
     def test_corpus_boundaries_and_scope(self):
         rows = corpus()

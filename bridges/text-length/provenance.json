@@ -5,18 +5,43 @@
       "upstream": "https://github.com/golang/go",
       "revision": "2aae1000ea1d4b28923b96db28acf4e3b99d6aff",
       "license": "BSD-3-Clause",
-      "paths": ["doc/go_spec.html", "src/unicode/utf8/utf8.go", "src/unicode/utf16/utf16.go"]
+      "paths": [
+        "doc/go_spec.html",
+        "src/unicode/utf8/utf8.go",
+        "src/unicode/utf16/utf16.go"
+      ]
     },
     {
       "upstream": "https://github.com/python/cpython",
       "revision": "60403a5409ff2c3f3b07dd2ca91a7a3e096839c7",
       "license": "PSF-2.0",
-      "paths": ["Doc/library/stdtypes.rst"]
+      "paths": [
+        "Doc/library/stdtypes.rst"
+      ]
+    },
+    {
+      "upstream": "https://github.com/nodejs/node",
+      "revision": "bd96dfbf0361576724b65322046e2ca9f9609cb9",
+      "license": "MIT with third-party notices; see LICENSE",
+      "paths": [
+        "doc/api/util.md",
+        "LICENSE"
+      ]
+    },
+    {
+      "upstream": "https://github.com/tc39/ecma262",
+      "revision": "4feb0272b799ea795c5eadee9b482aea0c10ce45",
+      "license": "Ecma documentation/code terms; see LICENSE.md",
+      "paths": [
+        "spec.html",
+        "LICENSE.md"
+      ]
     }
   ],
   "derivation": "Independently authored UTF-8 leading-byte counter, corpus and runners; no upstream implementation copied.",
-  "scope": "Finite corpus of Unicode scalar strings, encoded as valid UTF-8, at most 1024 bytes. Counts bytes, code points and UTF-16 code units. Excludes lone surrogates, malformed UTF-8, normalization, grapheme clusters and display width. No JavaScript runtime is executed.",
+  "scope": "Finite corpus of Unicode scalar strings, encoded as valid UTF-8, at most 1024 bytes. Counts bytes, code points and UTF-16 code units. Excludes lone surrogates, malformed UTF-8, normalization, grapheme clusters and display width. JavaScript observations execute Node.js built-in operations, with lone surrogates rejected before TextEncoder can replace them; no browser engine is tested.",
   "compiler": "v0.6.38-dev",
   "go": "1.27.3",
-  "runtime_identity": "Record actual Go/Python versions separately; documentation revisions do not identify the executing Python runtime."
+  "runtime_identity": "Record actual Go/Python and Node/V8/Unicode versions separately; documentation revisions do not substitute for executing runtime identities.",
+  "node": "22.23.1"
 }
