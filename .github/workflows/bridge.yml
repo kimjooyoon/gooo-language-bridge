@@ -33,6 +33,7 @@ jobs:
       - run: python3 tools/compare_division.py --gooo .bin/gooo
       - run: python3 tools/verify_yaegi.py
       - run: python3 tools/verify_chroma.py
+      - run: go -C examples/highlight-gooo test -race ./...
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
