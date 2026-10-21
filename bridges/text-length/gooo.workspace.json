@@ -1,0 +1,10 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {"package_path": "bridge/text", "activity": "Measure"},
+  "packages": [{
+    "path": "bridge/text",
+    "name": "textlength",
+    "imports": [],
+    "sources": ["main.gooo"]
+  }]
+}
