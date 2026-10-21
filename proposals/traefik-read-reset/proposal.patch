@@ -1,0 +1,42 @@
+diff --git a/pkg/tcp/proxy_unix.go b/pkg/tcp/proxy_unix.go
+--- a/pkg/tcp/proxy_unix.go
++++ b/pkg/tcp/proxy_unix.go
+@@ -10,6 +10,15 @@
+ 
+ // isReadConnResetError reports whether err is a connection reset error during a read operation.
+ func isReadConnResetError(err error) bool {
+-	oerr, ok := errors.AsType[*net.OpError](err)
+-	return ok && oerr.Op == "read" && errors.Is(err, syscall.ECONNRESET)
++	for {
++		oerr, ok := errors.AsType[*net.OpError](err)
++		if !ok {
++			return false
++		}
++		if oerr.Op != "readfrom" && oerr.Op != "writeto" {
++			return oerr.Op == "read" && errors.Is(oerr.Err, syscall.ECONNRESET)
++		}
++		// Copy methods add context around the underlying read or write error.
++		err = oerr.Err
++	}
+ }
+diff --git a/pkg/tcp/proxy_windows.go b/pkg/tcp/proxy_windows.go
+--- a/pkg/tcp/proxy_windows.go
++++ b/pkg/tcp/proxy_windows.go
+@@ -10,6 +10,15 @@
+ 
+ // isReadConnResetError reports whether err is a connection reset error during a read operation.
+ func isReadConnResetError(err error) bool {
+-	oerr, ok := errors.AsType[*net.OpError](err)
+-	return ok && oerr.Op == "read" && errors.Is(err, syscall.WSAECONNRESET)
++	for {
++		oerr, ok := errors.AsType[*net.OpError](err)
++		if !ok {
++			return false
++		}
++		if oerr.Op != "readfrom" && oerr.Op != "writeto" {
++			return oerr.Op == "read" && errors.Is(oerr.Err, syscall.WSAECONNRESET)
++		}
++		// Copy methods add context around the underlying read or write error.
++		err = oerr.Err
++	}
+ }

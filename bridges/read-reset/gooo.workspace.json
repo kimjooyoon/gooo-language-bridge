@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {"package_path": "bridge/readreset", "activity": "Classify"},
+  "packages": [{
+    "path": "bridge/readreset", "name": "readreset",
+    "imports": [], "sources": ["main.gooo"]
+  }]
+}

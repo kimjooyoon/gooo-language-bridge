@@ -38,6 +38,7 @@ jobs:
       - run: python3 tools/verify_chroma_go_numbers.py
       - run: go -C examples/highlight-gooo test -race ./...
       - run: python3 tools/verify_highlighter.py
+      - run: python3 tools/verify_read_reset.py --gooo .bin/gooo
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

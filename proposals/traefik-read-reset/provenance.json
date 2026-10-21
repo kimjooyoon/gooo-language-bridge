@@ -1,0 +1,32 @@
+{
+  "schema": "gooo-language-bridge/proposal/v1",
+  "issue": "https://github.com/traefik/traefik/issues/14116",
+  "upstream": "https://github.com/traefik/traefik",
+  "branch": "v3.7",
+  "revision": "7fdde68e1acbfa89cd447ed34bc9c17120e759a7",
+  "license": "MIT",
+  "files": {
+    "pkg/tcp/proxy_unix.go": {
+      "blob": "31362a97a4bb3862d2f3fc856fa8e7d6bc10efab",
+      "sha256": "f05eb0d18284a00f800cc7931baed9f847d7b5dcbbcdd48e84013f1d19223680"
+    },
+    "pkg/tcp/proxy_windows.go": {
+      "blob": "d6c6162d996679b7288fcd0fa9a835a876db3e21",
+      "sha256": "7154d89e52baa9539fe5da993b0ac33341be0359c594264c77dc1600979f7e9f"
+    },
+    "LICENSE.md": {
+      "blob": "50d2fa2c7069a50f44252b486f1430c9a7b23b4f",
+      "sha256": "c33e29340498ccde22ba0ab9537d6eb0aa3a2eae0dda61bb6df31df6a032fa5b"
+    },
+    "AGENTS.md": {
+      "blob": "377005d22f6ed4206ab83b876ee9eaf0b45f537d",
+      "sha256": "5cc6a7a8ae94eb4af992259d319a758cd739b2ead1c5f23569a291c57534abdc"
+    },
+    "pkg/tcp/proxy.go": {
+      "blob": "d602dfbf8964f8ca2288f3d5b85c64a94b92475d",
+      "sha256": "b7d04c1cf400fbd663d4cd83262216b1d954342768d394cb72d7220d663a7c26"
+    }
+  },
+  "status": "Proposed criterion patch only; not submitted upstream. Full Traefik validation and human-authored upstream conversation remain outstanding.",
+  "scope": "Linear acyclic error chains of at most three net.OpError nodes in the Gooo model. Nil means NO_LOG. Standalone tests compile the original/proposed predicate and reproduce a local TCP reset, but do not execute ServeTCP, capture zerolog output or reproduce the reported Teleport deployment. Branched/cyclic errors are excluded."
+}
