@@ -17,6 +17,18 @@ For a practical migration example, read [Python integer division to Go](docs/pyt
 it compares the native runtimes with the actual Gooo results and explains the negative-input counterexamples.
 The executing Python runtime is recorded separately: it is not claimed to be that upstream revision.
 
+## String-length units across languages
+
+`bridges/text-length/main.gooo` gives UTF-8 bytes, Unicode code points and UTF-16
+code units separate stable field identities. For `🙂` these are **4, 1, 2**;
+for `가` they are **3, 1, 1**. The native Go reference and Python operations
+independently check all three fields on 27 inputs, including encoding boundaries
+and 1024-byte strings. A 1025-byte input must be rejected.
+
+Read [String length across Go and Python](docs/string-length-units.md) for the
+executable example, counterexamples and scope. These are encoding units;
+graphemes, display width, normalization and JavaScript execution are excluded.
+
 ## Reproduce
 
 Requires Python 3.9+ and Go 1.27.3; no model, API key, service or paid runner.
@@ -25,6 +37,7 @@ Requires Python 3.9+ and Go 1.27.3; no model, API key, service or paid runner.
 mkdir -p .bin
 GOBIN="$PWD/.bin" GOTOOLCHAIN=go1.27.3 go install github.com/kimjooyoon/meta-ontology-go/cmd/gooo@v0.6.38-dev
 python3 tools/verify.py --gooo .bin/gooo
+python3 tools/compare_text_length.py --gooo .bin/gooo
 ```
 
 Inspect `evidence/summary.json`, `execution.json`, `cases.json`, and stderr.
@@ -45,7 +58,7 @@ project; a local passing bridge is never counted as an accepted contribution.
 
 [Yaegi #1738](https://github.com/traefik/yaegi/pull/1738) fixes an existing
 interpreter report: operator assignments to compiled interface slices can lose
-the stored value and return a nil pointer. The draft introduces no Gooo dependency.
+the stored value and return a nil pointer. The patch introduces no Gooo dependency.
 
 ```sh
 python3 tools/verify_yaegi.py

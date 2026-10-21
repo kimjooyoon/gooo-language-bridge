@@ -31,6 +31,7 @@ jobs:
         run: GOBIN="$PWD/.bin" GOTOOLCHAIN=go1.27.3 go install github.com/kimjooyoon/meta-ontology-go/cmd/gooo@v0.6.38-dev
       - run: python3 -m unittest discover -s tests
       - run: python3 tools/compare_division.py --gooo .bin/gooo
+      - run: python3 tools/compare_text_length.py --gooo .bin/gooo
       - run: python3 tools/verify_yaegi.py
       - run: python3 tools/verify_chroma.py
       - run: go -C examples/highlight-gooo test -race ./...

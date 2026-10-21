@@ -1,0 +1,29 @@
+package textlength
+namespace textlength
+
+entity Text id "urn:gooo:type:string"
+entity Lengths id "urn:gooo:bridge:text:lengths" fields {
+    field utf8_bytes id "urn:gooo:bridge:text:utf8-bytes" type integer required one
+    field code_points id "urn:gooo:bridge:text:code-points" type integer required one
+    field utf16_units id "urn:gooo:bridge:text:utf16-units" type integer required one
+}
+
+# Valid UTF-8 only; the pinned compiler bounds Text inputs at 1024 bytes.
+# Count leading bytes, with a second UTF-16 unit for four-byte sequences.
+activity Measure(Text) -> Lengths id "urn:gooo:bridge:text:measure" computes `
+let points = 0
+let units = 0
+let offset = 0
+for offset = 0; offset < 1024; offset = offset + 1 {
+    if offset >= int64(len(input)) {
+        return Lengths{utf8_bytes:int64(len(input)),code_points:points,utf16_units:units}
+    }
+    let value = int64(input[offset])
+    if value < 128 || value >= 192 {
+        points = points + 1
+        units = units + 1
+        if value >= 240 { units = units + 1 }
+    }
+}
+return Lengths{utf8_bytes:int64(len(input)),code_points:points,utf16_units:units}
+`
