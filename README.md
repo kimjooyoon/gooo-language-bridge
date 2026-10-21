@@ -13,6 +13,8 @@ truncates to `-2` in the underlying integer calculation; this bridge returns `-3
 The 120 comparisons cover dividends -7..7 and nonzero divisors -4..4.
 This is a bounded semantic adapter, not a Python compiler or a general equivalence proof.
 The upstream documentation revision and licensing context are in `provenance.json`.
+For a practical migration example, read [Python integer division to Go](docs/python-go-integer-division.md):
+it compares the native runtimes with the actual Gooo results and explains the negative-input counterexamples.
 The executing Python runtime is recorded separately: it is not claimed to be that upstream revision.
 
 ## Reproduce
