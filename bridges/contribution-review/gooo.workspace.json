@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {"package_path": "bridge/contribution", "activity": "Review"},
+  "packages": [{
+    "path": "bridge/contribution", "name": "contributionreview",
+    "imports": [], "sources": ["main.gooo"]
+  }]
+}
