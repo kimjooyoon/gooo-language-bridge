@@ -31,3 +31,16 @@ CI in this repository reproduces the focused before/after evidence. It cannot
 authorize merging to an external project. The current Python/Gooo arithmetic
 bridge and this Yaegi fix are separate evidence scopes; no Yaegi/Gooo integration
 or general language equivalence is claimed.
+
+## Chroma Gooo lexer, submitted
+
+- Upstream: https://github.com/alecthomas/chroma/pull/1410
+- Source: `f2224b4a0bd96f64da4cd9a92b293d81aaaf71cd`
+- Recent activity: lexer PRs #1404/#1405 merged October 15 and #1407 October 18, 2026 UTC.
+- XML lexer, alias/filename discovery, two fixtures (128 tokens), generated registry metadata.
+- Both fixtures pass pinned Gooo v0.6.38-dev check. Bodies remain raw strings; no Go body parsing or Gooo runtime dependency.
+- Local full tests, lexer/registry race checks, lint and stable metadata generation pass.
+- Upstream CI is `action_required` for a first contribution; upstream acceptance is unproven.
+- `tools/verify_chroma.py` runs full tests, Gooo fixture race tests and metadata freshness against the exact submission. Its CI proof does not include lint; the lint claim above is local only.
+- Fork workflow activation did not start a run during observation. Independent proof therefore runs in this existing workbench's CI, retaining stdout, stderr and file hashes. Fork PRs are not counted as upstream acceptance.
+- AI assistance is disclosed in the upstream PR and commit trailer.

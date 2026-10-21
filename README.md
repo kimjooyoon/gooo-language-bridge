@@ -54,3 +54,16 @@ tests, and requires eight original failures followed by thirteen patched passes 
 thirteen race-checked passes. Original JSON test events are retained in
 `evidence/yaegi-1736/`. This focused regression does not certify Yaegi's full suite.
 See the [contribution ledger](docs/contributions.md) for scope and acceptance status.
+
+[Chroma #1410](https://github.com/alecthomas/chroma/pull/1410) adds Gooo source
+highlighting through a standalone XML lexer, with no Gooo runtime dependency.
+
+```sh
+python3 tools/verify_chroma.py
+```
+
+The command fetches the exact submitted revision, runs the full Chroma tests,
+race-checks the Gooo fixtures, verifies generated metadata and checks that all
+128 expected tokens reconstruct the two source fixtures without Error tokens.
+Logs and hashes are retained under `evidence/chroma-gooo/`. Upstream CI approval
+and acceptance remain separate from this independent proof.
