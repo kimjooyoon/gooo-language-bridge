@@ -32,6 +32,7 @@ jobs:
       - run: python3 -m unittest discover -s tests
       - run: python3 tools/verify.py --gooo .bin/gooo
       - run: python3 tools/verify_yaegi.py
+      - run: python3 tools/verify_chroma.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
