@@ -90,3 +90,24 @@ fixture in `tests/fixtures/yaegi_mixed_blank_test.go` is injected only into the
 workbench's temporary checkout and retained as an expected failure in separate
 `known-before` / `known-after` logs. It is not counted as a fixed case and is not
 added to the upstream passing regression suite.
+
+## Bubbles forward Delete, submitted
+
+- Report: https://github.com/charmbracelet/bubbles/issues/1071
+- Submission: https://github.com/charmbracelet/bubbles/pull/1072
+- Original: `c3bde0d166c2ca607d9864493453fd77bdcae7e4`.
+- Patch: `c328d151ef791e224ebff53d664fbfa7586796fe`.
+- A three-line reorder prevents a Delete press from removing the line's final
+  character and also merging the next line. Existing line-end joining remains.
+- Three original failures become eight patched passes; five boundary controls
+  remain equal. The independently executed Gooo edit matches all eight.
+- Local Go 1.26.0 full tests, textarea race tests, build, vet and pinned
+  golangci-lint v2.13.1 pass. The eight-case regression also passes on Go 1.27.3.
+- `tools/verify_bubbles_delete.py` fetches exact sources and retains original
+  focused/race test events, native inputs, source hashes and the Gooo receipt.
+  Its CI scope is focused reproduction, not the full local checks above.
+- Upstream workflows require approval at submission; acceptance remains unproven.
+  AI assistance is disclosed. No Gooo runtime dependency is added to Bubbles.
+
+Read [One Delete press should perform one edit](delete-forward-newline.md) for
+cursor units, the complete eight-input table and reproduction instructions.

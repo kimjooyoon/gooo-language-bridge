@@ -118,6 +118,22 @@ This retains the original failing regression, patched/race passes, full tests an
 native token observations under `evidence/chroma-go-numbers/`. The submitted Go
 lexer patch and the Gooo language lexer are separate contributions.
 
+## Text editing: one Delete press, one edit
+
+[Bubbles #1072](https://github.com/charmbracelet/bubbles/pull/1072) fixes Delete
+removing the next newline while deleting a line's final character. The
+[independent editing bridge](docs/delete-forward-newline.md) expresses the edit
+in Gooo and compares eight observations from the actual original/patched textarea.
+
+```sh
+python3 tools/verify_bubbles_delete.py --gooo .bin/gooo
+```
+
+Three original mismatches become eight patched, race-checked and Gooo matches.
+The packet retains original test events and exact source hashes. Native cursor
+positions are rune indices; the Gooo input explicitly names its UTF-8 byte offset.
+This focused comparison is separate from upstream CI approval and acceptance.
+
 ## Proposed criterion study: wrapped TCP read resets
 
 The [Traefik criterion packet](proposals/traefik-read-reset/README.md) preserves
