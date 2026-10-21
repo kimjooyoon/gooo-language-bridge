@@ -52,9 +52,10 @@ python3 tools/verify_yaegi.py
 ```
 
 This fetches the pinned original and patch revisions, injects the same regression
-tests, and requires eight original failures followed by thirteen patched passes and
-thirteen race-checked passes. Original JSON test events are retained in
-`evidence/yaegi-1736/`. This focused regression does not certify Yaegi's full suite.
+tests, and requires eleven original failures followed by sixteen patched passes and
+sixteen race-checked passes. Original JSON test events are retained in
+`evidence/yaegi-1736/`. The separately recorded mixed-type blank-assignment counterexample still fails
+on both revisions. This focused regression does not certify Yaegi's full suite.
 See the [contribution ledger](docs/contributions.md) for scope and acceptance status.
 
 [Chroma #1410](https://github.com/alecthomas/chroma/pull/1410) adds Gooo source
