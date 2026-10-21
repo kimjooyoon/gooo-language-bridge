@@ -8,9 +8,10 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'fcb76d1ece0c3edc2548c39aa5b170475d2261bb'
-FIX = '837f584b6e751e3fa9770063687a43e0df4246fa'
+FIX = '6f5190d3aa87b60def588499c3b3577b5019e298'
 TEST = 'interp/interp_issue_1736_test.go'
-NAME = 'TestOperatorAssignmentToBinaryInterfaceSlice'
+BEFORE = r'^TestOperatorAssignmentToBinaryInterface(Slice|s)$/(string_addition|integer_addition|integer_negation|integer_complement|Field|Map|Pointer)$'
+AFTER = r'^TestOperatorAssignment(ToBinaryInterfaceSlice|ToBinaryInterfaces|ToBlank)$'
 
 
 def run(command, cwd, timeout=120):
@@ -41,7 +42,8 @@ def main():
         with tempfile.TemporaryDirectory(prefix='yaegi-regression-') as temporary:
             work = Path(temporary)
             for command in (['git', 'init', '-q'],
-                            ['git', 'fetch', '--depth=3', 'https://github.com/kimjooyoon/yaegi.git', FIX],
+                            ['git', 'fetch', '--depth=1', 'https://github.com/kimjooyoon/yaegi.git', FIX],
+                            ['git', 'fetch', '--depth=1', 'https://github.com/kimjooyoon/yaegi.git', BASE],
                             ['git', 'checkout', '--detach', FIX]):
                 result = run(command, work)
                 if result.returncode:
@@ -50,12 +52,17 @@ def main():
             if identity.stdout.strip() != FIX:
                 raise ValueError('fixed revision mismatch')
             test_source = (work / TEST).read_bytes()
+            limitation = (ROOT / 'tests/fixtures/yaegi_mixed_blank_test.go').read_bytes()
+            (work / 'interp/workbench_mixed_blank_test.go').write_bytes(limitation)
             summary['test_sha256'] = hashlib.sha256(test_source).hexdigest()
+            summary['known_limitation_sha256'] = hashlib.sha256(limitation).hexdigest()
             summary['go'] = run(['go', 'version'], work).stdout.strip()
             for label, revision, pattern, action, count, race in (
-                ('before', BASE, NAME + '/(string_addition|integer_addition|integer_negation|integer_complement)$', 'fail', 8, False),
-                ('after', FIX, '^TestOperatorAssignment(ToBinaryInterfaceSlice|ToBlank)$', 'pass', 13, False),
-                ('race', FIX, '^TestOperatorAssignment(ToBinaryInterfaceSlice|ToBlank)$', 'pass', 13, True),
+                ('before', BASE, BEFORE, 'fail', 11, False),
+                ('after', FIX, AFTER, 'pass', 16, False),
+                ('race', FIX, AFTER, 'pass', 16, True),
+                ('known-before', BASE, '^TestKnownMixedBlankAssignments$', 'fail', 1, False),
+                ('known-after', FIX, '^TestKnownMixedBlankAssignments$', 'fail', 1, False),
             ):
                 (work / TEST).unlink(missing_ok=True)
                 checkout = run(['git', 'checkout', '--detach', revision], work)
@@ -70,8 +77,13 @@ def main():
                 (out / (label + '.stderr')).write_text(result.stderr)
                 summary[label] = {'exit_code': result.returncode, 'leaf_cases': count,
                                   'expected_action': action, 'command': command}
+                if label.startswith('known-') and (
+                        'reflect: call of reflect.Value.SetInt on bool Value' not in result.stdout
+                        or 'native Go reference = 3' not in result.stdout):
+                    raise ValueError('known limitation did not reproduce the recorded error')
                 if not check_events(result, action, count):
                     raise ValueError(label + ' did not match the required finite test events')
+            summary['known_limitation_scope'] = 'Mixed-type repeated blank assignments fail on both revisions; not fixed by this submission.'
             summary['decision'] = 'PASS'
     except (OSError, ValueError, subprocess.SubprocessError) as error:
         summary['error'] = str(error)

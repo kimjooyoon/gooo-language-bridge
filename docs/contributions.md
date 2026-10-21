@@ -10,12 +10,12 @@ No follow-for-follow, bulk outreach, duplicate PRs or acceptance claims.
 - Existing report: https://github.com/traefik/yaegi/issues/1736
 - Submission: https://github.com/traefik/yaegi/pull/1738
 - Original: `fcb76d1ece0c3edc2548c39aa5b170475d2261bb`
-- Patch: `837f584b6e751e3fa9770063687a43e0df4246fa`
+- Patch: `6f5190d3aa87b60def588499c3b3577b5019e298`
 - Independent author of the issue: `rohanthewiz`; credit the existing report.
-- Changes: two interface guards in CFG operator assignment and ten storage regression cases plus three discarded-result cases.
-- Original: eight arithmetic cases fail (unchanged cells and nil returned pointer);
+- Changes: two interface guards in CFG operator assignment and ten slice cases, three host field/map/pointer cases, and three single discarded-result cases.
+- Original: eleven selected storage cases fail (unchanged cells and nil returned pointer);
   the Boolean case additionally panics.
-- Fixed: ten direct/alias and three discarded-result cases pass, including targeted race checks; local vet passes.
+- Fixed: thirteen storage and three single discarded-result cases pass, including targeted race checks; local vet passes.
 - Full local suite is not green: CLI cancellation fails on macOS/arm64 Go 1.26.5,
   also reproduced separately on the original revision. The full run was intentionally stopped after about four minutes during
   native/interpreter consistency checks to bound resources; it is not certified green.
@@ -54,3 +54,16 @@ links were preserved. [Profile commit 1797621](https://github.com/kimjooyoon/kim
 binds the edit; the new links were observed on the rendered profile. The release
 manifest hash was checked against the published asset before adding its link.
 This establishes a discovery route; it is not evidence of adoption or follower growth.
+
+## Additional Yaegi boundary observation, 2026-10-22
+
+The same patch corrects assignments into a host struct interface field, a host
+map interface entry and a host interface pointer. Each new case fails on the
+original revision and passes on the patch. Only tests changed upstream.
+
+A separate sequence of mixed-type blank assignments still fails with
+`reflect: call of reflect.Value.SetInt on bool Value` on both revisions. The
+fixture in `tests/fixtures/yaegi_mixed_blank_test.go` is injected only into the
+workbench's temporary checkout and retained as an expected failure in separate
+`known-before` / `known-after` logs. It is not counted as a fixed case and is not
+added to the upstream passing regression suite.
