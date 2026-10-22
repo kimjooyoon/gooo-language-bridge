@@ -79,7 +79,10 @@ python3 tools/compare_text_length.py --gooo .bin/gooo
 Inspect `evidence/summary.json`, `execution.json`, `cases.json`, and stderr.
 Exit zero requires Gooo PASS and exactly all 120 expected comparisons.
 A missing, partial, stale-version or malformed result fails closed.
-CI retains evidence even on failure. Artifact hashes bind files, not authorship;
+CI retains evidence even on failure. The [offline evidence auditor](docs/audit-ci-evidence.md)
+checks a downloaded bundle against its captured hashes, exact local source and
+expected execution tuple without rerunning the engines. It also runs in required CI.
+Artifact hashes bind files, not authorship;
 GitHub's run and commit metadata provide the execution context.
 
 ## Project management

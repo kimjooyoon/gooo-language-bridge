@@ -38,7 +38,10 @@ Gooo source changes also need their native/Gooo comparison. Record which checks
 you ran and which scope they cover. Do not describe a skipped test as passing.
 CI acceptance requires the exact PR revision, all checks successful, and the
 original receipts. No human approval is required by this repository's policy.
-Only GitHub rules actually configured enforce that policy.
+Only GitHub rules actually configured enforce that policy. The
+[offline bundle audit](docs/audit-ci-evidence.md) checks captured file integrity
+and execution context; it does not replace semantic verification or authenticate
+the GitHub run by itself.
 
 External PRs must follow each upstream project's contribution policy and solve
 a real issue. Record proposed, submitted and accepted contributions separately.
