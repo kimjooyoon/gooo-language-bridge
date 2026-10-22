@@ -17,10 +17,13 @@ language equivalence, and a difference is not automatically a new bug.
 | --- | --- | --- |
 | How can an embedded script keep defaults while accepting host inputs? | [Tengo defaults and overrides](https://go.dev/play/p/ZTWz3dxvg5V) | Five runs of one compiled program: empty, full, zero-valued, partial and empty inputs. The input map still needs registration; it does not discover unknown globals. [Submitted documentation](https://github.com/d5/tengo/pull/496). |
 | Can two Go types have the same display label? | [pflag native type-identity counterexample](https://go.dev/play/p/GsveDskxbgt) | Four source/target pairs on a pinned original pflag revision. The proposed fix is separate from this baseline demonstration. [Submitted fix](https://github.com/spf13/pflag/pull/529). |
+| Does printing an HCL type preserve optional attributes and default values? | [HCL browser pair](hcl-type-roundtrip.md): [base](https://go.dev/play/p/9ZhU3aBx0H2?v=goprev), [proposed head](https://go.dev/play/p/Jsv4SQFxD07?v=goprev) | Four type examples and one default boundary. The pair ran on Go 1.26.10; the head timed out twice on the default backend. The proposal uses an explicitly pinned author-fork replacement. |
+| Does a finished Lua child's Parent handle still control the live parent? | [GoLua context observer](https://go.dev/play/p/NlLsMeBryLK) | Eight public-API probes at a pinned proposal. Four direct/live-captured controls work; four finished-child Parent observations retain stale state. Base was already incorrect, so these are not four introduced bugs. [Frozen comparison](https://gist.github.com/kimjooyoon/1b1d22c41c09c0912ad518fe80872bb0/01bd92e5ccc799b6e155f225bdb385818a8bfe10). |
 
-Both programs report their actual runtime/dependency identity. Their
+These programs report their actual runtime/dependency identity. Their
 module versions are pinned development pseudo-versions, not claims of a newer
-published release. Inspect those pins before adapting either example.
+published release. Inspect those pins and backend selections before adapting an
+example. Browser results cover each small observer, not its full native packet.
 
 ## Native observations: no Gooo compiler needed
 
@@ -38,6 +41,10 @@ read those instructions before running code.
 | Does a cost-model version pin preserve earlier estimates? | [CEL prefix/suffix cost experiment](https://gist.github.com/kimjooyoon/55d0e9366f975ef4799f7c4c00fc89a0/c6d9f5cdd55633d50ecc74df8fee6912f599842c) | 112 inputs, exact/upper hints and three model versions. Static estimate changes under version 0 are a compatibility question; runtime charges are explicitly unversioned. |
 | Does a Starlark regexp wrapper expose the intended replacement behavior? | [Starlark regexp adapter experiment](https://gist.github.com/kimjooyoon/75ae5732302fc4b075186659c7c1eb48/111e4658481ddc1fc2cdbf5cd817c5e93df281fc) | 240 pattern/subject pairs and 1,680 string replacements. Compares the adapter with the same underlying Go regexp implementation; literal/template distinctions are design observations, not confirmed bugs. |
 | Where do Lua and Python floor-division models agree or diverge? | [Native GoLua observer](../examples/lua-division-reference/README.md) | Execute the pinned runtime's Lua `//` chunk without a Gooo compiler or separate Lua executable. Small inputs agree; int64 wrapping and zero division are preserved separately. |
+| Why does a CEL checker benchmark need a fresh AST each iteration? | [CEL benchmark intervention](https://gist.github.com/kimjooyoon/14b16a9a0577e6abc251442f8f8f37cd/7ed133018e372c4a126c2da927d36badc00e1373) | 142 named subbenchmarks at 1x/2x. Removing only AST copying from the head restores the repeated-check structure failure while retaining the JSON setup fixes. Correctness evidence, not a timing comparison. |
+| Which raw/parser tag escapes does a parser fix actually repair? | [Participle tag observations](https://gist.github.com/kimjooyoon/4040ff18d53370fe22ff06a122e59edb/b500b103acc66149806560cf59f187991a521075) | Thirty fixtures on Go 1.25/1.27: eight corrected, zero introduced failures and four remaining unsupported inputs. The advertised escaped apostrophe still fails; base also rejects it. |
+| Can optional type metadata survive nested HCL rendering? | [HCL type round-trips](https://gist.github.com/kimjooyoon/698026d8342ec97b6b668e0171569a14/33132c67b5e7072fe1d3ae6e68ba48a441c6b9c1) | 96 valid constraints: 84 corrected and twelve required-only controls. Six quoted-key rejections and four default-value probes stay separate. [Browser guide](hcl-type-roundtrip.md) covers a smaller subset. |
+| What happens to Lua parent handles after a child finishes? | [GoLua context comparison](https://gist.github.com/kimjooyoon/1b1d22c41c09c0912ad518fe80872bb0/01bd92e5ccc799b6e155f225bdb385818a8bfe10) | Eight probes across four retrieval paths and soft/hard stops. Both source versions have contract failures with different symptoms; the head's four stale Parent observations are distinguished from its four working controls. |
 
 The JavaScript driver returns exit 1 for a valid `DIFFERENCES` report. It is not
 a provider failure or an approval. The JSON and normalization examples deliberately
