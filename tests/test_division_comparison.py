@@ -1,6 +1,6 @@
 import copy
 import unittest
-from tools.compare_division import ACTIVITY, comparison_rows
+from tools.compare_division import ACTIVITY, EDGE_PAIRS, comparison_rows, include_lua, lua_edges
 from tools.verify import cases
 
 
@@ -64,3 +64,41 @@ class DivisionEvidence(unittest.TestCase):
                     delivery[field] = 999
                 with self.assertRaises(ValueError):
                     comparison_rows(self.cases, self.native, receipt)
+
+    def test_lua_requires_unique_complete_observations_and_exact_integers(self):
+        rows = comparison_rows(self.cases, self.native, self.receipt)
+        native = [{'a': r['a'], 'b': r['b'], 'quotient': r['python_floor']} for r in rows]
+        joined = include_lua(rows, list(reversed(native)))
+        self.assertEqual(len(joined), 120)
+        self.assertTrue(all(r['lua_floor'] == r['gooo_actual'] for r in joined))
+        variants = [native[:-1], native + [native[0]], native + [{'a': 100, 'b': 1, 'quotient': 100}]]
+        for value in (True, 1.0, 999):
+            changed = copy.deepcopy(native)
+            changed[0]['quotient'] = value
+            variants.append(changed)
+        changed = copy.deepcopy(native)
+        changed[0]['error'] = 'unexpected execution failure'
+        variants.append(changed)
+        for invalid in variants:
+            with self.assertRaises(ValueError):
+                include_lua(rows, invalid)
+
+    def test_lua_boundaries_remain_outside_gooo_match_counts(self):
+        native = [dict(EDGE_PAIRS[0], quotient=-(1 << 63)),
+                  dict(EDGE_PAIRS[1], quotient=(1 << 63) - 1),
+                  dict(EDGE_PAIRS[2], error='error: floor-reference:1: attempt to divide by zero')]
+        rows = lua_edges(native)
+        self.assertTrue(all(r['in_gooo_domain'] is False for r in rows))
+        self.assertEqual(rows[0]['python_floor_decimal'], '9223372036854775808')
+        self.assertEqual(rows[0]['lua_floor_decimal'], '-9223372036854775808')
+        self.assertIs(rows[0]['same_integer_result'], False)
+        self.assertIs(rows[1]['same_integer_result'], True)
+        self.assertEqual(rows[2]['python_error'], 'ZeroDivisionError')
+        for position, key, value in [(0, 'quotient', 1 << 63), (0, 'quotient', True),
+                                     (2, 'error', 'memory quota exceeded')]:
+            invalid = copy.deepcopy(native)
+            invalid[position][key] = value
+            with self.assertRaises(ValueError):
+                lua_edges(invalid)
+        with self.assertRaises(ValueError):
+            lua_edges(native[:-1])
