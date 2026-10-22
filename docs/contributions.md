@@ -111,3 +111,27 @@ added to the upstream passing regression suite.
 
 Read [One Delete press should perform one edit](delete-forward-newline.md) for
 cursor units, the complete eight-input table and reproduction instructions.
+
+## urfave/cli completion groups, submitted
+
+- Upstream: https://github.com/urfave/cli/pull/2485
+- Original: `10f69fd3c38de86a3bc17810dcb7f818b494f027`.
+- Patch: `5dbdb1037281c390c4f98c144ab82150262bdff9`.
+- Ten implementation lines preserve pending grouped tokens for completion
+  callbacks. Normal execution errors and complete/empty values keep their behavior.
+- Local upstream regression: nine original failures become 20 patched passes,
+  including root/child/nested scope and ASCII/Unicode names. Full/native race,
+  no-template tests, vet, API/binary-size checks, README example and lint pass.
+- Upstream test run 39697751487 passes six Linux/macOS/Windows × stable/oldstable
+  jobs; lint run 39697751464 passes on the exact patch head. Submission remains open
+  at this observation; no maintainer review or acceptance is inferred.
+- `tools/verify_cli_completion.py` independently observes 20 native cases on both
+  sources and on the patched race run, then compares the Gooo intent activity.
+  There are 12 distinct policy inputs: native command depth is outside the activity.
+- The activity takes a corpus-declared incompleteness classification; it does not
+  classify arbitrary tokens or reimplement the parser. The verifier retains exact
+  native arguments, callback/action/error records, source hashes and Gooo receipt.
+- Codex authorship is disclosed upstream. No Gooo dependency is added upstream.
+
+Read [An unfinished flag is useful input during completion](completion-input-intent.md)
+for the concrete counterexamples, context boundary, reproduction and exclusions.

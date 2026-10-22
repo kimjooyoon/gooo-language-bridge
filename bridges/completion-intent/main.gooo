@@ -1,0 +1,19 @@
+package completionintent
+namespace completionintent
+
+entity Request id "urn:gooo:cli:input-request" fields {
+    field token id "urn:gooo:cli:token" type string required one
+    field completion id "urn:gooo:cli:completion-mode" type boolean required one
+    field incomplete id "urn:gooo:cli:incomplete-token" type boolean required one
+}
+entity Text id "urn:gooo:type:string"
+
+# The corpus declares incompleteness independently of the observed parser output.
+# This activity resolves intent; it does not tokenize or validate a CLI grammar.
+activity Resolve(Request) -> Text id "urn:gooo:cli:resolve-input-intent" computes `
+if input.incomplete {
+    if input.completion {return "PENDING:" + input.token}
+    return "REJECT"
+}
+return "CONSUMED"
+`

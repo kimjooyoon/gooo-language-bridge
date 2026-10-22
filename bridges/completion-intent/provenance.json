@@ -1,0 +1,21 @@
+{
+  "schema": "gooo-language-bridge/provenance/v1",
+  "source": "https://github.com/urfave/cli",
+  "license": "MIT; original source and LICENSE are retained with each pinned revision.",
+  "original_revision": "10f69fd3c38de86a3bc17810dcb7f818b494f027",
+  "submitted_revision": "5dbdb1037281c390c4f98c144ab82150262bdff9",
+  "submission": "https://github.com/urfave/cli/pull/2485",
+  "activity_id": "urn:gooo:cli:resolve-input-intent",
+  "domain": "20 explicit cases: three command depths, incomplete unknown/ASCII/Unicode short groups and single-flag controls, normal errors and complete/empty/separate-value controls.",
+  "classification": "The independently authored corpus declares incomplete before native execution; Gooo resolves mode and pending-token intent, not tokenization or grammar validity.",
+  "derivation": "Independently authored observer and intent activity. No upstream parser implementation is copied into Gooo.",
+  "exclusions": [
+    "general CLI parsing",
+    "arbitrary flags, token sequences or command graphs",
+    "shell script integration",
+    "error message equivalence",
+    "flag mutation equivalence",
+    "upstream review or acceptance"
+  ],
+  "fixture_sha256": "76cff87ad45d3ba6de75cd88dd7b1bac309bb4fc98412d04cf52ac965116f1c9"
+}

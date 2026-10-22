@@ -1,0 +1,5 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {"package_path": "bridge/completion", "activity": "Resolve"},
+  "packages": [{"path": "bridge/completion", "name": "completionintent", "imports": [], "sources": ["main.gooo"]}]
+}
