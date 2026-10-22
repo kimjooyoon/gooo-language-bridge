@@ -87,6 +87,16 @@ This project complements the [Gooo engine](https://github.com/kimjooyoon/meta-on
 and existing ecosystem projects. Upstream acceptance is decided by each upstream
 project; a local passing bridge is never counted as an accepted contribution.
 
+## Reusable native experiment reports
+
+The [JavaScript differential driver](examples/js-differential/README.md) compares
+a trusted snapshot script in Node.js and an exact Goja commit, optionally against
+a base commit. It retains typed case comparisons, source/runtime identities,
+original outputs and hashes. Unmerged PR heads use a verified Git checkout rather
+than relying on an unavailable canonical module version. The included example
+reproduces a known normalization difference; a difference is not an approval or
+a standards verdict. No Gooo compiler is required for this native helper.
+
 ## Upstream work
 
 [Yaegi #1738](https://github.com/traefik/yaegi/pull/1738) fixes an existing
