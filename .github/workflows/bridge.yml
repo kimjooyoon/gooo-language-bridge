@@ -44,6 +44,7 @@ jobs:
       - run: python3 tools/verify_read_reset.py --gooo .bin/gooo
       - run: python3 tools/verify_bubbles_delete.py --gooo .bin/gooo
       - run: python3 tools/verify_cli_completion.py --gooo .bin/gooo
+      - run: python3 tools/verify_js_comparison.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
