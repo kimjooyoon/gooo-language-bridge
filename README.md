@@ -34,6 +34,9 @@ This is a bounded semantic adapter, not a Python compiler or a general equivalen
 The upstream documentation revision and licensing context are in `provenance.json`.
 For a practical migration example, read [Python integer division to Go](docs/python-go-integer-division.md):
 it compares the native runtimes with the actual Gooo results and explains the negative-input counterexamples.
+A [pinned GoLua witness](examples/lua-division-reference/README.md) also matches these
+120 small pairs; its separate int64-wrap and zero-divisor observations show why
+this does not establish general Lua/Python integer equivalence.
 The executing Python runtime is recorded separately: it is not claimed to be that upstream revision.
 
 ## String-length units across languages

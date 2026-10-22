@@ -64,10 +64,27 @@ and zero dividends. It excludes zero divisors, floats, arbitrary-precision
 compatibility, overflow and minimum-machine-integer divided by -1.
 Do not generalize this result to all Python integer behavior.
 
+## An additional Lua witness, with a different integer boundary
+
+The same command now executes `a // b` in a source-pinned GoLua runtime for all
+120 pairs. GoLua, Python and the actual Gooo outputs agree on this small domain;
+Go's truncation still differs on 30 inputs. The existing Gooo activity and its
+input bounds are unchanged. The [Lua observer guide](../examples/lua-division-reference/README.md)
+identifies the implementation, source checksum and the executed Lua chunk.
+
+This does not make Python and Lua integer models interchangeable. A separate
+native observation of `-9223372036854775808 // -1` gives the wrapped negative
+value in GoLua and `9223372036854775808` in Python. A maximum-int64 control and
+zero-divisor errors are also retained separately. These three cases never enter
+the Gooo corpus or its match count. This observes the GoLua implementation of
+Lua 5.5, not the official C runtime or every Lua build configuration.
+
 ## Inspect the evidence
 
-- `evidence/division-comparison/rows.json`: each input and its three observed results.
+- `evidence/division-comparison/rows.json`: each bounded input and its Go, Python, GoLua and Gooo results.
 - `evidence/division-comparison/summary.json`: counts, source/receipt hashes and native Go identity.
+- `evidence/division-comparison/lua-edge-rows.json`: three native boundary observations, explicitly excluded from Gooo.
+- `evidence/division-comparison/lua.stdout` and `lua-edge.stdout`: original GoLua JSON outputs; observer/module/source files and identity are retained alongside them.
 - `evidence/execution.json`: the original Gooo receipt, including the activity ID,
   positional inputs, actual outputs, case indices and compiler/runtime information.
 - `evidence/compiler.json`: Gooo build identity; the companion bridge summary records Python identity.

@@ -1,0 +1,14 @@
+{
+  "schema": "gooo-language-bridge/native-lua/v1",
+  "upstream": "https://github.com/arnodel/golua",
+  "revision": "3b0306a844cbc263da253ee0503997dfe85d4cc1",
+  "license": "Apache-2.0",
+  "module": "github.com/arnodel/golua",
+  "version": "v0.4.1-0.20261014212727-3b0306a844cb",
+  "sum": "h1:AOwbSuUHuiAdL9eRxBS6UJz54nvznhDuyqLzor2i9pc=",
+  "lua_source": "local a, b = ...; return a // b",
+  "language": "Lua 5.5 as implemented by this pinned GoLua runtime, with int64 operands",
+  "manual": "https://www.lua.org/manual/5.5/manual.html#3.4.1",
+  "derivation": "Independent observer of the public runtime API; no upstream implementation copied.",
+  "scope": "120 small pairs match Python/Gooo. Three separate native boundaries observe int64 wrapping, a maximum-integer control and zero division; they are excluded from the Gooo domain. No official C Lua, floats, arbitrary precision or whole-language conformance claim."
+}
