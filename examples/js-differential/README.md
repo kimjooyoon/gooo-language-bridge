@@ -4,7 +4,9 @@ This driver turns a small JavaScript experiment into a retained native compariso
 without editing a Goja checkout or publishing another CI workflow. It was built
 from real review work: an unmerged Goja PR head could not be fetched as a canonical
 Go module version. The driver instead fetches and verifies its exact Git commit,
-then builds an isolated observer with local module replacement.
+then builds an isolated observer with local module replacement. Inherited Git
+working-tree/index/object-directory and injected Git configuration variables are
+removed from child environments; caller environment values are left unchanged.
 
 ## One reproducible report
 

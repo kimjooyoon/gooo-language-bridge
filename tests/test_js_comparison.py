@@ -51,6 +51,25 @@ class SnapshotTests(unittest.TestCase):
 
 
 class ProcessTests(unittest.TestCase):
+    def test_inherited_git_context_cannot_redirect_the_temporary_repository(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            work = Path(temporary)
+            foreign = work / 'foreign'
+            foreign.mkdir()
+            sentinel = foreign / 'keep.txt'
+            sentinel.write_text('unchanged')
+            out = work / 'logs'
+            out.mkdir()
+            hostile = dict(os.environ, GIT_DIR=str(foreign / '.git'), GIT_WORK_TREE=str(foreign),
+                           GIT_CONFIG_COUNT='1', GIT_CONFIG_KEY_0='core.worktree',
+                           GIT_CONFIG_VALUE_0=str(foreign))
+            run_step('git-isolation', ['git', 'init', '--object-format=sha1', '-q', 'owned'],
+                     work, hostile, out, [])
+            self.assertTrue((work / 'owned/.git').is_dir())
+            self.assertFalse((foreign / '.git').exists())
+            self.assertEqual(sentinel.read_text(), 'unchanged')
+            self.assertEqual(hostile['GIT_DIR'], str(foreign / '.git'))
+
     def test_timeout_is_recorded_and_process_is_reaped(self):
         with tempfile.TemporaryDirectory() as temporary:
             out = Path(temporary)

@@ -108,12 +108,20 @@ def kill_tree(process):
     process.wait(timeout=10)
 
 
+def isolated_environment(env):
+    blocked = {'GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_COMMON_DIR',
+               'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES',
+               'GIT_CONFIG_PARAMETERS', 'GIT_CONFIG_COUNT', 'GIT_PREFIX'}
+    return {k: v for k, v in env.items() if k not in blocked
+            and not k.startswith(('GIT_CONFIG_KEY_', 'GIT_CONFIG_VALUE_'))}
+
+
 def run_step(label, command, cwd, env, out, steps, timeout=120):
     record = {'label': label, 'exit_code': None}
     steps.append(record)
     kwargs = {'start_new_session': True} if os.name == 'posix' else {}
     with (out / (label + '.stdout')).open('wb') as stdout, (out / (label + '.stderr')).open('wb') as stderr:
-        process = subprocess.Popen(command, cwd=cwd, env=env, stdout=stdout, stderr=stderr, **kwargs)
+        process = subprocess.Popen(command, cwd=cwd, env=isolated_environment(env), stdout=stdout, stderr=stderr, **kwargs)
         started = time.monotonic()
         error = None
         try:
@@ -178,7 +186,7 @@ def compare(args):
             def run(label, command, cwd=work, timeout=120):
                 return run_step(label, command, cwd, env, out, report['steps'], timeout)
 
-            run('git-init', ['git', 'init', '-q', 'source'])
+            run('git-init', ['git', 'init', '--object-format=sha1', '-q', 'source'])
             checkout = work / 'source'
             go_version = run('go-version', ['go', 'version']).decode().strip()
             report['go'] = go_version
