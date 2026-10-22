@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from tools.compare_js import classify, run_step, snapshots
+from tools.compare_js import classify, observer_source, run_step, snapshots, verify_source_module
 
 
 def one(result, **extra):
@@ -15,6 +15,21 @@ def one(result, **extra):
 
 
 class SnapshotTests(unittest.TestCase):
+    def test_engine_selection_binds_repository_module_and_rendered_import(self):
+        template = 'import engine "github.com/dop251/goja"\n'
+        for engine, owner in [('goja', 'dop251/goja'), ('sobek', 'grafana/sobek')]:
+            with self.subTest(engine=engine):
+                repository, module, source = observer_source(engine, template)
+                self.assertEqual(repository, 'https://github.com/' + owner + '.git')
+                self.assertEqual(module, 'github.com/' + owner)
+                self.assertEqual(source, 'import engine "' + module + '"\n')
+                verify_source_module('module ' + module + '\n\ngo 1.26.0\n', module)
+                with self.assertRaisesRegex(ValueError, 'source module differs'):
+                    verify_source_module('module github.com/wrong/source\n', module)
+        for engine, invalid in [('other', template), ('sobek', ''), ('sobek', template * 2)]:
+            with self.assertRaises(ValueError):
+                observer_source(engine, invalid)
+
     def test_boolean_numeric_and_recursive_types_remain_distinct(self):
         for a, b in [(True, 1), (False, 0), ([True], [1]), ({'x': False}, {'x': 0}), ('1', 1)]:
             with self.subTest(a=a, b=b):

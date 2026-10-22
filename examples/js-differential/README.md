@@ -1,7 +1,7 @@
-# Compare JavaScript snapshots with pinned Goja
+# Compare JavaScript snapshots with pinned Goja or Sobek
 
 This driver turns a small JavaScript experiment into a retained native comparison
-without editing a Goja checkout or publishing another CI workflow. It was built
+without editing an engine checkout or publishing another CI workflow. It was built
 from real review work: an unmerged Goja PR head could not be fetched as a canonical
 Go module version. The driver instead fetches and verifies its exact Git commit,
 then builds an isolated observer with local module replacement. Inherited Git
@@ -30,6 +30,39 @@ reproduces the [reported Goja normalization boundary](https://github.com/dop251/
 **1**, intentionally. It does not fix the bug. Original Node/Goja snapshot bytes,
 stdout/stderr for every step, source revision/tree, module files and license,
 runtime identities, observer binary hashes and file digests remain in the report.
+The observer template and the actual rendered Go source are both retained.
+
+## Choose an engine
+
+`--engine` selects a fixed repository/module pair; the default remains `goja`.
+The fetched source's module declaration must match. Both providers use the same
+observer code, with only the selected import changed before building.
+
+| Engine | Repository | Go module |
+| --- | --- | --- |
+| `goja` | `dop251/goja` | `github.com/dop251/goja` |
+| `sobek` | `grafana/sobek` | `github.com/grafana/sobek` |
+
+This Sobek example observes an [existing author's JSON.parse fix, PR 165](https://github.com/grafana/sobek/pull/165)
+by Huzaifa-Asif; this workbench does not claim authorship of that fix:
+
+```sh
+python3 tools/compare_js.py --engine sobek \
+  --script examples/js-differential/json-reviver.js \
+  --base 87a47258b7dcb6579c5cdfebbe07a9a1203cb719 \
+  --head 6713561da465808c4f0bc73c7eb447a921a05092 \
+  --head-ref refs/pull/165/head --out evidence/my-json-reviver-report
+```
+
+The 54 observations cover three JSON roots and 18 reviver forms: non-callable
+values, objects that must not be coerced, revoked proxies, callable transforms,
+deletion, exceptions, holder binding and traversal order. The base differs from
+Node in the three `null` reviver cases; the patch matches all 54, with no introduced
+differences in this corpus. Non-callable revivers are ignored by the
+[JSON.parse algorithm](https://tc39.es/ecma262/multipage/structured-data.html#sec-json.parse).
+Error names and observable calls are compared; engine-specific error messages
+are outside this experiment. This example exits **0**. The SHA binds the source;
+a changed PR ref fails closed. Omit `--head-ref` to fetch the exact SHA directly.
 
 | Exit | Report decision | Meaning |
 | ---: | --- | --- |
@@ -67,7 +100,7 @@ them during UTF-8 output; escaped units inside valid JSON remain supported.
 Duplicate JSON object keys, duplicate/missing case IDs, changed input records and
 non-JSON numeric constants fail closed.
 
-Node runs the source in a new ECMAScript context without Node host APIs. Goja uses
+Node runs the source in a new ECMAScript context without Node host APIs. The selected engine uses
 its normal ECMAScript runtime. Supply trusted corpuses: time/output limits are
 not a security sandbox. Scripts are limited to 1 MiB, each output stream to
 8 MiB (monitored while running), execution to 1..60 seconds and individual build/
@@ -90,8 +123,8 @@ python3 tools/compare_js.py --script your-corpus.js \
 ```
 
 The full [5,280-case review corpus](https://gist.github.com/kimjooyoon/001ef8bd40bca857508dae3da2618414)
-can be reused as `your-corpus.js`. The repository is deliberately fixed to
-`dop251/goja`; `--node` selects an installed Node executable. `--base` is optional.
+can be reused as `your-corpus.js`. Repositories are deliberately restricted to
+the two engine pairs above; `--node` selects an installed Node executable. `--base` is optional.
 If base and head are identical, the built head observer and its snapshots are
 reused; the base output files are labeled by `reused_head` in provider metadata. No automatic
 upstream messages or scheduled runs are created.
@@ -99,5 +132,7 @@ upstream messages or scheduled runs are created.
 CI verifies the driver by checking all 24 normalization snapshots against explicit
 expected input/result arrays and requiring the 12 known differences. Its PASS
 means the driver reproduced those observations, while the original report stays
-DIFFERENCES. The existing single 12-minute job and 7-day retention policy remain.
+DIFFERENCES. CI also checks the 54 Sobek observations and the three corrected
+cases, including explicit non-callable controls. Neither native report is changed
+to manufacture PASS. The existing single 12-minute job and 7-day retention policy remain.
 This native driver adds no claim that Gooo Text represents lone surrogates.

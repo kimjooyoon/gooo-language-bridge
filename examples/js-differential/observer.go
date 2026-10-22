@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/dop251/goja"
+	engine "github.com/dop251/goja"
 )
 
 func main() {
@@ -33,14 +33,14 @@ func run() error {
 	if err != nil {
 		return err
 	}
-	vm := goja.New()
+	vm := engine.New()
 	timer := time.AfterFunc(time.Duration(ms)*time.Millisecond, func() { vm.Interrupt("deadline exceeded") })
 	defer timer.Stop()
 	value, err := vm.RunString(string(source))
 	if err != nil {
 		return err
 	}
-	text, ok := value.(goja.String)
+	text, ok := value.(engine.String)
 	if !ok {
 		return fmt.Errorf("script must return a JSON string")
 	}

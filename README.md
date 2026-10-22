@@ -90,7 +90,7 @@ project; a local passing bridge is never counted as an accepted contribution.
 ## Reusable native experiment reports
 
 The [JavaScript differential driver](examples/js-differential/README.md) compares
-a trusted snapshot script in Node.js and an exact Goja commit, optionally against
+a trusted snapshot script in Node.js and an exact Goja or Sobek commit, optionally against
 a base commit. It retains typed case comparisons, source/runtime identities,
 original outputs and hashes. Unmerged PR heads use a verified Git checkout rather
 than relying on an unavailable canonical module version. The included example
