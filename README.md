@@ -126,6 +126,17 @@ a standards verdict. No Gooo compiler is required for this native helper.
 
 ## Upstream work
 
+Recent contribution entry points, observed October 22, 2026:
+
+| Need | Contribution | Reproduction and scope |
+| --- | --- | --- |
+| Reuse text decoding with a custom configuration decoder | [Koanf #464](https://github.com/knadh/koanf/pull/464), submitted API change | [Public-API tests at the submitted commit](https://github.com/kimjooyoon/koanf/blob/8d167f6687338edfc10609cbd27e0effcf4901ba/tests/text_hook_test.go) cover custom text representations, duration composition, errors and unknown-key rejection. Native tests passed within the documented exclusions; hosted CI and acceptance remain unproven. |
+| Understand byte counts versus UTF-8 regexps | [GoAWK #308](https://github.com/benhoyt/goawk/pull/308), submitted documentation | [Pinned CLI observations](https://gist.github.com/kimjooyoon/6d6855f852800045a22e3db0a3d94ff5/871a8d5f75acf3ef6dc64251264c5a814e9fa4fb) reproduce both README examples and preserve the missing-`gawk` full-suite failure. |
+| Review ownership or nested-map fixes | [GoJq constant ownership review](https://github.com/itchyny/gojq/pull/320#pullrequestreview-5610173011) and [Koanf nil-map review](https://github.com/knadh/koanf/pull/461#pullrequestreview-5610513013) | The [native experiment index](docs/experiments.md#native-observations-no-gooo-compiler-needed) links frozen observations, tested source identities, remaining differences and test limitations. Reviews are independent evidence, not acceptance. |
+
+These entry points require no Gooo compiler. Read the dated scope before adapting
+an experiment; the upstream PR is authoritative for its current status.
+
 [Yaegi #1738](https://github.com/traefik/yaegi/pull/1738) fixes an existing
 interpreter report: operator assignments to compiled interface slices can lose
 the stored value and return a nil pointer. The patch introduces no Gooo dependency.

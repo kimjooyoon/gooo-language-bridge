@@ -1,7 +1,7 @@
 # Contribution ledger
 
 These are dated submission notes. Use the [experiment catalog](experiments.md)
-to find reusable cases and the [continuing evidence record](https://github.com/kimjooyoon/gooo-language-bridge/issues/24)
+to find reusable cases and the [continuing evidence record](https://github.com/kimjooyoon/gooo-language-bridge/issues/30)
 for newer observations. Check each upstream PR for its current state.
 
 The account had 110 followers when `gh api users/kimjooyoon` was observed on
