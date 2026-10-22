@@ -1,5 +1,8 @@
 # Compare JavaScript snapshots with pinned Goja or Sobek
 
+For a small first run and a contribution path, start with
+[your first native observation](../../docs/first-observation.md).
+
 This driver turns a small JavaScript experiment into a retained native comparison
 without editing an engine checkout or publishing another CI workflow. It was built
 from real review work: an unmerged Goja PR head could not be fetched as a canonical
