@@ -21,7 +21,9 @@ SHA-256 and size with GitHub's artifact metadata before extracting it. These
 identity and transport checks are outside this offline tool.
 
 Use a trusted copy of the auditor. Have the source head available as a local Git
-commit; a full 40-character lowercase SHA is required. Source files are read from
+commit; a full 40-character lowercase SHA is required. All referenced source objects must already be available locally. Lazy fetching
+is disabled with [Git's `GIT_NO_LAZY_FETCH` guard](https://git-scm.com/docs/git)
+for the Git reads. Source files are read from
 Git objects, so uncommitted working-tree changes do not silently change the
 reference. The execution revision is usually the temporary PR merge revision,
 which can differ from the source head even when their file trees are identical.
@@ -53,8 +55,12 @@ wrong source hash, wrong execution tuple, malformed/duplicate JSON key, extra
 unhashed captured file, failed summary or incomplete inventory exits nonzero.
 Failure emits `FAIL_CLOSED` on stderr and no success report on stdout.
 
-The inventory currently names this workbench's 13 summary schemas and two native
-reports. Native report decisions `MATCH` and `DIFFERENCES` are both legitimate
+The inventory names this workbench's summary schemas and two native reports.
+It selects 14 summaries when the trusted source commit contains
+`bridges/input-defaults/gooo.workspace.json`, or the original 13 otherwise.
+Selection reads the local Git tree, never the untrusted artifact inventory; a
+current source cannot silently accept a bundle missing the new verifier.
+Native report decisions `MATCH` and `DIFFERENCES` are both legitimate
 observations; a known difference can be the expected result of a passing wrapper
 check. This auditor does not turn a difference into equivalence or acceptance.
 Adding or removing a verifier requires an explicit inventory update.

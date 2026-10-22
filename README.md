@@ -66,6 +66,15 @@ tokenization and arbitrary CLI grammar validation stay outside its scope.
 python3 tools/verify_cli_completion.py --gooo .bin/gooo
 ```
 
+## Defaults depend on presence
+
+An explicit `0` or `false` should replace a default, not select it. The
+[Tengo input-defaults bridge](docs/input-defaults.md) gives presence and value
+separate stable field identities. It compares 48 unique native maps with Gooo,
+including resets when an override disappears on a reused compiled script.
+The native observer and Gooo bindings also reject out-of-domain inputs; these
+adapter bounds do not restrict Tengo's general map semantics.
+
 ## Reproduce the semantic comparisons
 
 Requires Python 3.9+, Go 1.27.3 and Node.js 22.23.1; no model, API key, service or paid runner.

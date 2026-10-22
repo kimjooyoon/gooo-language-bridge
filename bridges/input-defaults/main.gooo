@@ -1,0 +1,28 @@
+package inputdefaults
+namespace inputdefaults
+
+entity Overrides id "urn:gooo:bridge:defaults:overrides" fields {
+    field a_present id "urn:gooo:bridge:defaults:a-present" type boolean required one
+    field a_value id "urn:gooo:bridge:defaults:a-value" type integer required one
+    field b_present id "urn:gooo:bridge:defaults:b-present" type boolean required one
+    field b_value id "urn:gooo:bridge:defaults:b-value" type integer required one
+    field enabled_present id "urn:gooo:bridge:defaults:enabled-present" type boolean required one
+    field enabled_value id "urn:gooo:bridge:defaults:enabled-value" type boolean required one
+}
+entity Settings id "urn:gooo:bridge:defaults:settings" fields {
+    field a id "urn:gooo:bridge:defaults:resolved-a" type integer required one
+    field b id "urn:gooo:bridge:defaults:resolved-b" type integer required one
+    field enabled id "urn:gooo:bridge:defaults:resolved-enabled" type boolean required one
+}
+
+# Presence is distinct from value: explicit zero and false replace defaults.
+# Foreign map keys are adapter observations, not semantic field identities.
+activity Resolve(Overrides) -> Settings id "urn:gooo:bridge:defaults:resolve" computes `
+let a = 0
+let b = 1
+let enabled = true
+if input.a_present { a = input.a_value }
+if input.b_present { b = input.b_value }
+if input.enabled_present { enabled = input.enabled_value }
+return Settings{a:a,b:b,enabled:enabled}
+`

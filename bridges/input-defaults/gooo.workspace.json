@@ -1,0 +1,10 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {"package_path": "bridge/defaults", "activity": "Resolve"},
+  "packages": [{
+    "path": "bridge/defaults",
+    "name": "inputdefaults",
+    "imports": [],
+    "sources": ["main.gooo"]
+  }]
+}

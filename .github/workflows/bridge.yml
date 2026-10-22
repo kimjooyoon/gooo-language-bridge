@@ -45,6 +45,7 @@ jobs:
       - run: python3 tools/verify_bubbles_delete.py --gooo .bin/gooo
       - run: python3 tools/verify_cli_completion.py --gooo .bin/gooo
       - run: python3 tools/verify_js_comparison.py
+      - run: python3 tools/verify_input_defaults.py --gooo .bin/gooo
       - name: Audit captured file integrity
         run: >-
           python3 tools/audit_evidence.py --artifact evidence
