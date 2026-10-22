@@ -82,7 +82,7 @@ python3 tools/verify_input_defaults.py --gooo .bin/gooo
 A successful run requires all 48 native and Gooo outputs to match. It also
 requires five native-observer rejections (null, Boolean-as-integer,
 integer-as-Boolean, unknown key and duplicate case ID) and three Gooo field-type
-rejections. Native failures must exit 2 with empty stdout and the expected
+rejections plus a required-presence-field rejection. Native failures must exit 2 with empty stdout and the expected
 single-line diagnostic. Gooo failures must be source/case-bound
 `FAIL_CLOSED` receipts at input validation.
 

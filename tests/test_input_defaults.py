@@ -45,6 +45,7 @@ class InputDefaultsEvidence(unittest.TestCase):
             lambda d: d['result']['runtime']['traces'][0]['deliveries'][0]['input'].update(enabled_value=0),
             lambda d: d['result']['runtime']['traces'][0]['deliveries'][0]['actual'].update(enabled=0),
             lambda d: d['result']['runtime']['traces'][0]['deliveries'][0]['input_fields'][0].update(id='wrong'),
+            lambda d: d['result']['runtime']['traces'][0]['deliveries'][0]['input_fields'].pop(),
             lambda d: d['result']['runtime']['traces'][0]['deliveries'][0]['actual_fields'][0].update(id='wrong'),
         ]
         for change in mutations:

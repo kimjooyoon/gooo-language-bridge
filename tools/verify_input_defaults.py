@@ -194,9 +194,13 @@ def main():
         combined = compare(rows, native, receipt, digest(cases), digest(BRIDGE / 'gooo.workspace.json'))
         resets = reset_counts(combined)
         for name, field, value in [('bool-integer', 'a_value', True), ('integer-bool', 'enabled_value', 0),
-                                    ('integer-presence', 'a_present', 0)]:
+                                    ('integer-presence', 'a_present', 0), ('missing-presence', 'a_present', None)]:
             label = 'gooo-invalid-' + name
-            value_row = dict(rows[0]['input'], **{field: value})
+            value_row = dict(rows[0]['input'])
+            if name == 'missing-presence':
+                del value_row[field]
+            else:
+                value_row[field] = value
             path = out / (label + '.json')
             path.write_text(json.dumps({'schema': 'gooo/body-composition-cases/v1', 'cases': [
                 {'inputs': {KEY: value_row}, 'expected': {KEY: rows[0]['expected']}}]}) + '\n')
@@ -216,7 +220,7 @@ def main():
         (out / 'rows.json').write_text(json.dumps(combined, indent=2) + '\n')
         summary.update(decision='PASS', cases=len(rows), native_matches=len(rows), gooo_matches=len(rows),
                        unique_native_inputs=len({json.dumps(r['overrides'], sort_keys=True) for r in rows}),
-                       native_protocol_rejections=5, gooo_type_rejections=3, reset_transitions=resets,
+                       native_protocol_rejections=5, gooo_type_rejections=3, gooo_presence_rejections=1, reset_transitions=resets,
                        activity_id=ACTIVITY, compiler_sha256=digest(Path(compiler)))
     except (OSError, ValueError, KeyError, TypeError) as error:
         summary['error'] = str(error)
