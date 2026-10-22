@@ -1,4 +1,4 @@
-"""Retain bounded, source-pinned Goja/Node snapshots; a difference is not a verdict."""
+"""Retain bounded, source-pinned JavaScript snapshots; a difference is not a verdict."""
 import argparse
 from decimal import Decimal
 import hashlib
@@ -14,8 +14,27 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 PROVIDERS = ROOT / 'examples/js-differential'
-REPOSITORY = 'https://github.com/dop251/goja.git'
+ENGINES = {
+    'goja': ('https://github.com/dop251/goja.git', 'github.com/dop251/goja'),
+    'sobek': ('https://github.com/grafana/sobek.git', 'github.com/grafana/sobek'),
+}
 LIMIT = 8 * 1024 * 1024
+
+
+def observer_source(engine, template):
+    if engine not in ENGINES:
+        raise ValueError('unsupported engine')
+    repository, module = ENGINES[engine]
+    marker = 'engine "github.com/dop251/goja"'
+    if template.count(marker) != 1:
+        raise ValueError('observer import marker must occur exactly once')
+    return repository, module, template.replace(marker, 'engine "' + module + '"')
+
+
+def verify_source_module(raw, module):
+    declarations = re.findall(r'^module\s+([^\s]+)\s*$', raw, re.MULTILINE)
+    if declarations != [module]:
+        raise ValueError('source module differs from selected engine')
 
 
 def sha(path):
@@ -162,11 +181,15 @@ def compare(args):
     out.mkdir(parents=True, exist_ok=False)
     started = time.monotonic()
     report = {'schema': 'gooo-language-bridge/js-differential/v1', 'decision': 'FAIL_CLOSED',
-              'repository': REPOSITORY, 'base_revision': args.base, 'head_revision': args.head,
+              'engine': getattr(args, 'engine', 'goja'),
+              'base_revision': args.base, 'head_revision': args.head,
               'head_ref': args.head_ref, 'steps': [], 'providers': {},
               'commit': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID')}
     env = dict(os.environ, GOTOOLCHAIN='go1.27.3', GOWORK='off')
     try:
+        template = (PROVIDERS / 'observer.go').read_text()
+        repository, module, observer = observer_source(report['engine'], template)
+        report.update(repository=repository, module=module)
         script = Path(args.script)
         if not script.is_file():
             raise ValueError('script must be a regular file')
@@ -177,9 +200,10 @@ def compare(args):
         source.decode('utf-8', errors='strict')
         (out / 'snapshot-source.js').write_bytes(source)
         for original, name in [(Path(__file__), 'driver-source.py'),
-                               (PROVIDERS / 'observer.go', 'observer-source.go'),
+                               (PROVIDERS / 'observer.go', 'observer-template.go'),
                                (PROVIDERS / 'observer.mjs', 'observer-source.mjs')]:
             shutil.copyfile(original, out / name)
+        (out / 'observer-source.go').write_text(observer)
         with tempfile.TemporaryDirectory(prefix='gooo-js-') as temporary:
             work = Path(temporary)
 
@@ -190,10 +214,10 @@ def compare(args):
             checkout = work / 'source'
             go_version = run('go-version', ['go', 'version']).decode().strip()
             report['go'] = go_version
-            shutil.copyfile(PROVIDERS / 'observer.go', work / 'main.go')
+            (work / 'main.go').write_text(observer)
             (work / 'go.mod').write_text('module gooo-js-observer\n\ngo 1.27.3\n\n'
-                                       'require github.com/dop251/goja v0.0.0\n'
-                                       'replace github.com/dop251/goja => ./source\n')
+                                       'require ' + module + ' v0.0.0\n'
+                                       'replace ' + module + ' => ./source\n')
             node_identity = json.loads(run('node-identity', [args.node, str(PROVIDERS / 'observer.mjs'), '--identity']))
             report['providers']['node'] = node_identity
             node_raw = run('node', [args.node, str(PROVIDERS / 'observer.mjs'),
@@ -210,12 +234,13 @@ def compare(args):
                     report['providers'][label] = dict(report['providers']['head'], reused_head=True)
                     continue
                 ref = args.head_ref if label == 'head' and args.head_ref else revision
-                run(label + '-fetch', ['git', 'fetch', '--depth=1', REPOSITORY, ref], cwd=checkout)
+                run(label + '-fetch', ['git', 'fetch', '--depth=1', repository, ref], cwd=checkout)
                 fetched = run(label + '-fetched', ['git', 'rev-parse', 'FETCH_HEAD'], cwd=checkout).decode().strip()
                 if fetched != revision:
                     raise ValueError(label + ' fetched revision differs from requested SHA')
                 run(label + '-checkout', ['git', 'checkout', '--detach', revision], cwd=checkout)
                 tree = run(label + '-tree', ['git', 'rev-parse', 'HEAD^{tree}'], cwd=checkout).decode().strip()
+                verify_source_module((checkout / 'go.mod').read_text(), module)
                 for name in ('go.mod', 'go.sum', 'LICENSE'):
                     shutil.copyfile(checkout / name, out / (label + '-source-' + name))
                 run(label + '-tidy', ['go', 'mod', 'tidy'])
@@ -224,7 +249,8 @@ def compare(args):
                 shutil.copyfile(work / 'go.mod', out / (label + '-observer.mod'))
                 shutil.copyfile(work / 'go.sum', out / (label + '-observer.sum'))
                 identity = json.loads(run(label + '-identity', [str(binary), '--identity']))
-                report['providers'][label] = dict(identity, source_tree=tree, binary_sha256=sha(binary))
+                report['providers'][label] = dict(identity, engine=report['engine'], module=module,
+                                                  source_tree=tree, binary_sha256=sha(binary))
                 native[label] = snapshots(run(label, [str(binary), str(out / 'snapshot-source.js'),
                                                       str(args.seconds * 1000)], timeout=args.seconds + 2))
             groups = classify(reference, native['head'], native.get('base'))
@@ -241,6 +267,7 @@ def compare(args):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--engine', choices=sorted(ENGINES), default='goja')
     parser.add_argument('--script', required=True, help='trusted JavaScript returning JSON.stringify of snapshot rows')
     parser.add_argument('--head', required=True, type=commit)
     parser.add_argument('--base', type=commit)
