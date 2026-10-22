@@ -45,6 +45,11 @@ jobs:
       - run: python3 tools/verify_bubbles_delete.py --gooo .bin/gooo
       - run: python3 tools/verify_cli_completion.py --gooo .bin/gooo
       - run: python3 tools/verify_js_comparison.py
+      - name: Audit captured file integrity
+        run: >-
+          python3 tools/audit_evidence.py --artifact evidence
+          --source-revision "$GITHUB_SHA" --execution-revision "$GITHUB_SHA"
+          --run-id "$GITHUB_RUN_ID" > evidence/integrity-audit.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
