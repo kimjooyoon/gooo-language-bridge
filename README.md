@@ -2,8 +2,13 @@
 
 Small, reproducible bridges between OSS language behavior and Gooo source.
 Gooo owns the semantic activity and stable identity; an independent language
-runtime supplies finite expected observations. Every run keeps source hashes,
+runtime supplies finite expected observations. Semantic bridge runs keep source hashes,
 compiler identity, runtime identity, exit codes and the original Gooo receipt.
+
+New here? Run [your first native observation](docs/first-observation.md): three
+small Goja/Node.js cases, with no Gooo compiler required. Then
+[choose a contribution path](CONTRIBUTING.md) for a native observation or a Gooo
+semantic bridge.
 
 ## Try source highlighting
 

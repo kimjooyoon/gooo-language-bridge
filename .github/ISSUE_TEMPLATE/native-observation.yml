@@ -1,0 +1,48 @@
+name: Native language observation
+description: A small Goja or Sobek observation; no Gooo compiler is required.
+title: "Observation: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Start with [your first native observation](https://github.com/kimjooyoon/gooo-language-bridge/blob/main/docs/first-observation.md).
+        A runtime difference is evidence to investigate, not an automatic bug verdict. English and Korean reports are welcome.
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Engine
+      options:
+        - Goja
+        - Sobek
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Exact engine source
+      description: Link the full commit SHA you actually tested. Add the PR URL if relevant.
+      placeholder: https://github.com/owner/repository/commit/FULL_SHA
+    validations:
+      required: true
+  - type: textarea
+    id: script
+    attributes:
+      label: Smallest reproducing script
+      description: Use distinct case IDs and retain the actual input. Link a short public reproducer if easier.
+      render: javascript
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Observed result and expected behavior
+      description: Include the case ID and original output excerpt. Explain why the expected behavior follows from a contract or reference. A focused question is welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Runtime, domain and related work
+      description: Include relevant runtime versions, inputs not covered, and existing issues or PRs you checked. If using the driver, paste its runtime identities and decision or link the report.
+    validations:
+      required: true

@@ -1,0 +1,44 @@
+name: Bounded Gooo semantic bridge
+description: Propose one useful behavior with independent native observations.
+title: "Bridge: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for a new Gooo semantic activity. Native-only experiments can use the native observation form instead.
+        Keep the behavior small and credit existing upstream authors. English and Korean proposals are welcome.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Behavior and useful outcome
+      description: Give one concrete input/output example and explain whose workflow it helps.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Native reference and source provenance
+      description: Link the OSS source revision and its license. Name the native operation that supplies independent observations.
+    validations:
+      required: true
+  - type: textarea
+    id: domain
+    attributes:
+      label: Input domain and counterexamples
+      description: State bounds and exclusions. Include a boundary where a naive translation or shared spelling gives the wrong result.
+    validations:
+      required: true
+  - type: textarea
+    id: activity
+    attributes:
+      label: Gooo activity and stable identities
+      description: Describe the semantic entity/activity/field IDs. Source is welcome, but a complete implementation is not required to discuss a proposal.
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: Existing work and validation plan
+      description: Link related issues or PRs, explain the remaining gap, and describe the finite native/Gooo comparison. Separate a proposal from an accepted contribution.
+    validations:
+      required: true
