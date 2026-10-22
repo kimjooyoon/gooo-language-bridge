@@ -43,6 +43,20 @@ Read [String length across Go, Python and JavaScript](docs/string-length-units.m
 executable example, counterexamples and scope. These are encoding units;
 graphemes, display width, normalization and browser engines are excluded.
 
+## Execution and completion have different input intent
+
+An unfinished `-ab` group needs an error during execution and preservation during
+completion. [The completion intent guide](docs/completion-input-intent.md) connects
+[urfave/cli #2485](https://github.com/urfave/cli/pull/2485) with a Gooo activity that
+gives the request mode and token classification stable identities. The verifier
+reproduces nine original mismatches, 20 patched/race matches and 20 Gooo matches
+across 12 distinct policy inputs. Gooo resolves the declared intent policy;
+tokenization and arbitrary CLI grammar validation stay outside its scope.
+
+```sh
+python3 tools/verify_cli_completion.py --gooo .bin/gooo
+```
+
 ## Reproduce the semantic comparisons
 
 Requires Python 3.9+, Go 1.27.3 and Node.js 22.23.1; no model, API key, service or paid runner.
