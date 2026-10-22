@@ -1,0 +1,46 @@
+package hcldefaults
+namespace hcldefaults
+
+entity Request id "urn:gooo:bridge:hcl-defaults:request" fields {
+    field is_optional id "urn:gooo:bridge:hcl-defaults:is-optional" type boolean required one
+    field default_present id "urn:gooo:bridge:hcl-defaults:default-present" type boolean required one
+    field default_value id "urn:gooo:bridge:hcl-defaults:default-value" type integer required one
+    field provided id "urn:gooo:bridge:hcl-defaults:provided" type boolean required one
+    field input_null id "urn:gooo:bridge:hcl-defaults:input-null" type boolean required one
+    field input_value id "urn:gooo:bridge:hcl-defaults:input-value" type integer required one
+}
+entity Resolution id "urn:gooo:bridge:hcl-defaults:resolution" fields {
+    field accepted id "urn:gooo:bridge:hcl-defaults:accepted" type boolean required one
+    field is_null id "urn:gooo:bridge:hcl-defaults:is-null" type boolean required one
+    field value id "urn:gooo:bridge:hcl-defaults:value" type integer required one
+}
+
+# Optional non-null defaults replace missing and explicit null values.
+# The integer payload is meaningful only for an accepted non-null result.
+activity Resolve(Request) -> Resolution id "urn:gooo:bridge:hcl-defaults:resolve" computes `
+let accepted = true
+let result_null = true
+let result_value = 0
+if input.provided {
+    if input.input_null {
+        if input.is_optional && input.default_present {
+            result_null = false
+            result_value = input.default_value
+        }
+    } else {
+        result_null = false
+        result_value = input.input_value
+    }
+} else {
+    if input.is_optional {
+        if input.default_present {
+            result_null = false
+            result_value = input.default_value
+        }
+    } else {
+        accepted = false
+        result_null = false
+    }
+}
+return Resolution{accepted:accepted,is_null:result_null,value:result_value}
+`

@@ -26,6 +26,8 @@ SUMMARIES = {
 }
 BASE_SUMMARIES = dict(SUMMARIES)
 SUMMARIES['input-defaults/summary.json'] = 'input-defaults'
+INPUT_DEFAULTS_SUMMARIES = dict(SUMMARIES)
+SUMMARIES['hcl-null-defaults/summary.json'] = 'hcl-null-defaults'
 LEGACY = {'chroma-gooo/summary.json', 'yaegi-1736/summary.json'}
 REPORTS = {'js-differential/report.json', 'js-sobek/report.json'}
 SOURCE_ROOTS = {'bridges', 'tools', 'examples', 'tests', 'proposals'}
@@ -78,11 +80,17 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
     require(subprocess.check_output(git + ['cat-file', '-t', source_revision], timeout=10,
                                     stderr=subprocess.PIPE, env=git_env).strip() == b'commit',
             'source revision is not a local commit')
-    marker = 'bridges/input-defaults/gooo.workspace.json'
-    present = subprocess.check_output(git + ['ls-tree', '--name-only', source_revision, '--', marker],
-                                      timeout=10, stderr=subprocess.PIPE, env=git_env).decode().strip()
-    require(present in ('', marker), 'unexpected source inventory marker')
-    summaries = SUMMARIES if present else BASE_SUMMARIES
+    markers = ['bridges/input-defaults/gooo.workspace.json', 'bridges/hcl-null-defaults/gooo.workspace.json']
+    present = subprocess.check_output(git + ['ls-tree', '--name-only', source_revision, '--'] + markers,
+                                      timeout=10, stderr=subprocess.PIPE, env=git_env).decode().splitlines()
+    require(set(present) <= set(markers), 'unexpected source inventory marker')
+    require(markers[1] not in present or markers[0] in present, 'inconsistent source inventory markers')
+    if markers[1] in present:
+        summaries, inventory = SUMMARIES, 'hcl-null-defaults-15'
+    elif markers[0] in present:
+        summaries, inventory = INPUT_DEFAULTS_SUMMARIES, 'input-defaults-14'
+    else:
+        summaries, inventory = BASE_SUMMARIES, 'base-13'
     artifact = Path(artifact)
     require(not artifact.is_symlink() and artifact.is_dir(), 'expected an extracted artifact directory')
     artifact = artifact.resolve()
@@ -162,7 +170,7 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
     require(not uncovered, 'unhashed captured files: ' + ', '.join(sorted(uncovered)))
     return dict(schema='gooo-language-bridge/evidence-integrity/v1', decision='PASS_INTEGRITY',
                 source_revision=source_revision, execution_revision=execution_revision, run_id=run_id,
-                summaries=len(summaries), source_inventory=('input-defaults-14' if present else 'base-13'), native_reports=len(REPORTS), bound_contexts=contexts,
+                summaries=len(summaries), source_inventory=inventory, native_reports=len(REPORTS), bound_contexts=contexts,
                 legacy_context_exceptions=sorted(LEGACY), hash_references=checked,
                 captured_files=len(covered), source_files=len(source_cache), manifest_sha256=fingerprints,
                 scope='Captured file integrity against local Git source and the supplied execution tuple; '

@@ -1,0 +1,5 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {"package_path": "bridge/hcl-defaults", "activity": "Resolve"},
+  "packages": [{"path": "bridge/hcl-defaults", "name": "hcldefaults", "imports": [], "sources": ["main.gooo"]}]
+}
