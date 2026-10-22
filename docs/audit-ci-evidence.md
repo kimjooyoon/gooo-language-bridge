@@ -56,8 +56,12 @@ unhashed captured file, failed summary or incomplete inventory exits nonzero.
 Failure emits `FAIL_CLOSED` on stderr and no success report on stdout.
 
 The inventory names this workbench's summary schemas and two native reports.
-It selects 14 summaries when the trusted source commit contains
-`bridges/input-defaults/gooo.workspace.json`, or the original 13 otherwise.
+It selects fifteen summaries when the trusted source commit contains both
+`bridges/input-defaults/gooo.workspace.json` and
+`bridges/hcl-null-defaults/gooo.workspace.json`, fourteen when only the former
+marker is present, or the original thirteen when neither is present. A newer
+source cannot omit its HCL evidence by claiming an older inventory in the
+artifact; the source Git tree selects the required inventory.
 Selection reads the local Git tree, never the untrusted artifact inventory; a
 current source cannot silently accept a bundle missing the new verifier.
 Native report decisions `MATCH` and `DIFFERENCES` are both legitimate

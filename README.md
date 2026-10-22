@@ -75,6 +75,12 @@ including resets when an override disappears on a reused compiled script.
 The native observer and Gooo bindings also reject out-of-domain inputs; these
 adapter bounds do not restrict Tengo's general map semantics.
 
+HCL adds a different distinction: an explicit null can acquire an optional
+non-null default, while a required missing attribute fails conversion. The
+[HCL null/default bridge](docs/hcl-null-defaults.md) compares twenty requests
+with released HCL v2.24.0 and Gooo, retaining native nulls and the expected
+required-missing diagnostic.
+
 ## Reproduce the semantic comparisons
 
 Requires Python 3.9+, Go 1.27.3 and Node.js 22.23.1; no model, API key, service or paid runner.

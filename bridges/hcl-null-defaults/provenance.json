@@ -1,0 +1,15 @@
+{
+  "module": "github.com/hashicorp/hcl/v2",
+  "version": "v2.24.0",
+  "revision": "6b5068090eef06b1f127f61529db5ba0be7ed343",
+  "sum": "h1:2QJdZ454DSsYGoaE6QheQZjtKZSUs9Nh2izTWiwQxvE=",
+  "upstream_license": "MPL-2.0",
+  "reference": "TypeConstraintWithDefaults -> Defaults.Apply -> cty conversion of one numeric object attribute",
+  "constraints": {
+    "required": "object({v=number})",
+    "optional": "object({v=optional(number)})",
+    "default-zero": "object({v=optional(number,0)})",
+    "default-42": "object({v=optional(number,42)})"
+  },
+  "scope": "Independently authored finite Gooo policy; no HCL engine implementation copied. The optional-default behavior is in the released base, not the unmerged TypeString proposal #815."
+}
