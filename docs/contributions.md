@@ -1,5 +1,9 @@
 # Contribution ledger
 
+These are dated submission notes. Use the [experiment catalog](experiments.md)
+to find reusable cases and the [continuing evidence record](https://github.com/kimjooyoon/gooo-language-bridge/issues/24)
+for newer observations. Check each upstream PR for its current state.
+
 The account had 110 followers when `gh api users/kimjooyoon` was observed on
 2026-10-22 (Asia/Seoul). The long-term objective is 1,000 followers earned through
 useful public contributions. Follower changes alone do not establish causation.

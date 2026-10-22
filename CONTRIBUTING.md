@@ -3,6 +3,8 @@
 Choose the path that fits what you observed. English and Korean reports are
 welcome. A focused question or small reproducer is enough to start a discussion;
 you do not need a finished implementation to propose useful work.
+The [experiment catalog](docs/experiments.md) provides browser demos, native
+reproducers and semantic bridges to adapt.
 
 ## Native observation: no Gooo compiler needed
 

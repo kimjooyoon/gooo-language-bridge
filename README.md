@@ -8,7 +8,8 @@ compiler identity, runtime identity, exit codes and the original Gooo receipt.
 New here? Run [your first native observation](docs/first-observation.md): three
 small Goja/Node.js cases, with no Gooo compiler required. Then
 [choose a contribution path](CONTRIBUTING.md) for a native observation or a Gooo
-semantic bridge.
+semantic bridge. Browse the [experiment catalog](docs/experiments.md) for
+browser examples, native review packets and executable Gooo comparisons.
 
 ## Try source highlighting
 
