@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
@@ -23,6 +24,8 @@ SUMMARIES = {
     'text-length/summary.json': 'text-length',
     'yaegi-1736/summary.json': 'upstream-regression',
 }
+BASE_SUMMARIES = dict(SUMMARIES)
+SUMMARIES['input-defaults/summary.json'] = 'input-defaults'
 LEGACY = {'chroma-gooo/summary.json', 'yaegi-1736/summary.json'}
 REPORTS = {'js-differential/report.json', 'js-sobek/report.json'}
 SOURCE_ROOTS = {'bridges', 'tools', 'examples', 'tests', 'proposals'}
@@ -69,10 +72,20 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
     require(all(type(s) is str and re.fullmatch(r'[0-9a-f]{40}', s)
                 for s in (source_revision, execution_revision)), 'expected full lowercase Git SHAs')
     require(type(run_id) is str and re.fullmatch(r'[1-9][0-9]*', run_id), 'expected positive run ID')
+    repository = Path(repository).resolve()
+    git = ['git', '--no-replace-objects', '-C', str(repository)]
+    git_env = dict(os.environ, GIT_NO_LAZY_FETCH='1')
+    require(subprocess.check_output(git + ['cat-file', '-t', source_revision], timeout=10,
+                                    stderr=subprocess.PIPE, env=git_env).strip() == b'commit',
+            'source revision is not a local commit')
+    marker = 'bridges/input-defaults/gooo.workspace.json'
+    present = subprocess.check_output(git + ['ls-tree', '--name-only', source_revision, '--', marker],
+                                      timeout=10, stderr=subprocess.PIPE, env=git_env).decode().strip()
+    require(present in ('', marker), 'unexpected source inventory marker')
+    summaries = SUMMARIES if present else BASE_SUMMARIES
     artifact = Path(artifact)
     require(not artifact.is_symlink() and artifact.is_dir(), 'expected an extracted artifact directory')
     artifact = artifact.resolve()
-    repository = Path(repository).resolve()
     files = {}
     total = 0
     for entry, path in enumerate(artifact.rglob('*')):
@@ -87,12 +100,9 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
         require(total <= MAX_BYTES and len(files) < MAX_FILES, 'evidence bundle exceeds audit bounds')
         files[name] = path
     require({n for n in files if n.endswith('/summary.json') or n == 'summary.json'}
-            == set(SUMMARIES), 'missing or unexpected summary inventory')
+            == set(summaries), 'missing or unexpected summary inventory')
     require({n for n in files if n.endswith('/report.json') or n == 'report.json'}
             == REPORTS, 'missing or unexpected native report inventory')
-    git = ['git', '--no-replace-objects', '-C', str(repository)]
-    require(subprocess.check_output(git + ['cat-file', '-t', source_revision], timeout=10, stderr=subprocess.PIPE).strip()
-            == b'commit', 'source revision is not a local commit')
     source_cache = {}
     artifact_cache = {}
     covered = set()
@@ -110,14 +120,14 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
     def source_bytes(name):
         if name not in source_cache:
             source_cache[name] = subprocess.check_output(
-                git + ['cat-file', 'blob', source_revision + ':' + name], timeout=10, stderr=subprocess.PIPE)
+                git + ['cat-file', 'blob', source_revision + ':' + name], timeout=10, stderr=subprocess.PIPE, env=git_env)
         return source_cache[name]
 
-    for name in sorted(set(SUMMARIES) | REPORTS):
+    for name in sorted(set(summaries) | REPORTS):
         document = read_json(files[name])
         require(type(document) is dict, 'expected manifest object: ' + name)
         native = name in REPORTS
-        schema = 'js-differential' if native else SUMMARIES[name]
+        schema = 'js-differential' if native else summaries[name]
         require(document.get('schema') == 'gooo-language-bridge/' + schema + '/v1',
                 'unexpected schema: ' + name)
         require(document.get('decision') in ({'MATCH', 'DIFFERENCES'} if native else {'PASS'}),
@@ -148,11 +158,11 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
                     'digest mismatch: ' + name + ' -> ' + target)
             checked += 1
     # Manifests and this audit's output are intentionally not self-hashed.
-    uncovered = set(files) - covered - set(SUMMARIES) - {'integrity-audit.json'}
+    uncovered = set(files) - covered - set(summaries) - {'integrity-audit.json'}
     require(not uncovered, 'unhashed captured files: ' + ', '.join(sorted(uncovered)))
     return dict(schema='gooo-language-bridge/evidence-integrity/v1', decision='PASS_INTEGRITY',
                 source_revision=source_revision, execution_revision=execution_revision, run_id=run_id,
-                summaries=len(SUMMARIES), native_reports=len(REPORTS), bound_contexts=contexts,
+                summaries=len(summaries), source_inventory=('input-defaults-14' if present else 'base-13'), native_reports=len(REPORTS), bound_contexts=contexts,
                 legacy_context_exceptions=sorted(LEGACY), hash_references=checked,
                 captured_files=len(covered), source_files=len(source_cache), manifest_sha256=fingerprints,
                 scope='Captured file integrity against local Git source and the supplied execution tuple; '

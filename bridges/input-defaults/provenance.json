@@ -1,0 +1,14 @@
+{
+  "schema": "gooo-language-bridge/provenance/v1",
+  "upstream": "https://github.com/d5/tengo",
+  "revision": "18239400d1ee45940e4cb881e2e9840cb916d0f6",
+  "license": "MIT",
+  "module": "github.com/d5/tengo/v2",
+  "version": "v2.17.1-0.20261013061022-18239400d1ee",
+  "sum": "h1:LW99H2y+9r/3ZHsNiLlqYwyPqRlB/ExxyhWin9AI5QU=",
+  "related_issue": "https://github.com/d5/tengo/issues/471",
+  "submitted_documentation": "https://github.com/d5/tengo/pull/496",
+  "derivation": "Independent Tengo observer using public Script/Compiled APIs; Gooo activity is independently authored, no engine implementation copied.",
+  "scope": "48 unique flat override maps: integer fields a/b absent or -1,0,2; enabled absent/false/true. Fresh script defaults 0,1,true per Run, same Compiled reused. Explicit presence/value input fields with stable semantic IDs. No general Tengo compiler, unknown/null/nested values, arbitrary precision or whole-language equivalence claim.",
+  "tengo_source": "settings := {a: 0, b: 1, enabled: true}\nfor key, value in overrides {\n    settings[key] = value\n}\nresolved_a := settings.a\nresolved_b := settings.b\nresolved_enabled := settings.enabled\n"
+}

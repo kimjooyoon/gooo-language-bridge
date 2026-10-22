@@ -51,6 +51,7 @@ first. Each guide describes its input units, stable identities and exclusions.
 
 | Behavior | Guide | Reproduction command |
 | --- | --- | --- |
+| Input defaults | [Tengo map overrides and explicit presence](input-defaults.md): 48 unique maps; zero/false remain values and missing fields restore defaults | `python3 tools/verify_input_defaults.py --gooo .bin/gooo` |
 | Integer floor division | [Go, Python and pinned GoLua](python-go-integer-division.md): 120 bounded inputs; three additional Lua boundaries remain outside Gooo | `python3 tools/compare_division.py --gooo .bin/gooo` |
 | String length units | [UTF-8 bytes, code points and UTF-16 units](string-length-units.md): 27 scalar strings; not grapheme or display width | `python3 tools/compare_text_length.py --gooo .bin/gooo` |
 | Incomplete flag groups | [Execution versus completion intent](completion-input-intent.md): 20 native cases, 12 distinct policy inputs; token classification is supplied | `python3 tools/verify_cli_completion.py --gooo .bin/gooo` |
