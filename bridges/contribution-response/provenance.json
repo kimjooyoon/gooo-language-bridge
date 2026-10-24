@@ -1,0 +1,15 @@
+{
+  "schema": "gooo-language-bridge/response-planning-provenance/v1",
+  "intent": "Source-owned bounded response planning, distinct from the existing contribution candidate check.",
+  "activity_id": "urn:gooo:contribution:response-plan",
+  "contract": "gooo/contribution-evidence/v1; gooo/contribution-response-input/v1; gooo/contribution-response-result/v1",
+  "compiler": "v0.6.38-dev",
+  "license": "MIT",
+  "fixture_origin": "Explicitly synthetic packets based on linked historical public observations, not new acquisition or execution. Repeated 111/222 revisions and fixture-version are synthetic identities.",
+  "sources": [
+    "https://github.com/hashicorp/hcl/pull/815#issuecomment-6346695196",
+    "https://github.com/go-git/go-git/pull/2530#issuecomment-6339776245"
+  ],
+  "scope": "Original scenarios 1/2/3/4/6/15 plus three negative/precondition packets. The remaining ten original scenarios and supplemental cases are pending B2; real producer integration is B3. No native implementation or upstream policy text was copied.",
+  "authority": "Supplied observations drive a no-effect planning decision. Neither the schema validator, local comparisons nor the presentation authenticates their truth or authorizes a public post."
+}

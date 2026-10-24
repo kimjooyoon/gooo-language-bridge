@@ -37,6 +37,13 @@ class EvidenceAuditTests(unittest.TestCase):
         git('add', '.')
         git('-c', 'user.name=Evidence test', '-c', 'user.email=test@example.invalid',
             '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', 'commit', '-m', 'HCL inventory')
+        cls.hcl_revision = git('rev-parse', 'HEAD').decode().strip()
+        marker = cls.repo / 'bridges/contribution-response/gooo.workspace.json'
+        marker.parent.mkdir(parents=True)
+        marker.write_text('{}\n')
+        git('add', '.')
+        git('-c', 'user.name=Evidence test', '-c', 'user.email=test@example.invalid',
+            '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', 'commit', '-m', 'response inventory')
         cls.revision = git('rev-parse', 'HEAD').decode().strip()
 
     @classmethod
@@ -81,11 +88,11 @@ class EvidenceAuditTests(unittest.TestCase):
     def test_complete_bundle_binds_sources_and_differences_are_valid_evidence(self):
         result = self.check()
         self.assertEqual(result['decision'], 'PASS_INTEGRITY')
-        self.assertEqual(result['summaries'], 15)
+        self.assertEqual(result['summaries'], 16)
         self.assertEqual(result['native_reports'], 2)
         self.assertEqual(result['source_files'], 1)
-        self.assertEqual(result['bound_contexts'], 15)
-        self.assertEqual(result['captured_files'], 17)
+        self.assertEqual(result['bound_contexts'], 16)
+        self.assertEqual(result['captured_files'], 18)
 
     def test_output_substitution_and_unhashed_additions_fail(self):
         target = self.root / 'capture.txt'
@@ -161,6 +168,7 @@ class EvidenceAuditTests(unittest.TestCase):
         import shutil
         shutil.rmtree(self.root / 'input-defaults')
         shutil.rmtree(self.root / 'hcl-null-defaults')
+        shutil.rmtree(self.root / 'response-planning')
         with self.assertRaisesRegex(ValueError, 'summary inventory'):
             self.check()
         for name in set(SUMMARIES) | REPORTS:
@@ -183,6 +191,7 @@ class EvidenceAuditTests(unittest.TestCase):
     def test_current_source_requires_hcl_evidence_and_fourteen_summary_source_still_works(self):
         import shutil
         shutil.rmtree(self.root / 'hcl-null-defaults')
+        shutil.rmtree(self.root / 'response-planning')
         with self.assertRaisesRegex(ValueError, 'summary inventory'):
             self.check()
         for name in set(SUMMARIES) | REPORTS:
@@ -201,3 +210,25 @@ class EvidenceAuditTests(unittest.TestCase):
         old = audit(self.root, self.input_defaults_revision, self.input_defaults_revision, '123', self.repo)
         self.assertEqual(old['summaries'], 14)
         self.assertEqual(old['source_inventory'], 'input-defaults-14')
+
+    def test_response_source_requires_its_manifest_and_fifteen_summary_source_still_works(self):
+        import shutil
+        shutil.rmtree(self.root / 'response-planning')
+        with self.assertRaisesRegex(ValueError, 'summary inventory'):
+            self.check()
+        for name in set(SUMMARIES) | REPORTS:
+            path = self.root / name
+            if path.exists():
+                data = json.loads(path.read_text())
+                if name not in LEGACY:
+                    data['commit'] = self.hcl_revision
+                path.write_text(json.dumps(data))
+        for name in REPORTS:
+            path = self.root / name
+            summary = path.parent / 'summary.json'
+            data = json.loads(summary.read_text())
+            data['sha256']['report.json'] = hashlib.sha256(path.read_bytes()).hexdigest()
+            summary.write_text(json.dumps(data))
+        old = audit(self.root, self.hcl_revision, self.hcl_revision, '123', self.repo)
+        self.assertEqual(old['summaries'], 15)
+        self.assertEqual(old['source_inventory'], 'hcl-null-defaults-15')
