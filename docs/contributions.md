@@ -1,13 +1,13 @@
 # Contribution ledger
 
-These are dated submission notes. Use the [experiment catalog](experiments.md)
+These are dated contribution notes. Use the [experiment catalog](experiments.md)
 to find reusable cases and the [continuing evidence record](https://github.com/kimjooyoon/gooo-language-bridge/issues/30)
 for newer observations. Check each upstream PR for its current state.
 
 The account had 110 followers when `gh api users/kimjooyoon` was observed on
 2026-10-22 (Asia/Seoul). The long-term objective is 1,000 followers earned through
 useful public contributions. Follower changes alone do not establish causation.
-No follow-for-follow, bulk outreach, duplicate PRs or acceptance claims.
+No follow-for-follow, bulk outreach, duplicate PRs or unsupported acceptance claims.
 
 ## Yaegi operator assignment, ready for review
 
@@ -37,7 +37,7 @@ authorize merging to an external project. The current Python/Gooo arithmetic
 bridge and this Yaegi fix are separate evidence scopes; no Yaegi/Gooo integration
 or general language equivalence is claimed.
 
-## Chroma Gooo lexer, submitted
+## Chroma Gooo lexer, merged October 22, 2026
 
 - Upstream: https://github.com/alecthomas/chroma/pull/1410
 - Source: `f2224b4a0bd96f64da4cd9a92b293d81aaaf71cd`
@@ -45,7 +45,13 @@ or general language equivalence is claimed.
 - XML lexer, alias/filename discovery, two fixtures (128 tokens), generated registry metadata.
 - Both fixtures pass pinned Gooo v0.6.38-dev check. Bodies remain raw strings; no Go body parsing or Gooo runtime dependency.
 - Local full tests, lexer/registry race checks, lint and stable metadata generation pass.
-- Upstream CI is `action_required` for a first contribution; upstream acceptance is unproven.
+- At submission, upstream CI required first-contributor approval. Owner `alecthomas`
+  approved the exact head and merged it on 2026-10-22 at 07:48:28 UTC as
+  `c30c0cc97a451f0d419d2e4228b0809413ad2833`.
+- [Upstream run 39665018209, attempt 2](https://github.com/alecthomas/chroma/actions/runs/39665018209)
+  passed Test, Lint and Check generated code at the submitted head. Acceptance
+  is verified independently of this workbench's own checks. The merge targets
+  Chroma v3 development; the consumer still uses released v2.27.0 plus the XML.
 - `tools/verify_chroma.py` runs full tests, Gooo fixture race tests and metadata freshness against the exact submission. Its CI proof does not include lint; the lint claim above is local only.
 - Fork workflow activation did not start a run during observation. Independent proof therefore runs in this existing workbench's CI, retaining stdout, stderr and file hashes. Fork PRs are not counted as upstream acceptance.
 - AI assistance is disclosed in the upstream PR and commit trailer.
@@ -59,7 +65,7 @@ binds the edit; the new links were observed on the rendered profile. The release
 manifest hash was checked against the published asset before adding its link.
 This establishes a discovery route; it is not evidence of adoption or follower growth.
 
-## Chroma prefixed Go imaginary literals, submitted
+## Chroma prefixed Go imaginary literals, merged October 22, 2026
 
 - Upstream: https://github.com/alecthomas/chroma/pull/1411
 - Original: `ef614fb8afe8ccf3f2b2cb45117c543a3ce8832b`.
@@ -75,7 +81,12 @@ This establishes a discovery route; it is not evidence of adoption or follower g
   arm64. No existing fixture changes, metadata changes or Gooo dependency.
 - `tools/verify_chroma_go_numbers.py` retains original/patch token observations,
   native compilation, the failing/passing regression, targeted race and full tests.
-  Independent CI does not replace upstream approval; no acceptance is claimed.
+  Independent CI does not replace upstream approval.
+- Owner `alecthomas` approved the exact head and merged it on 2026-10-22 at
+  07:46:41 UTC as `635b7667dd8a099b6932f6d7f68c088ee3967155`.
+- [Upstream run 39677077130, attempt 2](https://github.com/alecthomas/chroma/actions/runs/39677077130)
+  passed Test, Lint and Check generated code at that head. See the
+  [dated acceptance record](observations/2026-10-25-chroma-accepted.json).
 - AI authorship is disclosed in the upstream PR and commit trailer.
 
 The [Go specification](https://go.dev/ref/spec#Imaginary_literals) permits these
