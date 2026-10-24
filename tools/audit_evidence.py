@@ -28,6 +28,8 @@ BASE_SUMMARIES = dict(SUMMARIES)
 SUMMARIES['input-defaults/summary.json'] = 'input-defaults'
 INPUT_DEFAULTS_SUMMARIES = dict(SUMMARIES)
 SUMMARIES['hcl-null-defaults/summary.json'] = 'hcl-null-defaults'
+HCL_DEFAULTS_SUMMARIES = dict(SUMMARIES)
+SUMMARIES['response-planning/summary.json'] = 'response-planning'
 LEGACY = {'chroma-gooo/summary.json', 'yaegi-1736/summary.json'}
 REPORTS = {'js-differential/report.json', 'js-sobek/report.json'}
 SOURCE_ROOTS = {'bridges', 'tools', 'examples', 'tests', 'proposals'}
@@ -80,13 +82,17 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
     require(subprocess.check_output(git + ['cat-file', '-t', source_revision], timeout=10,
                                     stderr=subprocess.PIPE, env=git_env).strip() == b'commit',
             'source revision is not a local commit')
-    markers = ['bridges/input-defaults/gooo.workspace.json', 'bridges/hcl-null-defaults/gooo.workspace.json']
+    markers = ['bridges/input-defaults/gooo.workspace.json', 'bridges/hcl-null-defaults/gooo.workspace.json',
+               'bridges/contribution-response/gooo.workspace.json']
     present = subprocess.check_output(git + ['ls-tree', '--name-only', source_revision, '--'] + markers,
                                       timeout=10, stderr=subprocess.PIPE, env=git_env).decode().splitlines()
     require(set(present) <= set(markers), 'unexpected source inventory marker')
     require(markers[1] not in present or markers[0] in present, 'inconsistent source inventory markers')
-    if markers[1] in present:
-        summaries, inventory = SUMMARIES, 'hcl-null-defaults-15'
+    require(markers[2] not in present or markers[1] in present, 'inconsistent source inventory markers')
+    if markers[2] in present:
+        summaries, inventory = SUMMARIES, 'response-planning-16'
+    elif markers[1] in present:
+        summaries, inventory = HCL_DEFAULTS_SUMMARIES, 'hcl-null-defaults-15'
     elif markers[0] in present:
         summaries, inventory = INPUT_DEFAULTS_SUMMARIES, 'input-defaults-14'
     else:

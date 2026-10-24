@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "gooo/contribution-response-result/v1"
+    },
+    "input_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "policy_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "REFUSED_INVALID_CLAIMS",
+        "NEEDS_CURRENT_EVIDENCE",
+        "EXTERNAL_REQUIREMENT_UNSATISFIED",
+        "NO_POST",
+        "BOUNDED_DRAFT_READY"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "effect": {
+      "const": "none"
+    },
+    "packet": {
+      "$ref": "input.schema.json"
+    }
+  },
+  "required": [
+    "schema",
+    "input_digest",
+    "policy_digest",
+    "decision",
+    "reason",
+    "effect",
+    "packet"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,23 @@
+package contributionresponse
+namespace contributionresponse
+
+entity Observation id "urn:gooo:contribution:response-observation" fields {
+    field roles_match id "urn:gooo:contribution:response-roles-match" type boolean required one
+    field bindings_match id "urn:gooo:contribution:response-bindings-match" type boolean required one
+    field comparison_supported id "urn:gooo:contribution:response-comparison-supported" type boolean required one
+    field evidence_current id "urn:gooo:contribution:response-evidence-current" type boolean required one
+    field external_satisfied id "urn:gooo:contribution:response-external-satisfied" type boolean required one
+    field useful_addition id "urn:gooo:contribution:response-useful-addition" type boolean required one
+}
+entity Text id "urn:gooo:type:string"
+
+# A draft decision has no publication effect or acceptance implication.
+activity Plan(Observation) -> Text id "urn:gooo:contribution:response-plan" computes `
+if !input.roles_match {return "REFUSED_INVALID_CLAIMS:ROLE_UNESTABLISHED"}
+if !input.bindings_match {return "REFUSED_INVALID_CLAIMS:EVIDENCE_BINDING"}
+if !input.comparison_supported {return "REFUSED_INVALID_CLAIMS:COMPARISON_UNSUPPORTED"}
+if !input.evidence_current {return "NEEDS_CURRENT_EVIDENCE:STALE_SNAPSHOT"}
+if !input.external_satisfied {return "EXTERNAL_REQUIREMENT_UNSATISFIED:EXTERNAL_PRECONDITION"}
+if !input.useful_addition {return "NO_POST:NO_USEFUL_ADDITION"}
+return "BOUNDED_DRAFT_READY:BOUNDED_INFORMATION"
+`

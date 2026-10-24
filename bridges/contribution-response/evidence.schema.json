@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "gooo/contribution-evidence/v1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "origin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "frozen_observation",
+        "producer_observation"
+      ]
+    },
+    "identities": {
+      "type": "object",
+      "properties": {
+        "source_commit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "source_blob": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "base_commit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "candidate_commit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "reference_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "reference_version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "reference_commit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      },
+      "required": [
+        "source_commit",
+        "source_blob",
+        "base_commit",
+        "candidate_commit",
+        "reference_name",
+        "reference_version",
+        "reference_commit"
+      ],
+      "additionalProperties": false
+    },
+    "execution": {
+      "type": "object",
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_executed",
+            "source_review",
+            "parse",
+            "compile",
+            "targeted_tests",
+            "full_suite",
+            "native_execution",
+            "oracle_comparison",
+            "saved_replay",
+            "input_observation"
+          ]
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "pass",
+            "fail",
+            "not_executed",
+            "not_compared",
+            "observed",
+            "cancelled",
+            "incomplete",
+            "partial"
+          ]
+        },
+        "tested_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "maxItems": 16
+        },
+        "comparison": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "not_compared",
+            "candidate_only",
+            "base_and_candidate"
+          ]
+        },
+        "base_outcome": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "pass",
+            "fail",
+            "not_compared",
+            "observed",
+            "cancelled",
+            "incomplete",
+            "partial"
+          ]
+        },
+        "candidate_outcome": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "pass",
+            "fail",
+            "not_compared",
+            "observed",
+            "cancelled",
+            "incomplete",
+            "partial"
+          ]
+        }
+      },
+      "required": [
+        "phase",
+        "outcome",
+        "tested_scope",
+        "comparison",
+        "base_outcome",
+        "candidate_outcome"
+      ],
+      "additionalProperties": false
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 16
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "maxItems": 16
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "maxItems": 16
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "maxItems": 16
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "origin",
+    "identities",
+    "execution",
+    "references",
+    "uncertainty",
+    "failures",
+    "exclusions"
+  ],
+  "additionalProperties": false
+}

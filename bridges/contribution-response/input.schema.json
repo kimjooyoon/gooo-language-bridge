@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "gooo/contribution-response-input/v1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "origin": {
+      "type": "string",
+      "enum": [
+        "synthetic",
+        "frozen_observation",
+        "producer_observation"
+      ]
+    },
+    "repository": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "actor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "observed_role": {
+          "type": "string",
+          "enum": [
+            "author",
+            "reviewer",
+            "proposer",
+            "maintainer",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "observed_role"
+      ],
+      "additionalProperties": false
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "source_url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "source_identity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "published_policy",
+            "direct_feedback",
+            "synthetic"
+          ]
+        },
+        "external_requirement": {
+          "type": "string",
+          "enum": [
+            "satisfied",
+            "unsatisfied",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "source_url",
+        "source_identity",
+        "basis",
+        "external_requirement"
+      ],
+      "additionalProperties": false
+    },
+    "conversation": {
+      "type": "object",
+      "properties": {
+        "observed_at": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "as_of": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "max_age_seconds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 604800
+        },
+        "snapshot_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "current_snapshot_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "tested_head": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "current_head": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "interaction": {
+          "type": "object",
+          "properties": {
+            "review_state": {
+              "type": "string",
+              "enum": [
+                "COMMENTED",
+                "APPROVED",
+                "CHANGES_REQUESTED",
+                "DISMISSED",
+                "unknown"
+              ]
+            },
+            "minimization": {
+              "type": "string",
+              "enum": [
+                "low-quality",
+                "not_observed",
+                "unknown"
+              ]
+            },
+            "lock": {
+              "type": "string",
+              "enum": [
+                "locked",
+                "unlocked",
+                "unknown"
+              ]
+            },
+            "composer": {
+              "type": "string",
+              "enum": [
+                "editable",
+                "unavailable",
+                "unknown"
+              ]
+            },
+            "submission": {
+              "type": "string",
+              "enum": [
+                "not_attempted",
+                "confirmed",
+                "failed",
+                "unknown"
+              ]
+            },
+            "permission": {
+              "type": "string",
+              "enum": [
+                "unknown",
+                "confirmed",
+                "denied"
+              ]
+            }
+          },
+          "required": [
+            "review_state",
+            "minimization",
+            "lock",
+            "composer",
+            "submission",
+            "permission"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "observed_at",
+        "as_of",
+        "max_age_seconds",
+        "snapshot_id",
+        "current_snapshot_id",
+        "tested_head",
+        "current_head",
+        "interaction"
+      ],
+      "additionalProperties": false
+    },
+    "requested": {
+      "type": "boolean"
+    },
+    "adds_information": {
+      "type": "boolean"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "asserted_role": {
+            "type": "string",
+            "enum": [
+              "author",
+              "reviewer",
+              "proposer",
+              "maintainer",
+              "unknown"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "process_observation",
+              "interaction_observation",
+              "bounded_confirmation",
+              "original_finding_fixed",
+              "pre_existing_limitation"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "observed",
+              "resolved",
+              "unknown",
+              "not_compared"
+            ]
+          },
+          "tested_revision": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "maxItems": 16
+          },
+          "uncertainty": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "maxItems": 16
+          },
+          "failures": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "maxItems": 16
+          },
+          "exclusions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "maxItems": 16
+          }
+        },
+        "required": [
+          "id",
+          "actor_id",
+          "asserted_role",
+          "kind",
+          "status",
+          "tested_revision",
+          "evidence_ids",
+          "uncertainty",
+          "failures",
+          "exclusions"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 16,
+      "minItems": 1
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "evidence.schema.json"
+      },
+      "maxItems": 16,
+      "minItems": 1
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "maxItems": 16
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "maxItems": 16
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "maxItems": 16
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "origin",
+    "repository",
+    "actor",
+    "phase",
+    "policy",
+    "conversation",
+    "requested",
+    "adds_information",
+    "claims",
+    "evidence",
+    "uncertainty",
+    "failures",
+    "exclusions"
+  ],
+  "additionalProperties": false
+}

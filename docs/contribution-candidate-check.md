@@ -122,3 +122,8 @@ policy receipts; it does not certify a later live GitHub response. Live packets
 remain local unless explicitly published. The
 [proposal](https://github.com/kimjooyoon/gooo-language-bridge/issues/10) and
 [provenance](../bridges/contribution-review/provenance.json) record the scope.
+
+For a separate role/evidence-bound decision about whether a response adds useful
+information, see [response planning](contribution-response-planning.md). Its B1
+fixtures and producer evidence contract preserve unknowns and have no publishing
+effect. They do not change these five observations or 32 candidate-policy cases.
