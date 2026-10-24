@@ -5,5 +5,9 @@
   "path": "lexers/embedded/gooo.xml",
   "sha256": "69efd28868b832517a33f7e8758463d476440a734634811cb0c6e63d5c4d6e66",
   "runtime": "github.com/alecthomas/chroma/v2@v2.27.0",
-  "status": "Submitted lexer; upstream acceptance unproven."
+  "status": "Merged upstream on 2026-10-22; consumer retains the accepted XML with published Chroma/v2 v2.27.0.",
+  "upstream_merge": "c30c0cc97a451f0d419d2e4228b0809413ad2833",
+  "merged_at": "2026-10-22T07:48:28Z",
+  "upstream_ci": "https://github.com/alecthomas/chroma/actions/runs/39665018209",
+  "upstream_module_at_merge": "github.com/alecthomas/chroma/v3"
 }

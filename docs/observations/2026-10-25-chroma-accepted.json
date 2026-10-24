@@ -1,0 +1,44 @@
+{
+  "1410": {
+    "url": "https://github.com/alecthomas/chroma/pull/1410",
+    "head": "f2224b4a0bd96f64da4cd9a92b293d81aaaf71cd",
+    "merge": "c30c0cc97a451f0d419d2e4228b0809413ad2833",
+    "merged_at": "2026-10-22T07:48:28Z",
+    "merged_by": "alecthomas",
+    "ci": "https://github.com/alecthomas/chroma/actions/runs/39665018209",
+    "run_id": 39665018209,
+    "run_attempt": 2,
+    "checks": {
+      "Test": "success",
+      "Lint": "success",
+      "Check generated code": "success"
+    }
+  },
+  "1411": {
+    "url": "https://github.com/alecthomas/chroma/pull/1411",
+    "head": "9eeba90bf714797853d60a5e815f8db33c00ae35",
+    "merge": "635b7667dd8a099b6932f6d7f68c088ee3967155",
+    "merged_at": "2026-10-22T07:46:41Z",
+    "merged_by": "alecthomas",
+    "ci": "https://github.com/alecthomas/chroma/actions/runs/39677077130",
+    "run_id": 39677077130,
+    "run_attempt": 2,
+    "checks": {
+      "Test": "success",
+      "Lint": "success",
+      "Check generated code": "success"
+    }
+  },
+  "gooo_xml_sha256": "69efd28868b832517a33f7e8758463d476440a734634811cb0c6e63d5c4d6e66",
+  "observed_on": "2026-10-25",
+  "scope": "Merged upstream contributions, not downstream deployment, user adoption, or released-v3 availability. The bundled consumer still uses published Chroma/v2 v2.27.0.",
+  "availability": {
+    "checked_on": "2026-10-25",
+    "released_tag_contains_gooo": false,
+    "release_tags_checked": 71,
+    "upstream_module": "github.com/alecthomas/chroma/v3",
+    "development_version": "v3.0.0-alpha.5.0.20261022074828-c30c0cc97a45",
+    "proxy_metadata": "https://proxy.golang.org/github.com/alecthomas/chroma/v3/@v/c30c0cc97a45.info",
+    "scope": "Accepted development source is available via the canonical Go proxy. No released tag observed includes Gooo."
+  }
+}

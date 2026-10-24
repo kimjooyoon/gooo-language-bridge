@@ -1,29 +1,32 @@
 # Gooo Language Bridge
 
-Small, reproducible bridges between OSS language behavior and Gooo source.
-Gooo owns the semantic activity and stable identity; an independent language
-runtime supplies finite expected observations. Semantic bridge runs keep source hashes,
-compiler identity, runtime identity, exit codes and the original Gooo receipt.
+Read Gooo source with syntax highlighting, then explore small comparisons with
+other language runtimes.
 
-New here? Run [your first native observation](docs/first-observation.md): three
-small Goja/Node.js cases, with no Gooo compiler required. Then
-[choose a contribution path](CONTRIBUTING.md) for a native observation or a Gooo
-semantic bridge. Browse the [experiment catalog](docs/experiments.md) for
-browser examples, native review packets and executable Gooo comparisons.
+## Highlight a Gooo file
 
-## Try source highlighting
-
-With Go 1.25+, download the release's [floor.gooo sample](https://github.com/kimjooyoon/gooo-language-bridge/releases/download/examples/highlight-gooo/v0.1.1/floor.gooo)
-and render it without cloning this repository or installing a Gooo compiler:
+Requires **Go 1.25+** and network access to fetch Go modules. Download the
+[floor.gooo sample](https://github.com/kimjooyoon/gooo-language-bridge/releases/download/examples/highlight-gooo/v0.1.1/floor.gooo)
+into your current directory, then run:
 
 ```sh
 go run github.com/kimjooyoon/gooo-language-bridge/examples/highlight-gooo@v0.1.1 floor.gooo > floor.html
 ```
 
-Open the self-contained HTML file in a browser, or use `-format json` for tokens.
-The [consumer guide](examples/highlight-gooo/README.md) explains installation,
-stdin, source preservation and scope. Highlighting is separate from executing
-the semantic comparisons below.
+This creates `floor.html`. Open it in a browser to read the highlighted source
+in a self-contained page. No Gooo compiler is needed; this command highlights
+the sample without executing it.
+
+The published helper bundles the Gooo lexer with released **Chroma v2.27.0**.
+Gooo highlighting was [accepted into Chroma v3 development](https://github.com/alecthomas/chroma/pull/1410);
+that merge is separate from a Chroma release. See the
+[consumer guide](examples/highlight-gooo/README.md) for installation, JSON output
+and the exact availability distinction.
+
+To explore language behavior next, run [your first native observation](docs/first-observation.md)
+without a Gooo compiler, or choose a browser/native example from the
+[experiment catalog](docs/experiments.md). [CONTRIBUTING.md](CONTRIBUTING.md)
+explains how to add a native observation or a Gooo semantic bridge.
 
 ## First bridge: Python integer floor division
 
@@ -152,8 +155,10 @@ sixteen race-checked passes. Original JSON test events are retained in
 on both revisions. This focused regression does not certify Yaegi's full suite.
 See the [contribution ledger](docs/contributions.md) for scope and acceptance status.
 
-[Chroma #1410](https://github.com/alecthomas/chroma/pull/1410) adds Gooo source
-highlighting through a standalone XML lexer, with no Gooo runtime dependency.
+[Chroma #1410](https://github.com/alecthomas/chroma/pull/1410) merged Gooo source
+highlighting on October 22, 2026, with no Gooo runtime dependency. The accepted
+change targets Chroma v3 development; the published consumer below loads the
+same XML into the released Chroma v2.27.0 runtime.
 Try the [published-Chroma consumer](examples/highlight-gooo/README.md) now: it renders
 self-contained HTML or source-preserving JSON tokens without building a Chroma fork.
 
@@ -164,10 +169,14 @@ python3 tools/verify_chroma.py
 The command fetches the exact submitted revision, runs the full Chroma tests,
 race-checks the Gooo fixtures, verifies generated metadata and checks that all
 128 expected tokens reconstruct the two source fixtures without Error tokens.
-Logs and hashes are retained under `evidence/chroma-gooo/`. Upstream CI approval
-and acceptance remain separate from this independent proof.
+Logs and hashes are retained under `evidence/chroma-gooo/`. Upstream acceptance
+is separately established by the merged PR and its [successful test, lint and
+generation checks](https://github.com/alecthomas/chroma/actions/runs/39665018209).
+The [dated acceptance record](docs/observations/2026-10-25-chroma-accepted.json)
+binds the submitted heads, upstream merges and checks.
 
-[Chroma #1411](https://github.com/alecthomas/chroma/pull/1411) also corrects Go
+[Chroma #1411](https://github.com/alecthomas/chroma/pull/1411), also merged on
+October 22, 2026, corrects Go
 imaginary literals such as `0b10i` and `0x1p-2i` being split before their `i`.
 Native Go compilation and scanner output independently establish the eighteen-case
 fixture's input scope; eleven token streams change and seven controls stay equal.
@@ -177,8 +186,9 @@ python3 tools/verify_chroma_go_numbers.py
 ```
 
 This retains the original failing regression, patched/race passes, full tests and
-native token observations under `evidence/chroma-go-numbers/`. The submitted Go
-lexer patch and the Gooo language lexer are separate contributions.
+native token observations under `evidence/chroma-go-numbers/`. Its upstream
+[test, lint and generation checks passed](https://github.com/alecthomas/chroma/actions/runs/39677077130).
+The Go lexer patch and the Gooo language lexer are separate accepted contributions.
 
 ## Text editing: one Delete press, one edit
 
