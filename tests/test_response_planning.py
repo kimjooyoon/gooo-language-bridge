@@ -180,3 +180,21 @@ class ResponsePlanningTests(unittest.TestCase):
             packet['evidence'][0]['execution'].update(phase=phase, outcome=outcome)
             validate(packet['evidence'][0], read_json(BRIDGE / 'evidence.schema.json'))
             self.assertEqual(reference(facts(packet)), 'REFUSED_INVALID_CLAIMS:COMPARISON_UNSUPPORTED')
+
+    def test_producer_observation_phases_and_incomplete_states_are_preserved(self):
+        for phase in ('native_execution', 'oracle_comparison', 'saved_replay', 'input_observation'):
+            for outcome in ('observed', 'cancelled', 'incomplete', 'partial'):
+                packet = deepcopy(self.rows[0]['packet'])
+                packet['evidence'][0]['execution'].update(phase=phase, outcome=outcome)
+                packet['evidence'][0]['references'][0]['sha256'] = 'a' * 64
+                value = result(packet, reference(facts(packet)))
+                self.assertEqual(value['packet']['evidence'][0]['execution']['phase'], phase)
+                self.assertEqual(value['packet']['evidence'][0]['execution']['outcome'], outcome)
+                self.assertIn(phase + ' / ' + outcome, render(value))
+                if outcome != 'observed':
+                    self.assertIn('not completed successful execution', render(value))
+                self.assertEqual(value['effect'], 'none')
+                # Neither an observation nor a replay is silently relabelled as a passing test.
+                fixed = deepcopy(self.packet)
+                fixed['evidence'][0]['execution'].update(phase=phase, outcome=outcome)
+                self.assertEqual(reference(facts(fixed)), 'REFUSED_INVALID_CLAIMS:COMPARISON_UNSUPPORTED')

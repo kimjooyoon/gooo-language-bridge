@@ -66,6 +66,16 @@ The record contains **no actor, tone, policy or posting decision**. P1 owns its
 adapter and verification against its existing native-shard artifact; B1 does not
 guess that artifact's meaning or count a new consumer before integration.
 
+Consumer review by ports P1 identified observation stages that cannot be called
+tests: `native_execution`, `oracle_comparison`, `saved_replay` and
+`input_observation` are preserved as separate phase values. `observed`,
+`cancelled`, `incomplete` and `partial` remain distinct outcomes (also available
+for each comparison arm). A producer records any normalization from its raw
+reader vocabulary explicitly, retaining the original typed facts through hashed
+references; an `OBSERVED` record must not become `targeted_tests/pass`.
+These observations do not satisfy the planner's fixed-finding test preconditions.
+The readable view keeps unfinished states visible, with no completed-pass claim.
+
 [input.schema.json](../bridges/contribution-response/input.schema.json) wraps
 these records in **`gooo/contribution-response-input/v1`**: actor and asserted
 claim roles, contribution phase, sourced policy identity/basis, interaction

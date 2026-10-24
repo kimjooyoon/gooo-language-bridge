@@ -207,6 +207,11 @@ def render(value):
     elif packet['conversation']['interaction']['minimization'] == 'low-quality':
         lines.append('The supplied review is minimized as low-quality. '
                      'That does not establish dismissal, a moderation cause or a posting restriction.')
+    unfinished = [e['id'] + '=' + e['execution']['phase'] + '/' + e['execution']['outcome']
+                  for e in packet['evidence'] if e['execution']['outcome'] in
+                  ('cancelled', 'incomplete', 'partial')]
+    if unfinished:
+        lines.append('Unfinished observations, not completed successful execution: ' + '; '.join(unfinished))
     lines += ['', 'One next action: ' + actions[value['decision']],
              '', 'Origin: ' + packet['origin'] + '; no live execution is implied by a fixture.',
              'No publication effect or recipient acceptance is established.',

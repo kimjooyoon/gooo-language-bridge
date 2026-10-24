@@ -96,7 +96,11 @@
             "parse",
             "compile",
             "targeted_tests",
-            "full_suite"
+            "full_suite",
+            "native_execution",
+            "oracle_comparison",
+            "saved_replay",
+            "input_observation"
           ]
         },
         "outcome": {
@@ -106,7 +110,11 @@
             "pass",
             "fail",
             "not_executed",
-            "not_compared"
+            "not_compared",
+            "observed",
+            "cancelled",
+            "incomplete",
+            "partial"
           ]
         },
         "tested_scope": {
@@ -133,7 +141,11 @@
             "unknown",
             "pass",
             "fail",
-            "not_compared"
+            "not_compared",
+            "observed",
+            "cancelled",
+            "incomplete",
+            "partial"
           ]
         },
         "candidate_outcome": {
@@ -142,7 +154,11 @@
             "unknown",
             "pass",
             "fail",
-            "not_compared"
+            "not_compared",
+            "observed",
+            "cancelled",
+            "incomplete",
+            "partial"
           ]
         }
       },
