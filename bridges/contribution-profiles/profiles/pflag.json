@@ -1,0 +1,89 @@
+{
+  "schema": "gooo/contribution-profile/v1",
+  "id": "pflag",
+  "repository": "spf13/pflag",
+  "category": "mature_utility",
+  "observed_at": "2026-10-24T23:25:40Z",
+  "sources": [
+    {
+      "id": "pflag-origin",
+      "kind": "direct_feedback",
+      "url": "https://github.com/spf13/pflag/pull/529#issuecomment-6337518724",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": "2026-10-22T09:32:31Z",
+      "author": "tomasaschan",
+      "author_association": "COLLABORATOR",
+      "identity": {
+        "comment_id": 6337518724,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": "8c1636751ac5a8742d6fa725c79dc2b92022b91e3b6bfba9db52bc8856830753",
+      "scope": "Question about discovery origin and practical need in PR529; not proof of hostility or production prevalence."
+    },
+    {
+      "id": "pflag-editorial",
+      "kind": "inference",
+      "url": "https://github.com/kimjooyoon/gooo-language-bridge/issues/33",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": null,
+      "author": "kimjooyoon",
+      "author_association": "OWNER",
+      "identity": {
+        "comment_id": null,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": null,
+      "scope": "Owned planning interpretation and adjustable presentation defaults; not an upstream repository rule."
+    }
+  ],
+  "criteria": [
+    {
+      "id": "pflag-1",
+      "kind": "direct_feedback",
+      "source_ids": [
+        "pflag-origin"
+      ],
+      "applicable_roles": [
+        "author"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Answer candidly whether the case came from actual use or agent-generated exploration; do not invent an incident or frequency."
+    },
+    {
+      "id": "pflag-presentation",
+      "kind": "editorial_default",
+      "source_ids": [
+        "pflag-editorial"
+      ],
+      "applicable_roles": [
+        "author",
+        "reviewer",
+        "proposer"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Lead with the bounded outcome, one minimal example and at most one needed action. Word length is advisory, never a correctness or acceptance score."
+    }
+  ],
+  "public_requirements": [],
+  "presentation": {
+    "focus": "Concrete wrong-type acceptance/output mutation and honest discovery origin.",
+    "avoid": [
+      "Inventing production use, frequency or another participant attitude."
+    ]
+  },
+  "limits": [
+    "A bounded source snapshot is not a complete policy inventory or current posting authority.",
+    "Actor association is recorded verbatim; a collaborator or contributor is not automatically a maintainer.",
+    "No personality, acceptance probability or universal AI policy is inferred."
+  ]
+}

@@ -8,8 +8,9 @@ it does not become evidence that they are true or grant posting authority.
 This is **B1 of [issue #33](https://github.com/kimjooyoon/gooo-language-bridge/issues/33)**.
 It implements original scenarios **1, 2, 3, 4, 6 and 15**, plus three refusal or
 external-precondition packets. All nine packets are synthetic offline fixtures.
-The other ten original scenarios, six complete repository profiles, supplemental
-cases and real producer integration remain pending. Earlier 28 October pause
+The remaining original scenarios, six sourced profiles and supplemental cases
+are covered by the separate [B2 profile planner](contribution-profile-planning.md).
+Real producer integration remains pending B3. Earlier 28 October pause
 dates were superseded by the maintainer's return and explicit 25 October restart.
 
 ## Run the bounded example
@@ -117,5 +118,6 @@ The five observations and 32 offline cases in
 collector preservation follow-up remains separate and must precede any next
 live collection. B1 adds no acquisition changes, posting automation, six-profile
 completion, ports exporter or engine work. Required CI now includes and audits
-this planner's evidence as inventory `response-planning-16`; older 13/14/15
-inventories remain valid only against their corresponding original source.
+this planner's evidence. Its original inventory was `response-planning-16`;
+B2 extends it to `contribution-profiles-17`. Older inventories remain valid only
+against their corresponding original source.

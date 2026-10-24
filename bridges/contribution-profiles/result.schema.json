@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "gooo/profile-response-result/v1"
+    },
+    "input_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "profile_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "policy_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "REFUSED_INVALID_CLAIMS",
+        "NEEDS_CURRENT_EVIDENCE",
+        "EXTERNAL_REQUIREMENT_UNSATISFIED",
+        "NO_POST",
+        "BOUNDED_DRAFT_READY",
+        "INTERACTION_UNAVAILABLE",
+        "NEEDS_CONTEXT",
+        "WAITING_FOR_REPLY"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "effect": {
+      "const": "none"
+    },
+    "input": {
+      "$ref": "input.schema.json"
+    },
+    "base_result": {
+      "$ref": "../contribution-response/result.schema.json"
+    },
+    "profile_snapshots": {
+      "type": "array",
+      "items": {
+        "$ref": "profile.schema.json"
+      },
+      "maxItems": 1
+    }
+  },
+  "required": [
+    "schema",
+    "input_digest",
+    "profile_digest",
+    "policy_digest",
+    "decision",
+    "reason",
+    "effect",
+    "input",
+    "base_result",
+    "profile_snapshots"
+  ],
+  "additionalProperties": false
+}

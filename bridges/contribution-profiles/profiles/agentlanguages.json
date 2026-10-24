@@ -1,0 +1,122 @@
+{
+  "schema": "gooo/contribution-profile/v1",
+  "id": "agentlanguages",
+  "repository": "aallan/agentlanguages",
+  "category": "editorial_catalogue",
+  "observed_at": "2026-10-24T23:25:40Z",
+  "sources": [
+    {
+      "id": "catalogue-editorial",
+      "kind": "direct_feedback",
+      "url": "https://github.com/aallan/agentlanguages/pull/69#issuecomment-6339751224",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": "2026-10-22T11:35:11Z",
+      "author": "aallan",
+      "author_association": "OWNER",
+      "identity": {
+        "comment_id": 6339751224,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": "004008cde04c70bd02e2db58001e7d51d28eef0c871fa08fcdf7d7a3f1c64c50",
+      "scope": "Owner review of one merged entry, including a future guide-link suggestion; not whole-project certification."
+    },
+    {
+      "id": "catalogue-policy",
+      "kind": "published_policy",
+      "url": "https://github.com/aallan/agentlanguages/blob/f495f64b15149d148c854707f305245d4fefb1a6/CONTRIBUTING.md",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": null,
+      "author": null,
+      "author_association": null,
+      "identity": {
+        "comment_id": null,
+        "commit": "f495f64b15149d148c854707f305245d4fefb1a6",
+        "blob": "83ba016891d28782cf9151f160266c10b0986b77"
+      },
+      "content_sha256": "1a770a42d0a71a0fcd7c1f8ea98b41d3d63a2aebeb032d39268d85afbc7f0c56",
+      "scope": "Catalogue inclusion, classification, neutral descriptive writing, source checking and editorial review. Repository snapshot commit date 2026-10-22T12:16:10Z; original policy publication date is not asserted."
+    },
+    {
+      "id": "agentlanguages-editorial",
+      "kind": "inference",
+      "url": "https://github.com/kimjooyoon/gooo-language-bridge/issues/33",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": null,
+      "author": "kimjooyoon",
+      "author_association": "OWNER",
+      "identity": {
+        "comment_id": null,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": null,
+      "scope": "Owned planning interpretation and adjustable presentation defaults; not an upstream repository rule."
+    }
+  ],
+  "criteria": [
+    {
+      "id": "agentlanguages-1",
+      "kind": "published_policy",
+      "source_ids": [
+        "catalogue-policy"
+      ],
+      "applicable_roles": [
+        "author"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Describe the language accurately and neutrally with supported classification and sources."
+    },
+    {
+      "id": "agentlanguages-2",
+      "kind": "direct_feedback",
+      "source_ids": [
+        "catalogue-editorial"
+      ],
+      "applicable_roles": [
+        "author"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "A fixture pin fixes sample provenance; a general guide can point to current documentation. Keep those purposes distinct without inventing urgency."
+    },
+    {
+      "id": "agentlanguages-presentation",
+      "kind": "editorial_default",
+      "source_ids": [
+        "agentlanguages-editorial"
+      ],
+      "applicable_roles": [
+        "author",
+        "reviewer",
+        "proposer"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Lead with the bounded outcome, one minimal example and at most one needed action. Word length is advisory, never a correctness or acceptance score."
+    }
+  ],
+  "public_requirements": [],
+  "presentation": {
+    "focus": "Accurate language classification and separate current-guide versus immutable-fixture links.",
+    "avoid": [
+      "Promotional claims or repository popularity as quality.",
+      "Floating reproducible fixture pins because a general guide is stale."
+    ]
+  },
+  "limits": [
+    "A bounded source snapshot is not a complete policy inventory or current posting authority.",
+    "Actor association is recorded verbatim; a collaborator or contributor is not automatically a maintainer.",
+    "No personality, acceptance probability or universal AI policy is inferred."
+  ]
+}

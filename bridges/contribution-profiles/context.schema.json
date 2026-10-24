@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "gooo/contribution-context/v1"
+    },
+    "policy_discovery": {
+      "type": "string",
+      "enum": [
+        "bounded",
+        "partial",
+        "provisional"
+      ]
+    },
+    "profile_as_of": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "max_profile_age_seconds": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 604800
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "internal_notes",
+        "public_draft"
+      ]
+    },
+    "responsible_understanding": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "unknown"
+      ]
+    },
+    "ai_disclosure": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "unknown"
+      ]
+    },
+    "discovery_origin": {
+      "type": "string",
+      "enum": [
+        "agent_synthetic",
+        "production_observation",
+        "external_report",
+        "unknown"
+      ]
+    },
+    "production_incident": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "not_observed",
+        "unknown"
+      ]
+    },
+    "prevalence": {
+      "type": "string",
+      "enum": [
+        "measured",
+        "unknown"
+      ]
+    },
+    "suggestion_authority": {
+      "type": "string",
+      "enum": [
+        "collaborator",
+        "maintainer",
+        "unknown"
+      ]
+    },
+    "api_approval": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "unknown"
+      ]
+    },
+    "publication": {
+      "type": "string",
+      "enum": [
+        "not_posted",
+        "posted",
+        "unknown"
+      ]
+    },
+    "recipient_acceptance": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "unknown"
+      ]
+    },
+    "interaction_restriction": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "unknown"
+      ]
+    },
+    "docs_tests_relation": {
+      "type": "string",
+      "enum": [
+        "agree",
+        "mismatch",
+        "unknown"
+      ]
+    },
+    "guide_status": {
+      "type": "string",
+      "enum": [
+        "current",
+        "stale",
+        "unknown"
+      ]
+    },
+    "implementation_state": {
+      "type": "string",
+      "enum": [
+        "unimplemented",
+        "implemented",
+        "submitted",
+        "merged",
+        "unknown"
+      ]
+    },
+    "ci_status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "pending",
+        "action_required",
+        "unknown"
+      ]
+    },
+    "agreement": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "unknown"
+      ]
+    },
+    "pr_invitation": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "unknown"
+      ]
+    },
+    "runtime_tested": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "not_observed",
+        "unknown"
+      ]
+    },
+    "fixture_source_pinned": {
+      "type": "boolean"
+    },
+    "alternate_channel_available": {
+      "type": "boolean"
+    },
+    "requirements_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      },
+      "maxItems": 16
+    }
+  },
+  "required": [
+    "schema",
+    "policy_discovery",
+    "profile_as_of",
+    "max_profile_age_seconds",
+    "intent",
+    "responsible_understanding",
+    "ai_disclosure",
+    "discovery_origin",
+    "production_incident",
+    "prevalence",
+    "suggestion_authority",
+    "api_approval",
+    "publication",
+    "recipient_acceptance",
+    "interaction_restriction",
+    "docs_tests_relation",
+    "guide_status",
+    "implementation_state",
+    "ci_status",
+    "agreement",
+    "pr_invitation",
+    "runtime_tested",
+    "fixture_source_pinned",
+    "alternate_channel_available",
+    "requirements_evidence_ids"
+  ],
+  "additionalProperties": false
+}

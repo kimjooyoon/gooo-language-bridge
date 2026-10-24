@@ -37,6 +37,7 @@ jobs:
       - run: python3 tools/compare_text_length.py --gooo .bin/gooo
       - run: python3 tools/check_candidates.py --self-test --gooo .bin/gooo
       - run: python3 tools/plan_response.py --gooo .bin/gooo
+      - run: python3 tools/plan_profile_response.py --gooo .bin/gooo
       - run: python3 tools/verify_yaegi.py
       - run: python3 tools/verify_chroma.py
       - run: python3 tools/verify_chroma_go_numbers.py

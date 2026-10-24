@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/package-workspace-manifest/v1",
+  "entry": {"package_path": "bridge/contributionprofiles", "activity": "ProfilePlan"},
+  "packages": [{
+    "path": "bridge/contributionprofiles", "name": "contributionprofiles",
+    "imports": [], "sources": ["main.gooo"]
+  }]
+}

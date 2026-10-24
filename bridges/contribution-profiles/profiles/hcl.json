@@ -1,0 +1,106 @@
+{
+  "schema": "gooo/contribution-profile/v1",
+  "id": "hcl",
+  "repository": "hashicorp/hcl",
+  "category": "procedure_governed",
+  "observed_at": "2026-10-24T23:25:40Z",
+  "sources": [
+    {
+      "id": "hcl-feedback",
+      "kind": "direct_feedback",
+      "url": "https://github.com/hashicorp/hcl/pull/815#issuecomment-6346695196",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": "2026-10-22T17:12:51Z",
+      "author": "crw",
+      "author_association": "CONTRIBUTOR",
+      "identity": {
+        "comment_id": 6346695196,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": "6c8717b3ce451de9bd7296e3b833f2e252a559270f47ea5cbaca8ba4eef50617",
+      "scope": "PR815 intake response addressed to its author; not a proven explanation of separate review minimization."
+    },
+    {
+      "id": "hcl-editorial",
+      "kind": "inference",
+      "url": "https://github.com/kimjooyoon/gooo-language-bridge/issues/33",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": null,
+      "author": "kimjooyoon",
+      "author_association": "OWNER",
+      "identity": {
+        "comment_id": null,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": null,
+      "scope": "Owned planning interpretation and adjustable presentation defaults; not an upstream repository rule."
+    }
+  ],
+  "criteria": [
+    {
+      "id": "hcl-1",
+      "kind": "direct_feedback",
+      "source_ids": [
+        "hcl-feedback"
+      ],
+      "applicable_roles": [
+        "author"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Record the issue/proposal/solicited-PR intake request as this participant feedback; do not label it a discovered CONTRIBUTING rule."
+    },
+    {
+      "id": "hcl-2",
+      "kind": "editorial_default",
+      "source_ids": [
+        "hcl-editorial"
+      ],
+      "applicable_roles": [
+        "reviewer"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Keep external-review role and moderation uncertainty distinct; decline duplicate unrequested confirmation."
+    },
+    {
+      "id": "hcl-presentation",
+      "kind": "editorial_default",
+      "source_ids": [
+        "hcl-editorial"
+      ],
+      "applicable_roles": [
+        "author",
+        "reviewer",
+        "proposer"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Lead with the bounded outcome, one minimal example and at most one needed action. Word length is advisory, never a correctness or acceptance score."
+    }
+  ],
+  "public_requirements": [],
+  "presentation": {
+    "focus": "External-review role, intake scope and whether new information is useful.",
+    "avoid": [
+      "Speculating about moderation motive or account blocking.",
+      "Calling a review COMMENTED state a dismissal."
+    ]
+  },
+  "limits": [
+    "A bounded source snapshot is not a complete policy inventory or current posting authority.",
+    "Actor association is recorded verbatim; a collaborator or contributor is not automatically a maintainer.",
+    "No personality, acceptance probability or universal AI policy is inferred."
+  ]
+}

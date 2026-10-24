@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "gooo/contribution-profile/v1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "repository": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "procedure_governed",
+        "language_runtime",
+        "mature_utility",
+        "reference_implementation",
+        "configuration_library",
+        "editorial_catalogue"
+      ]
+    },
+    "observed_at": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "published_policy",
+              "direct_feedback",
+              "observation",
+              "inference"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "observed_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "published_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "author": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "author_association": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "OWNER",
+              "MEMBER",
+              "COLLABORATOR",
+              "CONTRIBUTOR",
+              "NONE",
+              "FIRST_TIMER",
+              "FIRST_TIME_CONTRIBUTOR",
+              null
+            ]
+          },
+          "identity": {
+            "type": "object",
+            "properties": {
+              "comment_id": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1
+              },
+              "commit": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[0-9a-f]{40}$"
+              },
+              "blob": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[0-9a-f]{40}$"
+              }
+            },
+            "required": [
+              "comment_id",
+              "commit",
+              "blob"
+            ],
+            "additionalProperties": false
+          },
+          "content_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "url",
+          "observed_at",
+          "published_at",
+          "author",
+          "author_association",
+          "identity",
+          "content_sha256",
+          "scope"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 8
+    },
+    "criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "published_policy",
+              "direct_feedback",
+              "editorial_default"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            },
+            "maxItems": 16
+          },
+          "applicable_roles": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "author",
+                "reviewer",
+                "proposer",
+                "maintainer",
+                "unknown"
+              ]
+            },
+            "maxItems": 5
+          },
+          "applicable_phases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "external_review",
+                "follow_up",
+                "internal_draft"
+              ]
+            },
+            "maxItems": 3
+          },
+          "rule": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "source_ids",
+          "applicable_roles",
+          "applicable_phases",
+          "rule"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 12
+    },
+    "public_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "responsible_understanding",
+          "ai_disclosure"
+        ]
+      },
+      "maxItems": 2
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "focus": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "avoid": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "maxItems": 16
+        }
+      },
+      "required": [
+        "focus",
+        "avoid"
+      ],
+      "additionalProperties": false
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "maxItems": 16
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "repository",
+    "category",
+    "observed_at",
+    "sources",
+    "criteria",
+    "public_requirements",
+    "presentation",
+    "limits"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,196 @@
+{
+  "schema": "gooo/profile-response-input/v1",
+  "packet": {
+    "schema": "gooo/contribution-response-input/v1",
+    "id": "go-git-10",
+    "origin": "synthetic",
+    "repository": "go-git/go-git",
+    "actor": {
+      "id": "kimjooyoon",
+      "observed_role": "reviewer"
+    },
+    "phase": "internal_draft",
+    "policy": {
+      "id": "synthetic/go-git/planning",
+      "source_url": "https://github.com/go-git/go-git/pull/2530#issuecomment-6339776245",
+      "source_identity": "synthetic-policy",
+      "basis": "synthetic",
+      "external_requirement": "satisfied"
+    },
+    "conversation": {
+      "observed_at": "2026-10-22T20:00:00Z",
+      "as_of": "2026-10-22T20:00:00Z",
+      "max_age_seconds": 3600,
+      "snapshot_id": "fixture/go-git/one",
+      "current_snapshot_id": "fixture/go-git/one",
+      "tested_head": "2222222222222222222222222222222222222222",
+      "current_head": "2222222222222222222222222222222222222222",
+      "interaction": {
+        "review_state": "COMMENTED",
+        "minimization": "not_observed",
+        "lock": "unlocked",
+        "composer": "unknown",
+        "submission": "not_attempted",
+        "permission": "unknown"
+      }
+    },
+    "requested": false,
+    "adds_information": true,
+    "claims": [
+      {
+        "id": "original-fixed",
+        "actor_id": "kimjooyoon",
+        "asserted_role": "reviewer",
+        "kind": "original_finding_fixed",
+        "status": "resolved",
+        "tested_revision": "2222222222222222222222222222222222222222",
+        "evidence_ids": [
+          "original"
+        ],
+        "uncertainty": [],
+        "failures": [],
+        "exclusions": [
+          "No full gitignore conformance claim."
+        ]
+      },
+      {
+        "id": "base-limitation",
+        "actor_id": "kimjooyoon",
+        "asserted_role": "reviewer",
+        "kind": "pre_existing_limitation",
+        "status": "observed",
+        "tested_revision": "2222222222222222222222222222222222222222",
+        "evidence_ids": [
+          "existing"
+        ],
+        "uncertainty": [],
+        "failures": [],
+        "exclusions": [
+          "No full gitignore conformance claim."
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "schema": "gooo/contribution-evidence/v1",
+        "id": "original",
+        "origin": "synthetic",
+        "identities": {
+          "source_commit": "2222222222222222222222222222222222222222",
+          "source_blob": null,
+          "base_commit": "1111111111111111111111111111111111111111",
+          "candidate_commit": "2222222222222222222222222222222222222222",
+          "reference_name": "Git",
+          "reference_version": "fixture-version",
+          "reference_commit": null
+        },
+        "execution": {
+          "phase": "targeted_tests",
+          "outcome": "pass",
+          "tested_scope": [
+            "13 original reported cases (historical scope, synthetic packet)"
+          ],
+          "comparison": "base_and_candidate",
+          "base_outcome": "fail",
+          "candidate_outcome": "pass"
+        },
+        "references": [
+          {
+            "id": "author-fix-response",
+            "url": "https://github.com/go-git/go-git/pull/2530#issuecomment-6339776245",
+            "sha256": null
+          }
+        ],
+        "uncertainty": [
+          "Commit values 111.../222... and reference version are synthetic fixture identities, not observed Git revisions."
+        ],
+        "failures": [],
+        "exclusions": [
+          "No new live collection or external submission."
+        ]
+      },
+      {
+        "schema": "gooo/contribution-evidence/v1",
+        "id": "existing",
+        "origin": "synthetic",
+        "identities": {
+          "source_commit": "2222222222222222222222222222222222222222",
+          "source_blob": null,
+          "base_commit": "1111111111111111111111111111111111111111",
+          "candidate_commit": "2222222222222222222222222222222222222222",
+          "reference_name": "Git",
+          "reference_version": "fixture-version",
+          "reference_commit": null
+        },
+        "execution": {
+          "phase": "targeted_tests",
+          "outcome": "fail",
+          "tested_scope": [
+            "Separate base-existing mismatch (synthetic comparison)"
+          ],
+          "comparison": "base_and_candidate",
+          "base_outcome": "fail",
+          "candidate_outcome": "fail"
+        },
+        "references": [
+          {
+            "id": "author-fix-response",
+            "url": "https://github.com/go-git/go-git/pull/2530#issuecomment-6339776245",
+            "sha256": null
+          }
+        ],
+        "uncertainty": [
+          "Commit values 111.../222... and reference version are synthetic fixture identities, not observed Git revisions."
+        ],
+        "failures": [
+          "Separate mismatch remains on both synthetic base and candidate."
+        ],
+        "exclusions": [
+          "No new live collection or external submission."
+        ]
+      }
+    ],
+    "uncertainty": [
+      "These are explicitly synthetic planning packets based on linked historical observations.",
+      "AI analysis does not establish a responsible person's understanding; assistance disclosure is recorded separately."
+    ],
+    "failures": [],
+    "exclusions": [
+      "No maintainer acceptance, current posting permission or production impact is established."
+    ]
+  },
+  "profile_ref": {
+    "id": "go-git",
+    "sha256": "c60b8d591c468a08a2740c432a91c1ce66a937cfb12e2dc40d67e9cacfb8c37f"
+  },
+  "provisional_category": null,
+  "context": {
+    "responsible_understanding": "unknown",
+    "discovery_origin": "unknown",
+    "production_incident": "unknown",
+    "prevalence": "unknown",
+    "suggestion_authority": "unknown",
+    "api_approval": "unknown",
+    "recipient_acceptance": "unknown",
+    "interaction_restriction": "unknown",
+    "docs_tests_relation": "unknown",
+    "guide_status": "unknown",
+    "implementation_state": "unknown",
+    "ci_status": "unknown",
+    "agreement": "unknown",
+    "pr_invitation": "unknown",
+    "profile_as_of": "2026-10-24T23:25:40Z",
+    "max_profile_age_seconds": 86400,
+    "schema": "gooo/contribution-context/v1",
+    "policy_discovery": "bounded",
+    "intent": "public_draft",
+    "ai_disclosure": "observed",
+    "publication": "not_posted",
+    "runtime_tested": "not_observed",
+    "fixture_source_pinned": false,
+    "alternate_channel_available": false,
+    "requirements_evidence_ids": []
+  },
+  "assertions": [],
+  "example": null
+}

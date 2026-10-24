@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "claim_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "field": {
+      "type": "string",
+      "enum": [
+        "responsible_understanding",
+        "ai_disclosure",
+        "discovery_origin",
+        "production_incident",
+        "prevalence",
+        "suggestion_authority",
+        "api_approval",
+        "publication",
+        "recipient_acceptance",
+        "interaction_restriction",
+        "docs_tests_relation",
+        "guide_status",
+        "implementation_state",
+        "ci_status",
+        "agreement",
+        "pr_invitation",
+        "runtime_tested",
+        "fixture_source_pinned",
+        "alternate_channel_available",
+        "classification",
+        "execution_phase",
+        "execution_outcome",
+        "overall_test_status"
+      ]
+    },
+    "value": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    }
+  },
+  "required": [
+    "claim_id",
+    "field",
+    "value"
+  ],
+  "additionalProperties": false
+}

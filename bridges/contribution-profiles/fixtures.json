@@ -1,0 +1,132 @@
+{
+  "schema": "gooo/contribution-profile-fixtures/v1",
+  "original_scenarios": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "notes": "Synthetic/frozen planning states, not fresh upstream acquisition or replay. Supplemental cases are separate from the original16 denominator.",
+  "cases": [
+    {
+      "scenario": 1,
+      "label": "hcl-01",
+      "file": "hcl-01.json",
+      "expected": "NO_POST:NO_USEFUL_ADDITION"
+    },
+    {
+      "scenario": 2,
+      "label": "hcl-02",
+      "file": "hcl-02.json",
+      "expected": "NO_POST:NO_USEFUL_ADDITION"
+    },
+    {
+      "scenario": 3,
+      "label": "hcl-03",
+      "file": "hcl-03.json",
+      "expected": "REFUSED_INVALID_CLAIMS:ROLE_UNESTABLISHED"
+    },
+    {
+      "scenario": 4,
+      "label": "hcl-04",
+      "file": "hcl-04.json",
+      "expected": "NO_POST:NO_USEFUL_ADDITION"
+    },
+    {
+      "scenario": 5,
+      "label": "pflag-05",
+      "file": "pflag-05.json",
+      "expected": "BOUNDED_DRAFT_READY:BOUNDED_INFORMATION"
+    },
+    {
+      "scenario": 6,
+      "label": "go-git-06",
+      "file": "go-git-06.json",
+      "expected": "BOUNDED_DRAFT_READY:BOUNDED_INFORMATION"
+    },
+    {
+      "scenario": 7,
+      "label": "koanf-07",
+      "file": "koanf-07.json",
+      "expected": "BOUNDED_DRAFT_READY:BOUNDED_INFORMATION"
+    },
+    {
+      "scenario": 8,
+      "label": "starlark-08",
+      "file": "starlark-08.json",
+      "expected": "WAITING_FOR_REPLY:POSTED_NOT_ACCEPTED"
+    },
+    {
+      "scenario": 9,
+      "label": "hcl-09",
+      "file": "hcl-09.json",
+      "expected": "NEEDS_CONTEXT:POLICY_DISCOVERY"
+    },
+    {
+      "scenario": 10,
+      "label": "go-git-10",
+      "file": "go-git-10.json",
+      "expected": "EXTERNAL_REQUIREMENT_UNSATISFIED:EXTERNAL_PRECONDITION"
+    },
+    {
+      "scenario": 11,
+      "label": "unfamiliar-11",
+      "file": "unfamiliar-11.json",
+      "expected": "NEEDS_CONTEXT:POLICY_DISCOVERY"
+    },
+    {
+      "scenario": 12,
+      "label": "starlark-12",
+      "file": "starlark-12.json",
+      "expected": "BOUNDED_DRAFT_READY:BOUNDED_INFORMATION"
+    },
+    {
+      "scenario": 13,
+      "label": "catalogue-13",
+      "file": "catalogue-13.json",
+      "expected": "BOUNDED_DRAFT_READY:BOUNDED_INFORMATION"
+    },
+    {
+      "scenario": 14,
+      "label": "restriction-14",
+      "file": "restriction-14.json",
+      "expected": "INTERACTION_UNAVAILABLE:CONFIRMED_RESTRICTION"
+    },
+    {
+      "scenario": 15,
+      "label": "go-git-15",
+      "file": "go-git-15.json",
+      "expected": "NEEDS_CURRENT_EVIDENCE:STALE_SNAPSHOT"
+    },
+    {
+      "scenario": 16,
+      "label": "koanf-16",
+      "file": "koanf-16.json",
+      "expected": "BOUNDED_DRAFT_READY:BOUNDED_INFORMATION"
+    },
+    {
+      "scenario": null,
+      "label": "supplement-vendor",
+      "file": "supplement-vendor.json",
+      "expected": "NEEDS_CONTEXT:POLICY_DISCOVERY"
+    },
+    {
+      "scenario": null,
+      "label": "supplement-goja",
+      "file": "supplement-goja.json",
+      "expected": "NEEDS_CONTEXT:POLICY_DISCOVERY"
+    }
+  ]
+}
