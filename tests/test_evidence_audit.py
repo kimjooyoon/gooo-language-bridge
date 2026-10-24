@@ -232,3 +232,16 @@ class EvidenceAuditTests(unittest.TestCase):
         old = audit(self.root, self.hcl_revision, self.hcl_revision, '123', self.repo)
         self.assertEqual(old['summaries'], 15)
         self.assertEqual(old['source_inventory'], 'hcl-null-defaults-15')
+
+    def test_retained_response_attempt_manifest_is_hashed_without_changing_inventory(self):
+        attempt = self.root / 'response-planning/attempt-one'
+        attempt.mkdir()
+        path = attempt / 'attempt-manifest.json'
+        path.write_text('{"retained":true}\n')
+        self.edit('response-planning/summary.json', lambda d: d['sha256'].update({
+            'evidence/response-planning/attempt-one/attempt-manifest.json':
+                hashlib.sha256(path.read_bytes()).hexdigest()}))
+        self.assertEqual(self.check()['source_inventory'], 'response-planning-16')
+        path.rename(attempt / 'summary.json')
+        with self.assertRaisesRegex(ValueError, 'summary inventory'):
+            self.check()

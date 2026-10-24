@@ -23,7 +23,8 @@ are checked against an independent Python reference for the exact inputs, case
 domain, semantic activity ID, cases digest and workspace digest. Results and
 readable views are retained in `evidence/response-planning/attempt-*/`; the root
 summary binds all retained attempt files. An invocation never replaces an older
-attempt's diagnostics. Eight retained attempts bound the layout; use a fresh
+attempt's diagnostics. Per-attempt records use `attempt-manifest.json`; only the
+root `summary.json` participates in the required summary inventory. Eight retained attempts bound the layout; use a fresh
 evidence checkout after that limit. CI uses one attempt in the existing single
 12-minute job. There are no API/model calls, native fixture reruns or posts.
 

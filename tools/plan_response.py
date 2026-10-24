@@ -315,7 +315,7 @@ def main():
     paths = list(attempt.iterdir()) + list(BRIDGE.iterdir()) + [Path(__file__)]
     summary['sha256'] = {p.relative_to(ROOT).as_posix(): digest(p.read_bytes())
                          for p in sorted(paths) if p.is_file()}
-    (attempt / 'summary.json').write_bytes(encoded(summary))
+    (attempt / 'attempt-manifest.json').write_bytes(encoded(summary))
     # Retain and cover earlier attempt diagnostics without replacing their manifests.
     summary['sha256'].update({p.relative_to(ROOT).as_posix(): digest(p.read_bytes())
                               for p in sorted(out.rglob('*')) if p.is_file() and p != out / 'summary.json'})
