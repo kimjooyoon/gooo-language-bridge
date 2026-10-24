@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "gooo/profile-response-input/v1"
+    },
+    "packet": {
+      "$ref": "../contribution-response/input.schema.json"
+    },
+    "profile_ref": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "provisional_category": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "procedure_governed",
+        "language_runtime",
+        "mature_utility",
+        "reference_implementation",
+        "configuration_library",
+        "editorial_catalogue",
+        null
+      ]
+    },
+    "context": {
+      "$ref": "context.schema.json"
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "$ref": "claim-assertion.schema.json"
+      },
+      "maxItems": 32
+    },
+    "example": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "input": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "observed": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "expected": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      },
+      "required": [
+        "input",
+        "observed",
+        "expected"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema",
+    "packet",
+    "profile_ref",
+    "provisional_category",
+    "context",
+    "assertions",
+    "example"
+  ],
+  "additionalProperties": false
+}

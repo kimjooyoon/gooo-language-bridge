@@ -30,6 +30,8 @@ INPUT_DEFAULTS_SUMMARIES = dict(SUMMARIES)
 SUMMARIES['hcl-null-defaults/summary.json'] = 'hcl-null-defaults'
 HCL_DEFAULTS_SUMMARIES = dict(SUMMARIES)
 SUMMARIES['response-planning/summary.json'] = 'response-planning'
+RESPONSE_PLANNING_SUMMARIES = dict(SUMMARIES)
+SUMMARIES['contribution-profiles/summary.json'] = 'contribution-profiles'
 LEGACY = {'chroma-gooo/summary.json', 'yaegi-1736/summary.json'}
 REPORTS = {'js-differential/report.json', 'js-sobek/report.json'}
 SOURCE_ROOTS = {'bridges', 'tools', 'examples', 'tests', 'proposals'}
@@ -83,14 +85,18 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
                                     stderr=subprocess.PIPE, env=git_env).strip() == b'commit',
             'source revision is not a local commit')
     markers = ['bridges/input-defaults/gooo.workspace.json', 'bridges/hcl-null-defaults/gooo.workspace.json',
-               'bridges/contribution-response/gooo.workspace.json']
+               'bridges/contribution-response/gooo.workspace.json',
+               'bridges/contribution-profiles/gooo.workspace.json']
     present = subprocess.check_output(git + ['ls-tree', '--name-only', source_revision, '--'] + markers,
                                       timeout=10, stderr=subprocess.PIPE, env=git_env).decode().splitlines()
     require(set(present) <= set(markers), 'unexpected source inventory marker')
     require(markers[1] not in present or markers[0] in present, 'inconsistent source inventory markers')
     require(markers[2] not in present or markers[1] in present, 'inconsistent source inventory markers')
-    if markers[2] in present:
-        summaries, inventory = SUMMARIES, 'response-planning-16'
+    require(markers[3] not in present or markers[2] in present, 'inconsistent source inventory markers')
+    if markers[3] in present:
+        summaries, inventory = SUMMARIES, 'contribution-profiles-17'
+    elif markers[2] in present:
+        summaries, inventory = RESPONSE_PLANNING_SUMMARIES, 'response-planning-16'
     elif markers[1] in present:
         summaries, inventory = HCL_DEFAULTS_SUMMARIES, 'hcl-null-defaults-15'
     elif markers[0] in present:

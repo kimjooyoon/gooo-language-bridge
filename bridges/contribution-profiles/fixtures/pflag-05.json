@@ -1,0 +1,165 @@
+{
+  "schema": "gooo/profile-response-input/v1",
+  "packet": {
+    "schema": "gooo/contribution-response-input/v1",
+    "id": "pflag-05",
+    "origin": "synthetic",
+    "repository": "spf13/pflag",
+    "actor": {
+      "id": "kimjooyoon",
+      "observed_role": "author"
+    },
+    "phase": "internal_draft",
+    "policy": {
+      "id": "synthetic/pflag/planning",
+      "source_url": "https://github.com/hashicorp/hcl/pull/815#issuecomment-6346695196",
+      "source_identity": "synthetic-policy",
+      "basis": "synthetic",
+      "external_requirement": "satisfied"
+    },
+    "conversation": {
+      "observed_at": "2026-10-22T20:00:00Z",
+      "as_of": "2026-10-22T20:00:00Z",
+      "max_age_seconds": 3600,
+      "snapshot_id": "fixture/hcl/one",
+      "current_snapshot_id": "fixture/hcl/one",
+      "tested_head": "2222222222222222222222222222222222222222",
+      "current_head": "2222222222222222222222222222222222222222",
+      "interaction": {
+        "review_state": "unknown",
+        "minimization": "not_observed",
+        "lock": "unknown",
+        "composer": "unknown",
+        "submission": "not_attempted",
+        "permission": "unknown"
+      }
+    },
+    "requested": true,
+    "adds_information": false,
+    "claims": [
+      {
+        "id": "review-state",
+        "actor_id": "kimjooyoon",
+        "asserted_role": "author",
+        "kind": "bounded_confirmation",
+        "status": "observed",
+        "tested_revision": "2222222222222222222222222222222222222222",
+        "evidence_ids": [
+          "process"
+        ],
+        "uncertainty": [
+          "Minimization does not establish dismissal, AI detection or a correctness verdict."
+        ],
+        "failures": [],
+        "exclusions": []
+      }
+    ],
+    "evidence": [
+      {
+        "schema": "gooo/contribution-evidence/v1",
+        "id": "process",
+        "origin": "synthetic",
+        "identities": {
+          "source_commit": "2222222222222222222222222222222222222222",
+          "source_blob": null,
+          "base_commit": null,
+          "candidate_commit": "2222222222222222222222222222222222222222",
+          "reference_name": null,
+          "reference_version": null,
+          "reference_commit": null
+        },
+        "execution": {
+          "phase": "targeted_tests",
+          "outcome": "pass",
+          "tested_scope": [
+            "Synthetic focused behavior observation, not a full suite"
+          ],
+          "comparison": "candidate_only",
+          "base_outcome": "not_compared",
+          "candidate_outcome": "pass"
+        },
+        "references": [
+          {
+            "id": "origin-question",
+            "url": "https://github.com/spf13/pflag/pull/529#issuecomment-6337518724",
+            "sha256": null
+          }
+        ],
+        "uncertainty": [
+          "Synthetic offline planning packet; not new acquisition, execution or current recipient acceptance."
+        ],
+        "failures": [],
+        "exclusions": [
+          "No new live collection or external submission."
+        ]
+      }
+    ],
+    "uncertainty": [
+      "These are explicitly synthetic planning packets based on linked historical observations."
+    ],
+    "failures": [],
+    "exclusions": [
+      "No maintainer acceptance, current posting permission or production impact is established.",
+      "Unrequested duplicate confirmation adds no new defect, decision or reusable test."
+    ]
+  },
+  "profile_ref": {
+    "id": "pflag",
+    "sha256": "f4276bec44cd8a57243a4239e9f4443dfc9e67eb353ed362cc0ea3f6031f454f"
+  },
+  "provisional_category": null,
+  "context": {
+    "responsible_understanding": "unknown",
+    "discovery_origin": "agent_synthetic",
+    "production_incident": "not_observed",
+    "prevalence": "unknown",
+    "suggestion_authority": "unknown",
+    "api_approval": "unknown",
+    "recipient_acceptance": "unknown",
+    "interaction_restriction": "unknown",
+    "docs_tests_relation": "unknown",
+    "guide_status": "unknown",
+    "implementation_state": "unknown",
+    "ci_status": "unknown",
+    "agreement": "unknown",
+    "pr_invitation": "unknown",
+    "profile_as_of": "2026-10-24T23:25:40Z",
+    "max_profile_age_seconds": 86400,
+    "schema": "gooo/contribution-context/v1",
+    "policy_discovery": "bounded",
+    "intent": "internal_notes",
+    "ai_disclosure": "observed",
+    "publication": "not_posted",
+    "runtime_tested": "observed",
+    "fixture_source_pinned": false,
+    "alternate_channel_available": false,
+    "requirements_evidence_ids": []
+  },
+  "assertions": [
+    {
+      "claim_id": "review-state",
+      "field": "discovery_origin",
+      "value": "agent_synthetic"
+    },
+    {
+      "claim_id": "review-state",
+      "field": "production_incident",
+      "value": "not_observed"
+    },
+    {
+      "claim_id": "review-state",
+      "field": "prevalence",
+      "value": "unknown"
+    },
+    {
+      "claim_id": "review-state",
+      "field": "classification",
+      "value": "bounded_confirmation"
+    }
+  ],
+  "example": {
+    "input": "GetText between distinct native stamp types with equal display names",
+    "observed": "nil error and output timestamp overwritten on the supplied base case",
+    "expected": "reject the wrong native type without mutating output"
+  }
+}

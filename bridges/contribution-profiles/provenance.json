@@ -1,0 +1,15 @@
+{
+  "schema": "gooo-language-bridge/contribution-profiles-provenance/v1",
+  "intent": "Retain sourced repository context and bounded claim scope in contribution response planning, following issue 33.",
+  "activity_id": "urn:gooo:contribution:profile-plan",
+  "compiler": "v0.6.38-dev",
+  "license": "MIT",
+  "upstream_source_inventory": "Six profiles under profiles/ bind published policies, direct feedback and owned editorial inference separately; no upstream implementation or full policy text is copied.",
+  "source_observed_at": "2026-10-24T23:25:40Z",
+  "fixture_origin": "16 original synthetic scenarios, 2 supplemental synthetic scenarios, and 6 separate derived protocol counterexamples. Historical dates and source links do not assert current upstream state. Later profile snapshots are planning inputs, not evidence of historical policy applicability.",
+  "contracts": "New profile/context/assertion and profile-response input/result schemas; producer evidence/v1 and B1 input/result schemas and Gooo source are unchanged from 6142c05e9aa32b5003dcd77cfbc87669f66ed402.",
+  "scope": "Two real Gooo decision activities are compared with independent references for all 24 packets. No native fixture, runtime source assessment, network discovery, publication or producer integration is performed.",
+  "authority": "Supplied observations are not independently authenticated. Source roles remain as observed, editorial interpretations are not upstream policy, and every result has effect none. No maintainer-demand, acceptance, complete policy compliance or human participation claim is inferred.",
+  "sources": ["https://github.com/kimjooyoon/gooo-language-bridge/issues/33"],
+  "documentation": "docs/contribution-profile-planning.md"
+}

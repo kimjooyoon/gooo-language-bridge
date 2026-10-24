@@ -1,0 +1,140 @@
+{
+  "schema": "gooo/profile-response-input/v1",
+  "packet": {
+    "schema": "gooo/contribution-response-input/v1",
+    "id": "hcl-2",
+    "origin": "synthetic",
+    "repository": "hashicorp/hcl",
+    "actor": {
+      "id": "kimjooyoon",
+      "observed_role": "reviewer"
+    },
+    "phase": "internal_draft",
+    "policy": {
+      "id": "synthetic/hcl/planning",
+      "source_url": "https://github.com/hashicorp/hcl/pull/815#issuecomment-6346695196",
+      "source_identity": "synthetic-policy",
+      "basis": "synthetic",
+      "external_requirement": "satisfied"
+    },
+    "conversation": {
+      "observed_at": "2026-10-22T20:00:00Z",
+      "as_of": "2026-10-22T20:00:00Z",
+      "max_age_seconds": 3600,
+      "snapshot_id": "fixture/hcl/one",
+      "current_snapshot_id": "fixture/hcl/one",
+      "tested_head": null,
+      "current_head": null,
+      "interaction": {
+        "review_state": "COMMENTED",
+        "minimization": "low-quality",
+        "lock": "unlocked",
+        "composer": "editable",
+        "submission": "not_attempted",
+        "permission": "unknown"
+      }
+    },
+    "requested": false,
+    "adds_information": false,
+    "claims": [
+      {
+        "id": "review-state",
+        "actor_id": "kimjooyoon",
+        "asserted_role": "reviewer",
+        "kind": "interaction_observation",
+        "status": "observed",
+        "tested_revision": null,
+        "evidence_ids": [
+          "process"
+        ],
+        "uncertainty": [
+          "Minimization does not establish dismissal, AI detection or a correctness verdict.",
+          "Historical unavailable composer and later editable composer do not prove an unblock or successful submission."
+        ],
+        "failures": [],
+        "exclusions": []
+      }
+    ],
+    "evidence": [
+      {
+        "schema": "gooo/contribution-evidence/v1",
+        "id": "process",
+        "origin": "synthetic",
+        "identities": {
+          "source_commit": null,
+          "source_blob": null,
+          "base_commit": null,
+          "candidate_commit": null,
+          "reference_name": null,
+          "reference_version": null,
+          "reference_commit": null
+        },
+        "execution": {
+          "phase": "source_review",
+          "outcome": "not_compared",
+          "tested_scope": [
+            "Public process and interaction observations; not new execution"
+          ],
+          "comparison": "not_compared",
+          "base_outcome": "not_compared",
+          "candidate_outcome": "not_compared"
+        },
+        "references": [
+          {
+            "id": "hcl-process",
+            "url": "https://github.com/hashicorp/hcl/pull/815#issuecomment-6346695196",
+            "sha256": null
+          }
+        ],
+        "uncertainty": [
+          "Moderation cause and account-block history are unknown."
+        ],
+        "failures": [],
+        "exclusions": [
+          "No new live collection or external submission."
+        ]
+      }
+    ],
+    "uncertainty": [
+      "These are explicitly synthetic planning packets based on linked historical observations."
+    ],
+    "failures": [],
+    "exclusions": [
+      "No maintainer acceptance, current posting permission or production impact is established."
+    ]
+  },
+  "profile_ref": {
+    "id": "hcl",
+    "sha256": "7538808e8ecfa25c27a5473822437ca765453a2b8c550ed3b5489bdad9f9eb2a"
+  },
+  "provisional_category": null,
+  "context": {
+    "responsible_understanding": "unknown",
+    "discovery_origin": "unknown",
+    "production_incident": "unknown",
+    "prevalence": "unknown",
+    "suggestion_authority": "unknown",
+    "api_approval": "unknown",
+    "recipient_acceptance": "unknown",
+    "interaction_restriction": "unknown",
+    "docs_tests_relation": "unknown",
+    "guide_status": "unknown",
+    "implementation_state": "unknown",
+    "ci_status": "unknown",
+    "agreement": "unknown",
+    "pr_invitation": "unknown",
+    "profile_as_of": "2026-10-24T23:25:40Z",
+    "max_profile_age_seconds": 86400,
+    "schema": "gooo/contribution-context/v1",
+    "policy_discovery": "bounded",
+    "intent": "internal_notes",
+    "ai_disclosure": "observed",
+    "publication": "not_posted",
+    "runtime_tested": "not_observed",
+    "fixture_source_pinned": false,
+    "alternate_channel_available": false,
+    "requirements_evidence_ids": []
+  },
+  "assertions": [],
+  "example": null
+}

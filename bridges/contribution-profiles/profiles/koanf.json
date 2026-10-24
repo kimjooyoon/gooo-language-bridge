@@ -1,0 +1,90 @@
+{
+  "schema": "gooo/contribution-profile/v1",
+  "id": "koanf",
+  "repository": "knadh/koanf",
+  "category": "configuration_library",
+  "observed_at": "2026-10-24T23:25:40Z",
+  "sources": [
+    {
+      "id": "koanf-suggestion",
+      "kind": "direct_feedback",
+      "url": "https://github.com/knadh/koanf/pull/464#issuecomment-6337805846",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": "2026-10-22T09:48:13Z",
+      "author": "rhnvrm",
+      "author_association": "COLLABORATOR",
+      "identity": {
+        "comment_id": 6337805846,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": "064cf203cff2307169932a613a538dbfc86b0888dd78a79a89bcf7ebdae4d595",
+      "scope": "COLLABORATOR suggests DefaultDecodeHook in PR464; maintainer API approval is not established by this comment."
+    },
+    {
+      "id": "koanf-editorial",
+      "kind": "inference",
+      "url": "https://github.com/kimjooyoon/gooo-language-bridge/issues/33",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": null,
+      "author": "kimjooyoon",
+      "author_association": "OWNER",
+      "identity": {
+        "comment_id": null,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": null,
+      "scope": "Owned planning interpretation and adjustable presentation defaults; not an upstream repository rule."
+    }
+  ],
+  "criteria": [
+    {
+      "id": "koanf-1",
+      "kind": "direct_feedback",
+      "source_ids": [
+        "koanf-suggestion"
+      ],
+      "applicable_roles": [
+        "author"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Credit the suggestion and preserve the full default chain, order, custom-config replacement and explicit opt-in in the claimed scope."
+    },
+    {
+      "id": "koanf-presentation",
+      "kind": "editorial_default",
+      "source_ids": [
+        "koanf-editorial"
+      ],
+      "applicable_roles": [
+        "author",
+        "reviewer",
+        "proposer"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Lead with the bounded outcome, one minimal example and at most one needed action. Word length is advisory, never a correctness or acceptance score."
+    }
+  ],
+  "public_requirements": [],
+  "presentation": {
+    "focus": "Adapted suggestion, source credit, hook ordering/defaults and bounded compatibility checks.",
+    "avoid": [
+      "Calling a collaborator suggestion maintainer approval.",
+      "Turning focused tests or pending CI into all-tests success."
+    ]
+  },
+  "limits": [
+    "A bounded source snapshot is not a complete policy inventory or current posting authority.",
+    "Actor association is recorded verbatim; a collaborator or contributor is not automatically a maintainer.",
+    "No personality, acceptance probability or universal AI policy is inferred."
+  ]
+}

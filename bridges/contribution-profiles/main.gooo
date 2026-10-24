@@ -1,0 +1,32 @@
+package contributionprofiles
+namespace contributionprofiles
+
+entity Context id "urn:gooo:contribution:profile-context" fields {
+    field base_result id "urn:gooo:contribution:profile-base-result" type string required one
+    field profile_bound id "urn:gooo:contribution:profile-bound" type boolean required one
+    field claims_supported id "urn:gooo:contribution:profile-claims-supported" type boolean required one
+    field profile_current id "urn:gooo:contribution:profile-current" type boolean required one
+    field policy_known id "urn:gooo:contribution:profile-policy-known" type boolean required one
+    field interaction_open id "urn:gooo:contribution:profile-interaction-open" type boolean required one
+    field external_requirements_met id "urn:gooo:contribution:profile-external-met" type boolean required one
+    field awaiting_reply id "urn:gooo:contribution:profile-awaiting-reply" type boolean required one
+}
+entity Text id "urn:gooo:type:string"
+
+# Context changes the plan, never the supplied claims or a publication effect.
+activity ProfilePlan(Context) -> Text id "urn:gooo:contribution:profile-plan" computes `
+if input.base_result == "REFUSED_INVALID_CLAIMS:ROLE_UNESTABLISHED" {return input.base_result}
+if input.base_result == "REFUSED_INVALID_CLAIMS:EVIDENCE_BINDING" {return input.base_result}
+if input.base_result == "REFUSED_INVALID_CLAIMS:COMPARISON_UNSUPPORTED" {return input.base_result}
+if input.base_result == "NEEDS_CURRENT_EVIDENCE:STALE_SNAPSHOT" {return input.base_result}
+if input.base_result != "EXTERNAL_REQUIREMENT_UNSATISFIED:EXTERNAL_PRECONDITION" && input.base_result != "NO_POST:NO_USEFUL_ADDITION" && input.base_result != "BOUNDED_DRAFT_READY:BOUNDED_INFORMATION" {return "REFUSED_INVALID_CLAIMS:BASE_RESULT"}
+if !input.profile_bound {return "REFUSED_INVALID_CLAIMS:PROFILE_BINDING"}
+if !input.claims_supported {return "REFUSED_INVALID_CLAIMS:CLAIM_OVERSTATEMENT"}
+if !input.profile_current {return "NEEDS_CURRENT_EVIDENCE:STALE_PROFILE"}
+if !input.interaction_open {return "INTERACTION_UNAVAILABLE:CONFIRMED_RESTRICTION"}
+if !input.policy_known {return "NEEDS_CONTEXT:POLICY_DISCOVERY"}
+if !input.external_requirements_met {return "EXTERNAL_REQUIREMENT_UNSATISFIED:EXTERNAL_PRECONDITION"}
+if input.base_result == "EXTERNAL_REQUIREMENT_UNSATISFIED:EXTERNAL_PRECONDITION" {return input.base_result}
+if input.awaiting_reply {return "WAITING_FOR_REPLY:POSTED_NOT_ACCEPTED"}
+return input.base_result
+`

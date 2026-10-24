@@ -1,0 +1,126 @@
+{
+  "schema": "gooo/contribution-profile/v1",
+  "id": "go-git",
+  "repository": "go-git/go-git",
+  "category": "reference_implementation",
+  "observed_at": "2026-10-24T23:25:40Z",
+  "sources": [
+    {
+      "id": "go-git-fix",
+      "kind": "direct_feedback",
+      "url": "https://github.com/go-git/go-git/pull/2530#issuecomment-6339776245",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": "2026-10-22T11:36:33Z",
+      "author": "manoj-1407",
+      "author_association": "CONTRIBUTOR",
+      "identity": {
+        "comment_id": 6339776245,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": "a1c35fc650d451b0f3ba3d3d5841835ac49d21c587cdf044699997aeaedbbe40",
+      "scope": "PR2530 author acknowledges the narrow reported regression, adds a fix and distinguishes a base-existing limitation."
+    },
+    {
+      "id": "go-git-policy",
+      "kind": "published_policy",
+      "url": "https://github.com/go-git/go-git/blob/41c3e4d6c870cafea5c4343623d2e3a8ffa31d05/AI_POLICY.md",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": null,
+      "author": null,
+      "author_association": null,
+      "identity": {
+        "comment_id": null,
+        "commit": "41c3e4d6c870cafea5c4343623d2e3a8ffa31d05",
+        "blob": "e7f3f601531f76e9d7eafe84c590b8bb0434c99f"
+      },
+      "content_sha256": "7426b673faa540d927952dc3a25374eda177e5480332f2e583dfb4cd6f505436",
+      "scope": "AI-assisted contributions: personal accountability/understanding, disclosure, reference behavior, meaningful tests and review engagement. Repository snapshot commit date 2026-10-23T10:39:30Z; original policy publication date is not asserted."
+    },
+    {
+      "id": "go-git-editorial",
+      "kind": "inference",
+      "url": "https://github.com/kimjooyoon/gooo-language-bridge/issues/33",
+      "observed_at": "2026-10-24T23:25:40Z",
+      "published_at": null,
+      "author": "kimjooyoon",
+      "author_association": "OWNER",
+      "identity": {
+        "comment_id": null,
+        "commit": null,
+        "blob": null
+      },
+      "content_sha256": null,
+      "scope": "Owned planning interpretation and adjustable presentation defaults; not an upstream repository rule."
+    }
+  ],
+  "criteria": [
+    {
+      "id": "go-git-1",
+      "kind": "direct_feedback",
+      "source_ids": [
+        "go-git-fix"
+      ],
+      "applicable_roles": [
+        "reviewer"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Confirm the tested original finding separately from limitations present on base."
+    },
+    {
+      "id": "go-git-2",
+      "kind": "published_policy",
+      "source_ids": [
+        "go-git-policy"
+      ],
+      "applicable_roles": [
+        "author",
+        "reviewer"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Public contribution/review participation requires genuine responsible-person understanding and assistance disclosure; disclosure alone is insufficient."
+    },
+    {
+      "id": "go-git-presentation",
+      "kind": "editorial_default",
+      "source_ids": [
+        "go-git-editorial"
+      ],
+      "applicable_roles": [
+        "author",
+        "reviewer",
+        "proposer"
+      ],
+      "applicable_phases": [
+        "external_review",
+        "follow_up",
+        "internal_draft"
+      ],
+      "rule": "Lead with the bounded outcome, one minimal example and at most one needed action. Word length is advisory, never a correctness or acceptance score."
+    }
+  ],
+  "public_requirements": [
+    "responsible_understanding",
+    "ai_disclosure"
+  ],
+  "presentation": {
+    "focus": "Tested revisions, Git reference version and the difference between a fixed finding and an existing limitation.",
+    "avoid": [
+      "Fabricating personal understanding or human review.",
+      "Presenting agent disclosure as the entire AI policy."
+    ]
+  },
+  "limits": [
+    "A bounded source snapshot is not a complete policy inventory or current posting authority.",
+    "Actor association is recorded verbatim; a collaborator or contributor is not automatically a maintainer.",
+    "No personality, acceptance probability or universal AI policy is inferred."
+  ]
+}
