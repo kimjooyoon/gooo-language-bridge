@@ -13,6 +13,10 @@ input or operation for your own workflow. The [JavaScript driver](examples/js-di
 supports pinned Goja and Sobek sources against Node.js. A `.gooo` file is not
 required for native observations, driver fixes or documentation improvements.
 
+For an architecture dependent result, the [Go integer parsing example](docs/go-integer-width.md)
+shows how to retain a runtime witness, original failure and successful comparison
+while preserving the destination type's overflow checks.
+
 Use the [native observation form](https://github.com/kimjooyoon/gooo-language-bridge/issues/new?template=native-observation.yml)
 to share the exact engine source, minimal script, relevant runtime identity,
 observed/expected values, input bounds and related work. Keep original output
