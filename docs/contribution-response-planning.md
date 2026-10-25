@@ -115,8 +115,8 @@ verified advice or a new authority source.
 
 The five observations and 32 offline cases in
 [the candidate check](contribution-candidate-check.md) are unchanged. Its live
-collector preservation follow-up remains separate and must precede any next
-live collection. B1 adds no acquisition changes, posting automation, six-profile
+collector's [live-attempt preservation](contribution-candidate-check.md#live-collection-preserves-earlier-evidence)
+is implemented separately. B1 adds no acquisition changes, posting automation, six-profile
 completion, ports exporter or engine work. Required CI now includes and audits
 this planner's evidence. Its original inventory was `response-planning-16`;
 B2 extends it to `contribution-profiles-17`. Older inventories remain valid only
