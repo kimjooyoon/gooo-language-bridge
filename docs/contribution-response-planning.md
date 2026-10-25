@@ -10,7 +10,7 @@ It implements original scenarios **1, 2, 3, 4, 6 and 15**, plus three refusal or
 external-precondition packets. All nine packets are synthetic offline fixtures.
 The remaining original scenarios, six sourced profiles and supplemental cases
 are covered by the separate [B2 profile planner](contribution-profile-planning.md).
-Real producer integration remains pending B3. Earlier 28 October pause
+The [B3 consumer](producer-response.md) integrates the published real P1 export. Earlier 28 October pause
 dates were superseded by the maintainer's return and explicit 25 October restart.
 
 ## Run the bounded example

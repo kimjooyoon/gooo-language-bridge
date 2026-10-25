@@ -116,6 +116,7 @@ and source dependencies. Eight attempts bound the layout; use a fresh evidence
 checkout after that limit. CI adds one invocation to the existing single
 12-minute job and integrity inventory `contribution-profiles-17`. The auditor
 retains strict older-source inventory checks and rejects reserved nested
-summary/report filenames. B3 still requires real producer integration; the
+summary/report filenames. The [B3 consumer](producer-response.md) adds the real
+published producer integration and inventory `producer-response-18`; the
 candidate collector's separate [live-attempt preservation](contribution-candidate-check.md#live-collection-preserves-earlier-evidence)
 retains earlier request/response and failure records before its next live scan.

@@ -1,9 +1,16 @@
 # Read real saved producer evidence without upgrading its claims
 
-**Local integration review; P1 source acceptance and public frozen bytes are
-still pending.** This document describes the consumer being verified for B3 of
-[issue #33](https://github.com/kimjooyoon/gooo-language-bridge/issues/33). It is
-not a completed integration or publication-acceptance record.
+This is the B3 consumer for
+[issue #33](https://github.com/kimjooyoon/gooo-language-bridge/issues/33).
+It uses the producer's [public frozen evidence](https://github.com/kimjooyoon/gooo-go-ports/releases/tag/evidence/header-addition-20261025),
+accepted from [P1 PR #221](https://github.com/kimjooyoon/gooo-go-ports/pull/221).
+The 21,062-byte view archive has SHA-256
+`d9045f74dfbc0c1adb5e13aad1ff9da84585ec7cfcddba45cc4048882ebe4d6e`;
+its six evidence files match this repository's snapshot byte-for-byte.
+The producer's exact-head CI passed, and tested merge `0501771bf9979b01df693511b7e839474ab6fd23`
+and accepted commit `5c105580336903f99f7b25d532cfe82aade692fd` share tree
+`36bf171f7274a68b9e1ffd3de4c2adb2247b6a89`. Full source and asset pins are in
+[provenance.json](../bridges/producer-response/provenance.json).
 
 The P1 export supplies three records from real saved HeaderAddition observations:
 `native_execution`, `oracle_comparison` and `saved_replay`. The selected domain
@@ -24,7 +31,7 @@ does not create a human approval lane, personal attestation or posting effect.
 python3 tools/consume_producer_evidence.py --gooo .bin/gooo
 ```
 
-The default fixture is the real frozen local P1 handoff. It is not the rejected
+The default fixture is the real frozen published P1 export. It is not the rejected
 13-row smoke data or a new synthetic producer run. A different directory requires
 an explicit manifest digest and matching supplied review context:
 
@@ -88,8 +95,7 @@ Every invocation retains a new `evidence/producer-response/attempt-*/` directory
   diagnostics. A later invocation does not delete earlier attempts.
 
 Eight attempt paths bound the output. The required CI command adds
-`--require-published-source`; it refuses acceptance while the P1 source/CI and
-frozen asset pins are pending. This is a source-owned evidence precondition,
+`--require-published-source`; it checks the P1 source/CI and frozen asset pins before running either plan. This is a source-owned evidence precondition,
 not a request for human sign-off. These offline pins do not independently
 authenticate GitHub metadata or make an unsigned producer authenticated.
 

@@ -1,6 +1,6 @@
 {
   "schema": "gooo/producer-response-provenance/v1",
-  "status": "LOCAL_HANDOFF_REVIEW_PENDING_P1_ACCEPTANCE_AND_PUBLIC_ASSET",
+  "status": "PUBLISHED_P1_SOURCE_AND_FROZEN_BYTES_VERIFIED",
   "original_repository": "kimjooyoon/gooo-go-ports",
   "original_run": 40138087345,
   "reported_original_source": "4548857e918d7c11d0e7fdf1138a78ae2d61c90a",
@@ -12,7 +12,7 @@
   "manifest_sha256": "6d366be37ad56e97a371b9a6277cb800c5d1b169ee9481e67fbb94062e1fce82",
   "limits": [
     "Original Git identities are reported metadata, not authenticated evidence identities.",
-    "Producer source acceptance, hosted CI and public frozen asset must be verified before B3 publication/acceptance.",
+    "Exporter source acceptance and public frozen bytes are independently verified; this does not authenticate producer evidence identities.",
     "Local handoff is real saved producer output, not a synthetic substitute or the rejected 13-row smoke material."
   ],
   "licensing": {
@@ -23,5 +23,26 @@
       "upstream-licenses/BRIDGE-MIT.txt",
       "upstream-licenses/GOOO-GO-PORTS-BSD-3-Clause.txt"
     ]
+  },
+  "exporter_ci": {
+    "run_id": 40148419165,
+    "head": "3b09f216941125317078d95bf5666202a474d80c",
+    "conclusion": "success",
+    "url": "https://github.com/kimjooyoon/gooo-go-ports/actions/runs/40148419165"
+  },
+  "exporter_source": {
+    "tested_head": "3b09f216941125317078d95bf5666202a474d80c",
+    "tested_tree": "36bf171f7274a68b9e1ffd3de4c2adb2247b6a89",
+    "accepted_commit": "5c105580336903f99f7b25d532cfe82aade692fd",
+    "accepted_tree": "36bf171f7274a68b9e1ffd3de4c2adb2247b6a89",
+    "exporter_blob": "62a9d6d66e75f74f88b771ace9df229bc3c280f7",
+    "exporter_sha256": "87e6ab5b5ccc729a86da999dc9cbb5e531898173e92f0c7f81778a7e0a200d16",
+    "tested_merge": "0501771bf9979b01df693511b7e839474ab6fd23"
+  },
+  "frozen_asset": {
+    "url": "https://github.com/kimjooyoon/gooo-go-ports/releases/download/evidence/header-addition-20261025/gooo-header-addition-evidence-view.zip",
+    "sha256": "d9045f74dfbc0c1adb5e13aad1ff9da84585ec7cfcddba45cc4048882ebe4d6e",
+    "bytes": 21062,
+    "manifest_sha256": "6d366be37ad56e97a371b9a6277cb800c5d1b169ee9481e67fbb94062e1fce82"
   }
 }
