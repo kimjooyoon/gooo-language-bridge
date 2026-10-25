@@ -1,0 +1,27 @@
+{
+  "schema": "gooo/producer-response-provenance/v1",
+  "status": "LOCAL_HANDOFF_REVIEW_PENDING_P1_ACCEPTANCE_AND_PUBLIC_ASSET",
+  "original_repository": "kimjooyoon/gooo-go-ports",
+  "original_run": 40138087345,
+  "reported_original_source": "4548857e918d7c11d0e7fdf1138a78ae2d61c90a",
+  "reported_original_tree": "63c130af0430caa8614cf0b11e4129b7dacdf6a4",
+  "reported_original_join_conclusion": "failure",
+  "exporter_pr": "https://github.com/kimjooyoon/gooo-go-ports/pull/221",
+  "exporter_source_candidate": "3b09f216941125317078d95bf5666202a474d80c",
+  "exporter_source_sha256": "87e6ab5b5ccc729a86da999dc9cbb5e531898173e92f0c7f81778a7e0a200d16",
+  "manifest_sha256": "6d366be37ad56e97a371b9a6277cb800c5d1b169ee9481e67fbb94062e1fce82",
+  "limits": [
+    "Original Git identities are reported metadata, not authenticated evidence identities.",
+    "Producer source acceptance, hosted CI and public frozen asset must be verified before B3 publication/acceptance.",
+    "Local handoff is real saved producer output, not a synthetic substitute or the rejected 13-row smoke material."
+  ],
+  "licensing": {
+    "consumer_code": "MIT",
+    "producer_snapshot": "BSD-3-Clause",
+    "B1_contract": "MIT",
+    "notices": [
+      "upstream-licenses/BRIDGE-MIT.txt",
+      "upstream-licenses/GOOO-GO-PORTS-BSD-3-Clause.txt"
+    ]
+  }
+}

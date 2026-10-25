@@ -28,7 +28,60 @@ Git objects, so uncommitted working-tree changes do not silently change the
 reference. The execution revision is usually the temporary PR merge revision,
 which can differ from the source head even when their file trees are identical.
 
-For example, [PR #25](https://github.com/kimjooyoon/gooo-language-bridge/pull/25)
+## Replay the published 17-summary snapshot
+
+The [25 October 2026 evidence snapshot](https://github.com/kimjooyoon/gooo-language-bridge/releases/tag/evidence/contribution-planning-2026-10-25)
+retains the original ZIP from [PR #37](https://github.com/kimjooyoon/gooo-language-bridge/pull/37),
+[run 40145354927](https://github.com/kimjooyoon/gooo-language-bridge/actions/runs/40145354927),
+beyond the seven-day CI artifact lifetime. Download its
+[bridge-evidence-40145354927.zip](https://github.com/kimjooyoon/gooo-language-bridge/releases/download/evidence/contribution-planning-2026-10-25/bridge-evidence-40145354927.zip)
+and [provenance.json](https://github.com/kimjooyoon/gooo-language-bridge/releases/download/evidence/contribution-planning-2026-10-25/provenance.json).
+The ZIP is **746502 bytes**, SHA-256
+`44ecda75c8b6a1e3ae44631d6b0a05322a3864c0853d80b42381f0bdd91f645e`.
+Check these transport identities against the release provenance and original
+GitHub artifact metadata before extracting the ZIP into a fresh directory.
+
+Obtain the matching source in a separate checkout:
+
+```sh
+git clone --depth 1 --branch evidence/contribution-planning-2026-10-25 \
+  https://github.com/kimjooyoon/gooo-language-bridge.git bridge-audit
+cd bridge-audit
+git checkout --detach 95d437d24554edbddb59b1754f0ce11978b84494
+```
+
+Run the auditor from that checkout, replacing the artifact path with your
+extracted directory:
+
+```sh
+python3 tools/audit_evidence.py \
+  --artifact /absolute/path/to/extracted-evidence \
+  --source-revision 95d437d24554edbddb59b1754f0ce11978b84494 \
+  --execution-revision 2c44b42dfd96fb443c969c4b962ae64c017804c6 \
+  --run-id 40145354927
+```
+
+This requires Python and Git, without installing or executing Gooo, Go or
+Node.js. Expected output is `PASS_INTEGRITY`, inventory
+`contribution-profiles-17`, **17 summaries**, **two native reports**, **842 hash
+references**, **605 captured files** and **115 source files**. These counts
+describe this snapshot, not a requirement to copy into later runs.
+
+The release tag pins accepted main. Its tree matches the tested merge, whose
+parents are base `1bf12d6de9b9fcb2925b9d009d8d77f513e2f5ce` and PR head
+`7beb0fa6e078ad961f2c136008a1b283ba9d8168`. The accepted source, PR head and
+execution revision are distinct identities; use the tuple above unchanged.
+The snapshot includes synthetic B1/B2 planning packets and existing bounded
+native observations. It is not a real ports P1 integration or upstream
+acceptance record. Release provenance and hashes retain their separate role
+from independently authenticating the execution or judging its semantics.
+
+## Historical 13-summary example
+
+The shallow checkout above contains the 17-summary snapshot only. Make this
+older source commit available locally before using the following historical tuple.
+
+[PR #25](https://github.com/kimjooyoon/gooo-language-bridge/pull/25)
 produced the following checked tuple in [run 39715468593](https://github.com/kimjooyoon/gooo-language-bridge/actions/runs/39715468593):
 
 ```sh
@@ -56,12 +109,19 @@ unhashed captured file, failed summary or incomplete inventory exits nonzero.
 Failure emits `FAIL_CLOSED` on stderr and no success report on stdout.
 
 The inventory names this workbench's summary schemas and two native reports.
-It selects fifteen summaries when the trusted source commit contains both
-`bridges/input-defaults/gooo.workspace.json` and
-`bridges/hcl-null-defaults/gooo.workspace.json`, fourteen when only the former
-marker is present, or the original thirteen when neither is present. A newer
-source cannot omit its HCL evidence by claiming an older inventory in the
-artifact; the source Git tree selects the required inventory.
+The trusted source tree selects the inventory using cumulative markers:
+
+| Source workspace markers | Inventory | Summaries |
+| --- | --- | ---: |
+| None of the following | `base-13` | 13 |
+| `bridges/input-defaults/gooo.workspace.json` | `input-defaults-14` | 14 |
+| Above plus `bridges/hcl-null-defaults/gooo.workspace.json` | `hcl-null-defaults-15` | 15 |
+| Above plus `bridges/contribution-response/gooo.workspace.json` | `response-planning-16` | 16 |
+| Above plus `bridges/contribution-profiles/gooo.workspace.json` | `contribution-profiles-17` | 17 |
+| Above plus `bridges/producer-response/contract.json` | `producer-response-18` | 18 |
+
+An inconsistent marker chain is rejected. A newer source cannot omit its
+required evidence by claiming an older inventory in the artifact.
 Selection reads the local Git tree, never the untrusted artifact inventory; a
 current source cannot silently accept a bundle missing the new verifier.
 Native report decisions `MATCH` and `DIFFERENCES` are both legitimate

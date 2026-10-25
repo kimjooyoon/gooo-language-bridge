@@ -101,6 +101,9 @@ A missing, partial, stale-version or malformed result fails closed.
 CI retains evidence even on failure. The [offline evidence auditor](docs/audit-ci-evidence.md)
 checks a downloaded bundle against its captured hashes, exact local source and
 expected execution tuple without rerunning the engines. It also runs in required CI.
+For a **Python-and-Git-only** replay, follow the
+[published 17-summary snapshot recipe](docs/audit-ci-evidence.md#replay-the-published-17-summary-snapshot).
+It uses retained evidence and a fixed source/execution tuple.
 Artifact hashes bind files, not authorship;
 GitHub's run and commit metadata provide the execution context.
 
@@ -110,6 +113,12 @@ Before starting a candidate, use the [read-only contribution check](docs/contrib
 to collect recent merge witnesses, linked open/closed PRs and recent comments in
 one bounded GitHub query. Gooo assigns a next-review reason; it never approves
 submission or declares the work unclaimed. Offline CI checks all 32 policy inputs.
+
+The [response planner](docs/contribution-response-planning.md) and
+[repository profiles](docs/contribution-profile-planning.md) retain actor roles,
+scope and material limitations before preparing a response. The
+[real producer consumer](docs/producer-response.md) connects saved technical
+observations to that plan while retaining unknown provenance and original failures.
 
 Use Issues for bounded bridge proposals and counterexamples, and PRs for source.
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](ROADMAP.md).
