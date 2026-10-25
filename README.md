@@ -120,6 +120,12 @@ scope and material limitations before preparing a response. The
 [real producer consumer](docs/producer-response.md) connects saved technical
 observations to that plan while retaining unknown provenance and original failures.
 
+For repeated local follow-up, the [saved-material comparison](docs/saved-followup.md)
+retains a completed inspection only when all captured material, evaluation inputs
+and scope match. New feedback, changed criteria or incomplete evidence require
+inspection. This manual helper does not collect fresh remote activity or approve
+a contribution.
+
 Use Issues for bounded bridge proposals and counterexamples, and PRs for source.
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [ROADMAP.md](ROADMAP.md).
 This project complements the [Gooo engine](https://github.com/kimjooyoon/meta-ontology-go)
