@@ -1,0 +1,81 @@
+{
+  "schema": "gooo/profile-response-input/v1",
+  "packet": {
+    "schema": "gooo/contribution-response-input/v1",
+    "id": "P1-recorded-header-addition",
+    "origin": "frozen_observation",
+    "repository": "kimjooyoon/gooo-go-ports",
+    "actor": {
+      "id": "bridge-local-review",
+      "observed_role": "reviewer"
+    },
+    "phase": "internal_draft",
+    "policy": {
+      "id": "bridge/internal-evidence-review/v1",
+      "source_url": "https://github.com/kimjooyoon/gooo-language-bridge/blob/95d437d24554edbddb59b1754f0ce11978b84494/AGENTS.md",
+      "source_identity": "git-blob:9c1345223c0c4dd198e86b52b2819334ab5f55ed",
+      "basis": "published_policy",
+      "external_requirement": "unknown"
+    },
+    "conversation": {
+      "observed_at": "2026-10-25T00:49:57Z",
+      "as_of": "2026-10-25T00:49:57Z",
+      "max_age_seconds": 3600,
+      "snapshot_id": "producer-manifest:6d366be37ad56e97a371b9a6277cb800c5d1b169ee9481e67fbb94062e1fce82",
+      "current_snapshot_id": "producer-manifest:6d366be37ad56e97a371b9a6277cb800c5d1b169ee9481e67fbb94062e1fce82",
+      "tested_head": null,
+      "current_head": null,
+      "interaction": {
+        "review_state": "unknown",
+        "minimization": "unknown",
+        "lock": "unknown",
+        "composer": "unknown",
+        "submission": "not_attempted",
+        "permission": "unknown"
+      }
+    },
+    "requested": true,
+    "adds_information": true,
+    "claims": [],
+    "evidence": [],
+    "uncertainty": [
+      "The actor and workflow context are declared internal-review observations, not producer-authenticated roles or publication permission.",
+      "The consumer does not rerun or independently verify the original 82-suite reader population."
+    ],
+    "failures": [],
+    "exclusions": [
+      "No current native execution, base/candidate fix claim, producer authentication, native acceptance or upstream publication."
+    ]
+  },
+  "profile_ref": null,
+  "provisional_category": "reference_implementation",
+  "context": {
+    "responsible_understanding": "unknown",
+    "discovery_origin": "external_report",
+    "production_incident": "unknown",
+    "prevalence": "unknown",
+    "suggestion_authority": "unknown",
+    "api_approval": "unknown",
+    "recipient_acceptance": "unknown",
+    "interaction_restriction": "unknown",
+    "docs_tests_relation": "unknown",
+    "guide_status": "unknown",
+    "implementation_state": "unknown",
+    "ci_status": "unknown",
+    "agreement": "unknown",
+    "pr_invitation": "unknown",
+    "profile_as_of": "2026-10-25T00:49:57Z",
+    "max_profile_age_seconds": 86400,
+    "schema": "gooo/contribution-context/v1",
+    "policy_discovery": "provisional",
+    "intent": "internal_notes",
+    "ai_disclosure": "observed",
+    "publication": "not_posted",
+    "runtime_tested": "not_observed",
+    "fixture_source_pinned": false,
+    "alternate_channel_available": false,
+    "requirements_evidence_ids": []
+  },
+  "assertions": [],
+  "example": null
+}

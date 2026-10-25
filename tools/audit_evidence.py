@@ -32,6 +32,8 @@ HCL_DEFAULTS_SUMMARIES = dict(SUMMARIES)
 SUMMARIES['response-planning/summary.json'] = 'response-planning'
 RESPONSE_PLANNING_SUMMARIES = dict(SUMMARIES)
 SUMMARIES['contribution-profiles/summary.json'] = 'contribution-profiles'
+CONTRIBUTION_PROFILES_SUMMARIES = dict(SUMMARIES)
+SUMMARIES['producer-response/summary.json'] = 'producer-response'
 LEGACY = {'chroma-gooo/summary.json', 'yaegi-1736/summary.json'}
 REPORTS = {'js-differential/report.json', 'js-sobek/report.json'}
 SOURCE_ROOTS = {'bridges', 'tools', 'examples', 'tests', 'proposals'}
@@ -86,15 +88,19 @@ def audit(artifact, source_revision, execution_revision, run_id, repository=ROOT
             'source revision is not a local commit')
     markers = ['bridges/input-defaults/gooo.workspace.json', 'bridges/hcl-null-defaults/gooo.workspace.json',
                'bridges/contribution-response/gooo.workspace.json',
-               'bridges/contribution-profiles/gooo.workspace.json']
+               'bridges/contribution-profiles/gooo.workspace.json',
+               'bridges/producer-response/contract.json']
     present = subprocess.check_output(git + ['ls-tree', '--name-only', source_revision, '--'] + markers,
                                       timeout=10, stderr=subprocess.PIPE, env=git_env).decode().splitlines()
     require(set(present) <= set(markers), 'unexpected source inventory marker')
     require(markers[1] not in present or markers[0] in present, 'inconsistent source inventory markers')
     require(markers[2] not in present or markers[1] in present, 'inconsistent source inventory markers')
     require(markers[3] not in present or markers[2] in present, 'inconsistent source inventory markers')
-    if markers[3] in present:
-        summaries, inventory = SUMMARIES, 'contribution-profiles-17'
+    require(markers[4] not in present or markers[3] in present, 'inconsistent source inventory markers')
+    if markers[4] in present:
+        summaries, inventory = SUMMARIES, 'producer-response-18'
+    elif markers[3] in present:
+        summaries, inventory = CONTRIBUTION_PROFILES_SUMMARIES, 'contribution-profiles-17'
     elif markers[2] in present:
         summaries, inventory = RESPONSE_PLANNING_SUMMARIES, 'response-planning-16'
     elif markers[1] in present:

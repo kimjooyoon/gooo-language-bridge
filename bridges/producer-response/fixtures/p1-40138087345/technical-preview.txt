@@ -1,0 +1,22 @@
+HeaderAddition saved evidence (reference-only)
+app/diagnostic-header-addition:AssessAddition
+Recorded bindings: compiler source 205896a413e5dea92366309c35ae85e542d055f6; go version go1.27.3 linux/amd64; five-package source closure in appendix.
+Domain: the repository fixed 50-case HeaderAddition corpus; not arbitrary live HTTP work.
+
+native_execution: pass — 50 recorded native results matched the supplied typed expectations in seven batches.
+oracle_comparison: pass — Equality with 50 saved Go expected rows; no fresh Go oracle is run by this exporter.
+saved_replay: pass — Seven recorded replays preserve the original receipt parents, typed inputs and results.
+
+Uncertainty:
+Unsigned reference-only reader: native_acceptance=false and producer_authenticated=false.
+Reported Git identities stay in the appendix; the reader does not authenticate a Git commit or GitHub job.
+Selected saved observations are not whole-package compatibility, production impact, or current live execution.
+Overall workflow/host-consumer success is not established by this export.
+
+Failures:
+A same-run producer first-failure record is retained in the bound appendix; do not describe the whole run as successful.
+
+Exclusions:
+No base/candidate regression comparison.
+No producer authentication, native acceptance, execution or publication permission.
+No fresh compiler, oracle, model, network or tool execution by the exporter.

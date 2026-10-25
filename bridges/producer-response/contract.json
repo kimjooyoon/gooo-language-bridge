@@ -1,0 +1,13 @@
+{
+  "schema": "gooo/producer-response-contract/v1",
+  "producer_envelope": "gooo/header-addition-contribution-export/v1",
+  "evidence": "gooo/contribution-evidence/v1",
+  "frozen_evidence_schema_sha256": "1b9c4d455554976ff8e1c3ccf3c533bea1de6bf5567e92d979c3f372b2ab9e12",
+  "phases": [
+    "native_execution",
+    "oracle_comparison",
+    "saved_replay"
+  ],
+  "intent": "Read one fixed P1 export without reexecuting its producer; preserve reference-only state, reported identities, original failure and all record fields.",
+  "effects": "none"
+}
