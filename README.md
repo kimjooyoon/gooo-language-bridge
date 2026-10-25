@@ -134,6 +134,11 @@ project; a local passing bridge is never counted as an accepted contribution.
 
 ## Reusable native experiment reports
 
+The [32 bit Go integer parsing guide](docs/go-integer-width.md) answers a real
+Cast maintainer request with an executed Linux/386 comparison. It explains the
+parser-width trap, shows all nine boundary results, and links the complete
+original failure/success capture. Read the saved results before repeating a run.
+
 The [JavaScript differential driver](examples/js-differential/README.md) compares
 a trusted snapshot script in Node.js and an exact Goja or Sobek commit, optionally against
 a base commit. It retains typed case comparisons, source/runtime identities,
