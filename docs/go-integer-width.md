@@ -62,8 +62,8 @@ the complete Go JSON output and stderr. Decode the Base64 text, then extract
 the gzip tar archive; `manifest.json` lists each original file's SHA256.
 You can inspect these saved results without installing Go or Gooo.
 
-For a new execution, use a Linux host that supports 386 binaries and has
-Go 1.27.3 installed. The capture uses the installed toolchain, fetches the two
+For a new execution, use Python 3.9+, Git, and a Linux host that supports 386
+binaries and has Go 1.27.3 installed. The capture uses the installed toolchain, fetches the two
 pinned Cast sources and their Go dependencies, and removes temporary checkouts
 after saving the results. It does not install a Go toolchain.
 
