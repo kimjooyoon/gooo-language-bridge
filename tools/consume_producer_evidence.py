@@ -231,7 +231,9 @@ def main():
     out = Path(tempfile.mkdtemp(prefix='attempt-', dir=root))
     summary = {'schema': 'gooo-language-bridge/producer-response/v1', 'decision': 'FAIL_CLOSED',
                'commit': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID'),
-               'network_requests': 0, 'producer_native_executions': 0, 'publication_effects': 0}
+               'network_requests': 0, 'producer_native_executions': 0, 'publication_effects': 0,
+               'publication_precondition_required': args.require_published_source,
+               'publication_precondition_checked': False}
     binary = str(Path(args.gooo).resolve())
     env = dict(os.environ, GOTOOLCHAIN='go1.27.3', GOWORK='off')
 
@@ -249,6 +251,7 @@ def main():
             provenance = base.read_json(BRIDGE / 'provenance.json')
             published_source(provenance)
             require(args.manifest_sha256 == provenance['manifest_sha256'], 'active input differs from published source pin')
+            summary['publication_precondition_checked'] = True
         captured = snapshot(args.bundle)
         (out / 'source').mkdir()
         for name, data in captured.items():
