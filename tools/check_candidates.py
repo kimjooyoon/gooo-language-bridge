@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +16,7 @@ BRIDGE = ROOT / 'bridges/contribution-review'
 KEY = 'bridge/contribution:Review'
 ACTIVITY = 'urn:gooo:contribution:review'
 FIELDS = ('issue_open', 'open_pr', 'prior_pr', 'history_complete', 'recent_merge')
+MAX_LIVE_ATTEMPTS = 8
 
 
 def review(row):
@@ -190,37 +192,87 @@ def verify_receipt(receipt, rows, code):
         row['review_reason'] = d['actual']
 
 
-def main():
+def captured_run(command, out, stdout_name, stderr_name, summary, stage, **kwargs):
+    """Keep partial process output even when subprocess.run raises on timeout."""
+    summary['stage'] = stage
+    try:
+        process = subprocess.run(command, capture_output=True, **kwargs)
+    except subprocess.TimeoutExpired as error:
+        (out / stdout_name).write_bytes(error.output or b'')
+        (out / stderr_name).write_bytes(error.stderr or b'')
+        summary[stage + '_timed_out'] = True
+        raise
+    (out / stdout_name).write_bytes(process.stdout)
+    (out / stderr_name).write_bytes(process.stderr)
+    summary[stage + '_exit_code'] = process.returncode
+    return process
+
+
+def latest_pointer(root, attempt, manifest):
+    """Publish only a completed manifest; never replace an earlier attempt."""
+    value = {'schema': 'gooo-language-bridge/candidate-attempt-pointer/v1',
+             'attempt_manifest': manifest.relative_to(root).as_posix(),
+             'manifest_sha256': digest(manifest), 'decision': attempt['decision']}
+    fd, name = tempfile.mkstemp(prefix='.latest-', suffix='.tmp', dir=root)
+    try:
+        with os.fdopen(fd, 'w') as stream:
+            stream.write(json.dumps(value, indent=2) + '\n')
+        os.replace(name, root / 'latest-attempt.json')
+    finally:
+        if os.path.exists(name):
+            os.unlink(name)
+
+
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--candidate', action='append', default=[], metavar='OWNER/REPO#N')
     parser.add_argument('--self-test', action='store_true', help='32 offline policy cases, no GitHub request')
     parser.add_argument('--gooo', required=True)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.self_test == bool(args.candidate):
         parser.error('choose either --self-test or --candidate')
     now = datetime.now(timezone.utc)
-    out = ROOT / 'evidence' / ('candidate-policy' if args.self_test else 'candidate-scan')
-    out.mkdir(parents=True, exist_ok=True)
-    for p in out.iterdir():
-        if p.is_file():
-            p.unlink()
+    output_root = ROOT / 'evidence' / ('candidate-policy' if args.self_test else 'candidate-scan')
+    output_root.mkdir(parents=True, exist_ok=True)
+    if args.self_test:
+        # The offline CI fixture remains a single fresh snapshot, separate from live history.
+        out = output_root
+        for p in out.iterdir():
+            if p.is_file():
+                p.unlink()
+    else:
+        if len(list(output_root.glob('attempt-*'))) >= MAX_LIVE_ATTEMPTS:
+            print(json.dumps({'schema': 'gooo-language-bridge/candidate-review/v1',
+                              'decision': 'FAIL_CLOSED', 'mode': 'live', 'github_requests': 0,
+                              'error': 'retained attempt budget reached; preserve this directory and use a fresh checkout'}))
+            return 1
+        out = Path(tempfile.mkdtemp(prefix='attempt-', dir=output_root))
     started = time.monotonic()
     summary = {'schema': 'gooo-language-bridge/candidate-review/v1', 'decision': 'FAIL_CLOSED',
                'observed_at': now.isoformat(), 'mode': 'offline' if args.self_test else 'live',
+               'github_requests': 0, 'stage': 'capture',
                'commit': os.environ.get('GITHUB_SHA'), 'run_id': os.environ.get('GITHUB_RUN_ID')}
     env = dict(os.environ, GOTOOLCHAIN='go1.27.3', GOWORK='off')
     binary = str(Path(args.gooo).resolve())
     try:
+        if not args.self_test:
+            summary['attempt'] = out.relative_to(ROOT).as_posix()
+            summary['source_snapshots'] = {}
+            for source, name in [(ROOT / 'tools/check_candidates.py', 'collector-source.py'),
+                                 (BRIDGE / 'main.gooo', 'policy-source.gooo'),
+                                 (BRIDGE / 'gooo.workspace.json', 'workspace-source.json'),
+                                 (BRIDGE / 'provenance.json', 'policy-provenance.json')]:
+                (out / name).write_bytes(source.read_bytes())
+                summary['source_snapshots'][source.relative_to(ROOT).as_posix()] = (out / name).relative_to(ROOT).as_posix()
+        summary['stage'] = 'input'
         if args.self_test:
             rows = [{'observation': dict(zip(FIELDS, values))} for values in product((False, True), repeat=5)]
         else:
             payload = json.dumps(request(args.candidate)).encode()
             (out / 'request.json').write_bytes(payload)
-            api = subprocess.run(['gh', 'api', 'graphql', '--input', '-'], input=payload,
-                                 capture_output=True, timeout=60)
-            (out / 'github.json').write_bytes(api.stdout)
-            (out / 'github.stderr').write_bytes(api.stderr)
-            summary['api_exit_code'] = api.returncode
+            summary['github_requests'] = 1
+            api = captured_run(['gh', 'api', 'graphql', '--input', '-'], out,
+                               'github.json', 'github.stderr', summary, 'api', input=payload, timeout=60)
             if api.returncode:
                 raise ValueError('GitHub API request failed; inspect github.stderr')
             response = json.loads(api.stdout)
@@ -230,31 +282,36 @@ def main():
         cases_path = out / 'cases.json'
         cases_path.write_text(json.dumps({'schema': 'gooo/body-composition-cases/v1', 'cases': [
             {'inputs': {KEY: r['observation']}, 'expected': {KEY: review(r['observation'])}} for r in rows]}, indent=2) + '\n')
-        version = subprocess.run([binary, 'version', '--build', '--json'], capture_output=True, timeout=10)
-        (out / 'compiler.json').write_bytes(version.stdout)
+        version = captured_run([binary, 'version', '--build', '--json'], out,
+                               'compiler.json', 'compiler.stderr', summary, 'compiler', timeout=10)
         if version.returncode or json.loads(version.stdout).get('version') != '0.6.38-dev':
             raise ValueError('compiler version mismatch')
-        executed = subprocess.run([binary, 'package', 'execute', '--json', '--cases', str(cases_path),
-                                   'gooo.workspace.json'], cwd=BRIDGE, env=env, capture_output=True, timeout=90)
-        (out / 'execution.json').write_bytes(executed.stdout)
-        (out / 'execution.stderr').write_bytes(executed.stderr)
-        summary['execution_exit_code'] = executed.returncode
+        executed = captured_run([binary, 'package', 'execute', '--json', '--cases', str(cases_path),
+                                 'gooo.workspace.json'], out, 'execution.json', 'execution.stderr',
+                                summary, 'execution', cwd=BRIDGE, env=env, timeout=90)
         receipt = json.loads(executed.stdout)
         if (receipt['cases_digest'] != digest(cases_path)
                 or receipt['manifest_digest'] != digest(BRIDGE / 'gooo.workspace.json')):
             raise ValueError('receipt input digest differs')
         verify_receipt(receipt, rows, executed.returncode)
+        if not args.self_test and any((ROOT / source).read_bytes() != (ROOT / snapshot).read_bytes()
+                                      for source, snapshot in summary['source_snapshots'].items()):
+            raise ValueError('source changed during collection; inspect captured source snapshots')
         (out / 'results.json').write_text(json.dumps(rows, indent=2) + '\n')
         summary.update(decision='PASS', cases=len(rows), github_requests=0 if args.self_test else 1,
-                       compiler_sha256=digest(Path(binary)), reasons=[r['review_reason'] for r in rows])
+                       stage='complete', compiler_sha256=digest(Path(binary)),
+                       reasons=[r['review_reason'] for r in rows])
     except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
         summary['error'] = str(error)
     finally:
         summary['elapsed_seconds'] = round(time.monotonic() - started, 3)
-        paths = list(out.iterdir()) + list(BRIDGE.iterdir()) + [Path(__file__)]
+        paths = list(out.iterdir()) + list(BRIDGE.iterdir()) + [ROOT / 'tools/check_candidates.py']
         summary['sha256'] = {str(p.relative_to(ROOT)): digest(p) for p in sorted(paths)
                              if p.is_file() and p.name != 'summary.json'}
-        (out / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
+        manifest = out / ('summary.json' if args.self_test else 'attempt-manifest.json')
+        manifest.write_text(json.dumps(summary, indent=2) + '\n')
+        if not args.self_test:
+            latest_pointer(output_root, summary, manifest)
         print(json.dumps(summary))
     return 0 if summary['decision'] == 'PASS' else 1
 

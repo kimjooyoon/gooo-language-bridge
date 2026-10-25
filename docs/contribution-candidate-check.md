@@ -22,8 +22,10 @@ python3 tools/check_candidates.py --gooo .bin/gooo \
 One GraphQL invocation groups candidates by repository. It requests at most 20
 merged-PR witnesses per repository, 20 issue cross-references and 3 issue comments.
 It preserves the query, original response, API rate-limit cost, observation time,
-derived Boolean observations and original Gooo receipt in `evidence/candidate-scan/`.
-The summary hashes the source, request, response and result files. No upstream
+derived Boolean observations and original Gooo receipt in a new
+`evidence/candidate-scan/attempt-*/` directory for every invocation. Its
+`attempt-manifest.json` hashes the source, request, response, diagnostics and
+result files. No upstream
 issue, PR or comment is created, and nothing is scheduled.
 
 `results.json` contains the review reason, the complete queried issue body as
@@ -122,6 +124,45 @@ policy receipts; it does not certify a later live GitHub response. Live packets
 remain local unless explicitly published. The
 [proposal](https://github.com/kimjooyoon/gooo-language-bridge/issues/10) and
 [provenance](../bridges/contribution-review/provenance.json) record the scope.
+
+## Live collection preserves earlier evidence
+
+A later request can fail, time out or return a different snapshot. It must not
+delete the request/response or Gooo receipt used for an earlier decision. Live
+collection therefore never clears its output directory. Each invocation creates
+an independent attempt, including failures. A completed attempt's
+`attempt-manifest.json` records its stage, actual process exit codes when known,
+timeouts, observation time, error and file hashes. API, compiler and Gooo partial
+stdout/stderr are retained on a timeout. An incomplete receipt never becomes a
+successful result file or a test pass. There are no automatic retries.
+
+`latest-attempt.json` is an atomically replaced pointer to the newest completed
+manifest, its digest and decision. A failed newest attempt remains visibly
+failed; it does not silently select an earlier success. Previous attempt bytes
+are retained, including the previous successful manifest. Legacy root files,
+including an old `summary.json`, are left untouched: they are historical data,
+not the new latest result. Read the pointer or the manifest path printed by the
+current invocation. A process killed before finalization may leave an incomplete
+attempt; the last completed pointer does not prove that interrupted run passed.
+
+Each live attempt also captures the collector and the three policy source files.
+`source_snapshots` maps original repository paths to these copies; their hashes
+match on a successful collection; a change during collection fails closed.
+Retained source copies allow later inspection without
+assuming the working tree still has the same bytes. A compiler binary is hashed,
+not copied. This records supplied data and executed process observations; it
+does not independently authenticate GitHub content, establish maintainer demand
+or authorize a post.
+
+At most eight live attempt paths are allowed in a collection directory, including
+unfinished attempts. On exhaustion, the tool performs no new GitHub request and
+does not change old data or the pointer. Preserve that directory and use a fresh
+checkout for further collection. Use one invocation at a time per directory;
+concurrent collectors and an unbounded archival service are outside this tool's
+scope. The existing 32-case offline CI snapshot stays separate in
+`evidence/candidate-policy/`; it makes no GitHub request and is still regenerated
+for the current bounded verification. No live evidence or private mail is added
+to the repository.
 
 For a separate role/evidence-bound decision about whether a response adds useful
 information, see [response planning](contribution-response-planning.md). Its B1
