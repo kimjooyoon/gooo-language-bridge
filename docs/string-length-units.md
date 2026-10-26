@@ -33,6 +33,26 @@ Node.js [TextEncoder](https://github.com/nodejs/node/blob/bd96dfbf0361576724b653
 encodes UTF-8. The adapter rejects lone surrogates before encoding can replace
 them, preserving this bridge's scalar-string domain.
 
+## Keep GoAWK positions in one mode
+
+When applying the same unit choice in AWK, start with
+[GoAWK's accepted Unicode guide](https://github.com/benhoyt/goawk/blob/592620f9bdce8a2fb9abb3ba5d4cfc1014e20375/docs/unicode.md).
+By default, `length()`, `index()`, `match()`'s `RSTART` and `RLENGTH`, and
+`substr()` use byte counts or positions. Choose `goawk -c` or
+`interp.Config.Chars` for Unicode character counts and positions. Keep a
+position from `index()` or `match()` in the same mode when passing it to
+`substr()`.
+
+Regexps use UTF-8 in either mode: matching one character with `/^.$/` does not
+imply a byte length of one. The guide's `╋` example has length and matched length
+3 in byte mode, or 1 in character mode; the regexp matches in both. For the
+original executions, see the
+[two byte/character-mode examples and their test limits](https://gist.github.com/kimjooyoon/6d6855f852800045a22e3db0a3d94ff5/871a8d5f75acf3ef6dc64251264c5a814e9fa4fb).
+The guide also documents exceptions such as `printf`'s `%s` width and precision.
+
+This is guidance for using GoAWK; GoAWK is not part of the 27-case comparison
+below, and character mode does not establish grapheme or display-width counts.
+
 ## Give the unit an identity in Gooo
 
 The [activity](../bridges/text-length/main.gooo) takes one Text and returns a

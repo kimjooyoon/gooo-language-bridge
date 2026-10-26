@@ -144,17 +144,19 @@ a trusted snapshot script in Node.js and an exact Goja or Sobek commit, optional
 a base commit. It retains typed case comparisons, source/runtime identities,
 original outputs and hashes. Unmerged PR heads use a verified Git checkout rather
 than relying on an unavailable canonical module version. The included example
-reproduces a known normalization difference; a difference is not an approval or
-a standards verdict. No Gooo compiler is required for this native helper.
+reproduces a historical normalization difference at two pinned pre-fix revisions;
+the guide links the accepted repair. A difference is not an approval or a
+standards verdict. No Gooo compiler is required for this native helper.
 
 ## Upstream work
 
-Recent contribution entry points, observed October 22, 2026:
+Contribution entry points observed October 22, 2026, with later acceptance
+updates dated separately:
 
 | Need | Contribution | Reproduction and scope |
 | --- | --- | --- |
 | Reuse text decoding with a custom configuration decoder | [Koanf #464](https://github.com/knadh/koanf/pull/464), submitted API change | [Public-API tests at the submitted commit](https://github.com/kimjooyoon/koanf/blob/8d167f6687338edfc10609cbd27e0effcf4901ba/tests/text_hook_test.go) cover custom text representations, duration composition, errors and unknown-key rejection. Native tests passed within the documented exclusions; hosted CI and acceptance remain unproven. |
-| Understand byte counts versus UTF-8 regexps | [GoAWK #308](https://github.com/benhoyt/goawk/pull/308), submitted documentation | [Pinned CLI observations](https://gist.github.com/kimjooyoon/6d6855f852800045a22e3db0a3d94ff5/871a8d5f75acf3ef6dc64251264c5a814e9fa4fb) reproduce both README examples and preserve the missing-`gawk` full-suite failure. |
+| Understand byte counts versus UTF-8 regexps | [GoAWK Unicode guide](https://github.com/benhoyt/goawk/blob/592620f9bdce8a2fb9abb3ba5d4cfc1014e20375/docs/unicode.md), [#308 merged October 25, 2026](https://github.com/benhoyt/goawk/pull/308) | [Choose consistent string units](docs/string-length-units.md#keep-goawk-positions-in-one-mode). This documentation change does not alter the interpreter. [Pinned CLI observations](https://gist.github.com/kimjooyoon/6d6855f852800045a22e3db0a3d94ff5/871a8d5f75acf3ef6dc64251264c5a814e9fa4fb) reproduce the two byte/character-mode examples and preserve the missing-`gawk` full-suite failure. |
 | Review ownership or nested-map fixes | [GoJq constant ownership review](https://github.com/itchyny/gojq/pull/320#pullrequestreview-5610173011) and [Koanf nil-map review](https://github.com/knadh/koanf/pull/461#pullrequestreview-5610513013) | The [native experiment index](docs/experiments.md#native-observations-no-gooo-compiler-needed) links frozen observations, tested source identities, remaining differences and test limitations. Reviews are independent evidence, not acceptance. |
 
 These entry points require no Gooo compiler. Read the dated scope before adapting
