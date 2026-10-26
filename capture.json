@@ -1,0 +1,69 @@
+{
+  "kind": "Portable projection of private execution records; absolute local paths omitted",
+  "records": [
+    {
+      "stage": "initial",
+      "source": "56ae40d64ce0f4824803e789704e1a1a49293642",
+      "environment_overrides": {
+        "GOTOOLCHAIN": "local",
+        "GOWORK": "off",
+        "GOENV": "off",
+        "GOPROXY": "off",
+        "GOMAXPROCS": "2",
+        "GOMEMLIMIT": "128MiB"
+      },
+      "started_at": "2026-10-26T16:00:52.846232+00:00",
+      "elapsed_seconds": 1.327148834,
+      "exit_code": 0,
+      "timed_out": false,
+      "process_group_absent": true,
+      "source_status_after": "",
+      "files": {
+        "observer.go": {
+          "bytes": 3367,
+          "sha256": "9716e01db45bfe598c50dd80214fa425b8de37ac13b8ade88201a67ee06f336e"
+        },
+        "native.stdout": {
+          "bytes": 2006,
+          "sha256": "c69b5215ed860e3559a57d19b3eeac7496af1dfc4c7c2811bedf820f843b1a2e"
+        },
+        "native.stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "stage": "final",
+      "source": "56ae40d64ce0f4824803e789704e1a1a49293642",
+      "environment_overrides": {
+        "GOTOOLCHAIN": "local",
+        "GOWORK": "off",
+        "GOENV": "off",
+        "GOPROXY": "off",
+        "GOMAXPROCS": "2",
+        "GOMEMLIMIT": "128MiB"
+      },
+      "started_at": "2026-10-26T16:02:04.065019+00:00",
+      "elapsed_seconds": 0.70657425,
+      "exit_code": 0,
+      "timed_out": false,
+      "process_group_absent": true,
+      "source_status_after": "",
+      "files": {
+        "observer.go": {
+          "bytes": 3404,
+          "sha256": "156a2eb3c9b4b498205aad97087769ed1dbc950259f417cabf74115c333c76dc"
+        },
+        "native.stdout": {
+          "bytes": 2252,
+          "sha256": "3ec1f3b8fabcf4b5d28836638819df44f27851fc59ecb0b0af0aaa5df42c463c"
+        },
+        "native.stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ]
+}

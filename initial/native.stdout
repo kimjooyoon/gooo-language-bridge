@@ -1,0 +1,105 @@
+{
+  "empty": [],
+  "halt_continued_deliberately": [
+    {
+      "kind": "value",
+      "value": 1
+    },
+    {
+      "kind": "error",
+      "value": null,
+      "error": "halt error: null",
+      "error_type": "*gojq.HaltError",
+      "halt": true,
+      "halt_value_is_nil": true
+    },
+    {
+      "kind": "value",
+      "value": 2
+    }
+  ],
+  "missing_variable": [
+    {
+      "kind": "error",
+      "value": null,
+      "error": "variable defined but not bound: $x",
+      "error_type": "*gojq.expectedVariableError"
+    }
+  ],
+  "mixed": {
+    "events": [
+      {
+        "kind": "value",
+        "value": 1
+      },
+      {
+        "kind": "error",
+        "value": null,
+        "error": "error: first",
+        "error_type": "*gojq.exitCodeError"
+      },
+      {
+        "kind": "value",
+        "value": 2
+      }
+    ],
+    "query": "1, error(\"first\"), null, error(\"second\"), 2"
+  },
+  "precanceled_context": [
+    {
+      "kind": "error",
+      "value": null,
+      "error": "context canceled",
+      "error_type": "*errors.errorString",
+      "canceled": true
+    }
+  ],
+  "reuse": {
+    "first": [
+      {
+        "kind": "value",
+        "value": 1
+      },
+      {
+        "kind": "value",
+        "value": 2
+      }
+    ],
+    "new_Run": [
+      {
+        "kind": "value",
+        "value": 1
+      },
+      {
+        "kind": "value",
+        "value": 2
+      }
+    ],
+    "same_iterator_again": []
+  },
+  "runtime": {
+    "arch": "arm64",
+    "go": "go1.27.3",
+    "os": "darwin"
+  },
+  "scope": "Existing public Iter API only; RunSeq/RunSeqWithContext are not implemented or executed here.",
+  "source": "56ae40d64ce0f4824803e789704e1a1a49293642",
+  "stateful_input": {
+    "first_event": {
+      "kind": "value",
+      "value": 10
+    },
+    "input_Next_calls_after_new_Run": 4,
+    "input_Next_calls_after_one_result": 1,
+    "new_Run_events": [
+      {
+        "kind": "value",
+        "value": 20
+      },
+      {
+        "kind": "value",
+        "value": 30
+      }
+    ]
+  }
+}

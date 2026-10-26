@@ -1,0 +1,45 @@
+{
+  "decision": "EXPECTED_FINITE_OBSERVATIONS_CONFIRMED",
+  "source": "56ae40d64ce0f4824803e789704e1a1a49293642",
+  "runtime": {
+    "arch": "arm64",
+    "go": "go1.27.3",
+    "os": "darwin"
+  },
+  "scope": "Existing Iter API only. No proposed Seq2 method or implementation executed. Not conformance or acceptance.",
+  "mixed_events": [
+    {
+      "kind": "value",
+      "value": 1
+    },
+    {
+      "kind": "error",
+      "value": null,
+      "error": "error: first",
+      "error_type": "*gojq.exitCodeError"
+    },
+    {
+      "kind": "value",
+      "value": null
+    },
+    {
+      "kind": "error",
+      "value": null,
+      "error": "error: second",
+      "error_type": "*gojq.exitCodeError"
+    },
+    {
+      "kind": "value",
+      "value": 2
+    }
+  ],
+  "input_calls_after_one_result": 1,
+  "new_Run_shared_input_values": [
+    20,
+    30
+  ],
+  "initial_comma_chain_differed_from_intended_five_event_fixture": true,
+  "initial_observation_retained": true,
+  "source_unchanged": true,
+  "total_native_seconds": 2.033723084
+}
