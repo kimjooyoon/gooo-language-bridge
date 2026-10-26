@@ -1,0 +1,137 @@
+{
+  "go_version": "go1.27.3",
+  "os": "darwin",
+  "arch": "arm64",
+  "observations": [
+    {
+      "expression": "V == 12.34",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "12.34 == V",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "P == 12.34",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "12.34 == P",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "+P == 12.34",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "PP == 12.34",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "+PP == 12.34",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "Negative == -12.34",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "P == V",
+      "optimized": true,
+      "value": true
+    },
+    {
+      "expression": "Exact == 1.5",
+      "optimized": true,
+      "value": true
+    },
+    {
+      "expression": "D == 12.34",
+      "optimized": true,
+      "value": true
+    },
+    {
+      "expression": "I == 3",
+      "optimized": true,
+      "value": true
+    },
+    {
+      "expression": "V == D",
+      "optimized": true,
+      "value": false
+    },
+    {
+      "expression": "V == 12.34",
+      "optimized": false,
+      "value": false
+    },
+    {
+      "expression": "12.34 == V",
+      "optimized": false,
+      "value": false
+    },
+    {
+      "expression": "P == 12.34",
+      "optimized": false,
+      "value": false
+    },
+    {
+      "expression": "12.34 == P",
+      "optimized": false,
+      "value": false
+    },
+    {
+      "expression": "+P == 12.34",
+      "optimized": false,
+      "value": false
+    },
+    {
+      "expression": "PP == 12.34",
+      "optimized": false,
+      "value": false
+    },
+    {
+      "expression": "+PP == 12.34",
+      "optimized": false,
+      "value": false
+    },
+    {
+      "expression": "Negative == -12.34",
+      "optimized": false,
+      "value": false
+    },
+    {
+      "expression": "P == V",
+      "optimized": false,
+      "value": true
+    },
+    {
+      "expression": "Exact == 1.5",
+      "optimized": false,
+      "value": true
+    },
+    {
+      "expression": "D == 12.34",
+      "optimized": false,
+      "value": true
+    },
+    {
+      "expression": "I == 3",
+      "optimized": false,
+      "value": true
+    },
+    {
+      "expression": "V == D",
+      "optimized": false,
+      "value": false
+    }
+  ]
+}

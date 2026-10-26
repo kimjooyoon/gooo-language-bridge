@@ -1,0 +1,14 @@
+{
+  "base": "4b31df3a2e0eefec04c017a82a00e0f08541d3e4",
+  "head": "75aa119320b57957cdc4de2fc8669e239e6c18c4",
+  "observations_per_revision": 26,
+  "expressions": 13,
+  "optimization_settings": [
+    true,
+    false
+  ],
+  "compile_errors": 0,
+  "run_errors": 0,
+  "native_elapsed_seconds": 2.625677834,
+  "interpretation": "Pointer forms retain the pre-existing mismatch; plain float32 and unary-plus forms are fixed by this head. This is an incomplete fix, not a new pointer regression."
+}

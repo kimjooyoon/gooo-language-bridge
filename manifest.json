@@ -1,0 +1,38 @@
+{
+  "LICENSE": {
+    "bytes": 1090,
+    "sha256": "a9ec0858c7cc64881e5a13605a2745e10aa94d61f14a2497814811e3acaade2a"
+  },
+  "README.md": {
+    "bytes": 2415,
+    "sha256": "b1c4eac5456090ca5eb9e4c17140cdaed9aa09a3f8e53650319a78c36440c9e1"
+  },
+  "base/native.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "base/native.stdout": {
+    "bytes": 2519,
+    "sha256": "186911d9431a11bf131bec7d2d5d76b30b694d2fc6a649ee7c84cfa0de311433"
+  },
+  "capture.json": {
+    "bytes": 2079,
+    "sha256": "7fe9ea624d8f013821346fcab782642f92879f19997e84b7cd81d84b267e25db"
+  },
+  "head/native.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "head/native.stdout": {
+    "bytes": 2511,
+    "sha256": "b27c6bf6d6722a1f52cb91cbdb8688107240ab18eaaa4fd71f8a39a0a21910b9"
+  },
+  "observer.go": {
+    "bytes": 1717,
+    "sha256": "3edafcdc904b77c26b396590f9821025efeeccbfde6b2d495db612b99dd871ee"
+  },
+  "validation.json": {
+    "bytes": 491,
+    "sha256": "78bdd3b050680310abbaee0bb59e17cb115f031b95907ce58895b3bf4e2923a0"
+  }
+}
