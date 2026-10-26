@@ -1,0 +1,54 @@
+{
+  "files": {
+    "README.md": {
+      "bytes": 3154,
+      "sha256": "0ad26f34c689b2bb782d4f92f2f652b44889854dc50de2bc5cd450accd131834"
+    },
+    "observation.json": {
+      "bytes": 63586,
+      "sha256": "078f2b125004a0952b22ed00144aab01f5cdb08aa7ca398474ff924830a311d3"
+    },
+    "observe.py": {
+      "bytes": 5315,
+      "sha256": "789246a98adf8973b4ab7f08df362c696457d0f9205d59f534a77901fdc936d2"
+    },
+    "original-test-logs.tar.gz.base64.txt": {
+      "bytes": 4325,
+      "sha256": "c918a11e6123853b458f4590a0eff4373b0e3fe4b8e2cf3a587757d40493ae01"
+    },
+    "preparation.json": {
+      "bytes": 274,
+      "sha256": "6d478d6ac7b71da46b2b682a89c6ee77e14ae39a93d698af74134233745cd1a1"
+    },
+    "validation.json": {
+      "bytes": 883,
+      "sha256": "222063f2197c93526704e542600d80025bb2e906d5733214d05d5d30ca52beeb"
+    }
+  },
+  "raw_logs": {
+    "go-version.stdout": {
+      "bytes": 33,
+      "sha256": "70f94d37a097ca424ec1a1c0d5a81288ec60b4ceeae67edc3a75aeb6ce378600"
+    },
+    "go-version.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "base.stdout": {
+      "bytes": 27821,
+      "sha256": "0dd4d41af4c78309ec46383c11105ad1bbb0bf36ccc4cbb13558144071aa0078"
+    },
+    "base.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "pr1129.stdout": {
+      "bytes": 31599,
+      "sha256": "1d8a545fd5a3644fe0b7f48907d55d405f84995fd094bf3e7d092c1a25b81edb"
+    },
+    "pr1129.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

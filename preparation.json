@@ -1,0 +1,8 @@
+{
+  "refs": {
+    "base": "686c980c47581bf19b6119b60e9a59f2aed04170",
+    "pr1129": "1c141f3082a628d7a2115bbcaf03056351f83a5b"
+  },
+  "purpose": "Unmodified existing TextUnmarshaler regression tests on baseline and proposed head",
+  "new_probe_or_production_patch": false
+}

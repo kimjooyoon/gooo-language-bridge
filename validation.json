@@ -1,0 +1,18 @@
+{
+  "validated_at": "2026-10-26T15:10:38.598889+00:00",
+  "passed": true,
+  "observation_sha256": "078f2b125004a0952b22ed00144aab01f5cdb08aa7ca398474ff924830a311d3",
+  "same_named_scalar_test_section": true,
+  "existing_regression_failure": "TestIssue1109_TextUnmarshalerNamedScalarKinds/integer_into_float_kind",
+  "base_exit": 0,
+  "pr_exit": 1,
+  "float_groups_both_pass": true,
+  "no_skips_or_deadlines": true,
+  "all_process_groups_closed": true,
+  "source_files_checked_each_revision": {
+    "base": 122,
+    "pr1129": 122
+  },
+  "native_call_seconds": 2.995373,
+  "failure_output": "=== RUN   TestIssue1109_TextUnmarshalerNamedScalarKinds/integer_into_float_kind\n    unmarshaler_test.go:6063: Expected values to be equal:\n        expected:\n        20\n        actual:\n        2\n--- FAIL: TestIssue1109_TextUnmarshalerNamedScalarKinds/integer_into_float_kind (0.00s)\n"
+}
