@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import re
+import signal
 import subprocess
 import tempfile
 import time
@@ -192,15 +193,56 @@ def verify_receipt(receipt, rows, code):
         row['review_reason'] = d['actual']
 
 
+def _run_bounded(command, *, timeout, input=None, **kwargs):
+    """Retain bytes and stop the owned POSIX process group before returning."""
+    with tempfile.TemporaryFile() as stdin, tempfile.TemporaryFile() as stdout, \
+            tempfile.TemporaryFile() as stderr:
+        if input is not None:
+            stdin.write(input)
+        stdin.seek(0)
+        process = subprocess.Popen(command, stdin=stdin, stdout=stdout, stderr=stderr,
+                                   start_new_session=os.name == 'posix', **kwargs)
+        timeout_error = None
+        try:
+            process.wait(timeout=timeout)
+        except subprocess.TimeoutExpired as error:
+            timeout_error = error
+        finally:
+            # A completed leader can still have descendants holding the output files.
+            if os.name == 'posix':
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+            elif process.poll() is None:
+                process.kill()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired as error:
+                if timeout_error is None:
+                    timeout_error = error
+                timeout_error.cleanup_timed_out = True
+        stdout.seek(0)
+        stderr.seek(0)
+        output, diagnostics = stdout.read(), stderr.read()
+        if timeout_error is not None:
+            timeout_error.output = output
+            timeout_error.stderr = diagnostics
+            raise timeout_error
+        return subprocess.CompletedProcess(command, process.returncode, output, diagnostics)
+
+
 def captured_run(command, out, stdout_name, stderr_name, summary, stage, **kwargs):
-    """Keep partial process output even when subprocess.run raises on timeout."""
+    """Keep original process output, including bytes produced before a timeout."""
     summary['stage'] = stage
     try:
-        process = subprocess.run(command, capture_output=True, **kwargs)
+        process = _run_bounded(command, **kwargs)
     except subprocess.TimeoutExpired as error:
         (out / stdout_name).write_bytes(error.output or b'')
         (out / stderr_name).write_bytes(error.stderr or b'')
         summary[stage + '_timed_out'] = True
+        if getattr(error, 'cleanup_timed_out', False):
+            summary[stage + '_cleanup_timed_out'] = True
         raise
     (out / stdout_name).write_bytes(process.stdout)
     (out / stderr_name).write_bytes(process.stderr)
