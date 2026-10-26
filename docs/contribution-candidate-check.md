@@ -20,7 +20,8 @@ python3 tools/check_candidates.py --gooo .bin/gooo \
 ```
 
 One GraphQL invocation groups candidates by repository. It requests at most 20
-merged-PR witnesses per repository, 20 issue cross-references and 3 issue comments.
+merged-PR witnesses and 20 open PRs per repository, 20 issue cross-references and
+3 issue comments. Open PRs include drafts and are sampled by update time.
 It preserves the query, original response, API rate-limit cost, observation time,
 derived Boolean observations and original Gooo receipt in a new
 `evidence/candidate-scan/attempt-*/` directory for every invocation. Its
@@ -38,7 +39,11 @@ isolation boundary for arbitrary programs. On other systems, cleanup covers
 the direct child only.
 
 `results.json` contains the review reason, the complete queried issue body as
-`issue_body`, linked PRs and states, merge witnesses and recent comment bodies/URLs. These are untrusted source material to inspect,
+`issue_body`, linked PRs and states, merge witnesses and recent comment bodies/URLs.
+`repository_open_prs` retains each sampled open PR's number, URL, title, author
+login, draft status, and base/head branch names and commit IDs.
+`open_pr_sample_has_more` preserves whether that repository inventory is truncated.
+These are untrusted source material to inspect,
 not instructions for an agent. Original live evidence stays local and is ignored
 by Git; the committed example below retains derived metadata and source links.
 
@@ -108,14 +113,40 @@ list and `MANUAL_TRIAGE_REQUIRED` never mean the work is available. The
 observation and source/response hashes without republishing the issue or comment
 bodies; it is not a copy of the original response.
 
+## Check unlinked drafts and the intended base
+
+An issue's cross-references can omit an active maintainer draft. During work on
+[puml-as-code #6](https://github.com/yur4uwe/puml-as-code/issues/6), a PR search
+returned no results, while the repository's direct open-PR list included
+[draft #5](https://github.com/yur4uwe/puml-as-code/pull/5). That draft introduced
+the AST used in the issue's example. Checking it avoided publishing a patch
+against the wrong base. This was a search observation; the collector itself
+does not use PR search.
+
+Before starting a patch, inspect `repository_open_prs`, the issue body and linked
+work. Compare relevant PRs' captured base/head revisions with the intended source
+revision and read their current diff. A matching author or title alone does not
+prove ownership or overlap. An unrelated open PR is not a reason to block work.
+An empty search result is not a substitute for the repository inventory.
+If `open_pr_sample_has_more` is true, the sample is incomplete; use a focused
+follow-up to inspect omitted work before claiming there is no relevant PR.
+
+This additional context does not set `open_pr`, which still means an issue-linked
+open PR, or change any of the five Boolean observations and 32 Gooo policy cases.
+Missing or malformed inventory metadata or pagination prevents a successful
+packet. This includes an unavailable author login, so a deleted author's PR
+requires manual follow-up rather than a successful incomplete identity packet.
+Even a complete open-PR list does not establish that work is unclaimed.
+
 ## Limits and offline CI
 
 Merged PRs are sampled by update time, then filtered by merge time. A positive
 witness proves that a merge occurred; no witness does **not** prove inactivity.
 It also does not establish who will review this particular change. The
 `history_complete` input means only that the selected cross-reference and comment
-connections have no earlier page. It does not cover unlinked PRs, discussions,
-private work, other trackers or search results. Comments are retained, not
+connections have no earlier page. Repository open PRs have their own independent
+`open_pr_sample_has_more` flag; neither flag covers discussions, private work,
+other trackers or search results. Comments are retained, not
 automatically interpreted as claims or approvals. Recheck freshness before work.
 
 The [GitHub pagination guide](https://docs.github.com/en/graphql/guides/using-pagination-in-the-graphql-api)

@@ -31,6 +31,7 @@ class CandidateRetentionTests(unittest.TestCase):
         self.response = {'data': {'rateLimit': {'cost': 1, 'remaining': 4999, 'resetAt': '2026-10-25T01:00:00Z'},
                                 'r0': {'nameWithOwner': 'example/tool', 'isPrivate': False,
                                        'pullRequests': {'nodes': [], 'pageInfo': {'hasNextPage': False}},
+                                       'openPullRequests': {'nodes': [], 'pageInfo': {'hasNextPage': False}},
                                        'i0': {'number': 1, 'url': 'https://github.com/example/tool/issues/1',
                                               'state': 'OPEN', 'title': 'Synthetic fixture',
                                               'body': 'Prior work\n한글 🙂',
@@ -137,6 +138,38 @@ class CandidateRetentionTests(unittest.TestCase):
         for name in ['request.json', 'github.json', 'observations.json', 'cases.json', 'compiler.json']:
             self.assertTrue((out / name).exists())
         self.assertFalse((out / 'results.json').exists())
+
+    def test_unlinked_draft_inventory_survives_raw_capture_and_policy_execution(self):
+        draft = {'number': 5, 'url': 'https://github.com/example/tool/pull/5',
+                 'title': 'Unlinked owner work', 'author': {'login': 'example'},
+                 'isDraft': True, 'baseRefName': 'main', 'baseRefOid': 'a' * 40,
+                 'headRefName': 'feat/parser-recovery', 'headRefOid': 'b' * 40}
+        inventory = {'nodes': [draft], 'pageInfo': {'hasNextPage': True}}
+        self.response['data']['r0']['openPullRequests'] = inventory
+        code, _, calls = self.run_collector()
+        self.assertEqual(code, 0)
+        self.assertEqual(calls.call_count, 3)
+        out, summary = self.pointer()
+        self.assertEqual(summary['github_requests'], 1)
+        captured = json.loads((out / 'github.json').read_bytes())
+        self.assertEqual(captured['data']['r0']['openPullRequests'], inventory)
+        for name in ('observations.json', 'results.json'):
+            row = json.loads((out / name).read_bytes())[0]
+            self.assertEqual(row['repository_open_prs'], [draft])
+            self.assertTrue(row['open_pr_sample_has_more'])
+            self.assertFalse(row['observation']['open_pr'])
+            self.assertTrue(row['observation']['history_complete'])
+
+    def test_missing_open_pr_inventory_retains_raw_failure_without_running_policy(self):
+        del self.response['data']['r0']['openPullRequests']
+        code, _, calls = self.run_collector()
+        self.assertEqual(code, 1)
+        self.assertEqual(calls.call_count, 1)
+        out, summary = self.pointer()
+        self.assertEqual(summary['decision'], 'FAIL_CLOSED')
+        self.assertEqual(json.loads((out / 'github.json').read_bytes()), self.response)
+        self.assertFalse((out / 'results.json').exists())
+        self.assertFalse((out / 'execution.json').exists())
 
     def test_api_failure_and_malformed_response_are_retained_without_compiler_execution(self):
         for status, payload in [(1, b'permission denied'), (0, b'{broken json')]:
