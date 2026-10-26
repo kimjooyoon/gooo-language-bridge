@@ -63,6 +63,10 @@ def request(candidates):
  pullRequests(first:20,states:MERGED,orderBy:{field:UPDATED_AT,direction:DESC}) {
   nodes { number url mergedAt } pageInfo { hasNextPage }
  }
+ openPullRequests:pullRequests(first:20,states:OPEN,orderBy:{field:UPDATED_AT,direction:DESC}) {
+  nodes { number url title author { login } isDraft baseRefName baseRefOid headRefName headRefOid }
+  pageInfo { hasNextPage }
+ }
 ''' % (r, r, r)
         for i, number in issues:
             definitions.append('$issue%d:Int!' % i)
@@ -102,6 +106,34 @@ def check_pr_identity(row):
         raise ValueError('invalid pull request identity')
 
 
+def open_pr_inventory(repository):
+    connection = repository['openPullRequests']
+    has_more = page(connection, 'hasNextPage')
+    rows = connection['nodes']
+    if len(rows) > 20:
+        raise ValueError('open pull request sample exceeds query bound')
+    seen = set()
+    for pr in rows:
+        check_pr_identity(pr)
+        expected = 'https://github.com/%s/pull/%d' % (repository['nameWithOwner'], pr['number'])
+        if pr['url'].lower() != expected.lower() or pr['number'] in seen:
+            raise ValueError('open pull request repository or identity mismatch')
+        seen.add(pr['number'])
+        if (not isinstance(pr['title'], str) or not pr['title'].strip()
+                or type(pr['isDraft']) is not bool
+                or not isinstance(pr['author'], dict)
+                or not isinstance(pr['author'].get('login'), str)
+                or not pr['author']['login'].strip()):
+            raise ValueError('invalid open pull request metadata')
+        for field in ('baseRefName', 'headRefName'):
+            if not isinstance(pr[field], str) or not pr[field].strip():
+                raise ValueError('invalid open pull request ref name')
+        for field in ('baseRefOid', 'headRefOid'):
+            if not isinstance(pr[field], str) or not re.fullmatch(r'[0-9a-fA-F]{40}', pr[field]):
+                raise ValueError('invalid open pull request revision')
+    return rows, has_more
+
+
 def packets(response, candidates, now):
     if response.get('errors') or not isinstance(response.get('data'), dict):
         raise ValueError('GitHub response is partial or failed')
@@ -116,6 +148,7 @@ def packets(response, candidates, now):
             raise ValueError('only public repository evidence is supported')
         if repository['nameWithOwner'].lower() != repo.lower():
             raise ValueError('repository identity mismatch')
+        open_prs, open_pr_sample_has_more = open_pr_inventory(repository)
         issue = repository['i%d' % i]
         if type(issue['number']) is not int or issue['number'] != int(number) or issue['url'].lower() != ('https://github.com/' + repo + '/issues/' + number).lower():
             raise ValueError('issue identity mismatch')
@@ -156,6 +189,8 @@ def packets(response, candidates, now):
                        'issue_body': issue['body'],
                        'observation': observation, 'expected_review_reason': review(observation),
                        'recent_merge_witnesses': witnesses, 'linked_prs': references,
+                       'repository_open_prs': open_prs,
+                       'open_pr_sample_has_more': open_pr_sample_has_more,
                        'recent_comments': comments['nodes'],
                        'merge_sample_has_more': merge_page_incomplete})
     return result
