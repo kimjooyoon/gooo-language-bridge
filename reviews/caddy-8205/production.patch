@@ -1,0 +1,81 @@
+--- a/modules/caddyhttp/fileserver/staticfiles.go
++++ b/modules/caddyhttp/fileserver/staticfiles.go
+@@ -521,8 +521,8 @@
+ 		defer file.Close()
+ 
+ 		// remember the sidecar's encoding and size, but don't set the
+-		// headers until we can no longer return an error, or they would
+-		// end up on the error response
++		// headers until ServeContent commits a content response, or they
++		// would end up on an error response
+ 		sidecarEncoding = ae
+ 		sidecarSize = compressedInfo.Size()
+ 
+@@ -624,24 +624,19 @@
+ 		}
+ 	}
+ 
+-	// there are no more error returns below this point, so it is now safe
+-	// to describe the precompressed sidecar we are about to serve
+-	if sidecarEncoding != "" {
+-		respHeader.Set("Content-Encoding", sidecarEncoding)
+-
+-		// stdlib won't set Content-Length for non-range requests if Content-Encoding is set.
+-		// see: https://github.com/caddyserver/caddy/issues/7040
+-		// Setting the Range header manually will result in 206 Partial Content.
+-		// see: https://github.com/caddyserver/caddy/issues/7250
+-		if r.Header.Get("Range") == "" {
+-			respHeader.Set("Content-Length", strconv.FormatInt(sidecarSize, 10))
+-		}
+-	}
+-
+ 	// if we do have an override from the previous two parts, then
+ 	// we wrap the response writer to intercept the WriteHeader call
+ 	if statusCodeOverride > 0 {
+ 		w = statusOverrideResponseWriter{ResponseWriter: w, code: statusCodeOverride}
++	}
++	if sidecarEncoding != "" {
++		// Observe ServeContent's status before an override changes it:
++		// precondition failures must not describe the sidecar body.
++		w = precompressedResponseWriter{
++			ResponseWriter: w,
++			encoding:       sidecarEncoding,
++			size:           sidecarSize,
++		}
+ 	}
+ 
+ 	// let the standard library do what it does best; note, however,
+@@ -881,6 +876,33 @@
+ 	return nil
+ }
+ 
++// precompressedResponseWriter applies sidecar headers only when ServeContent
++// commits a content response. In particular, it preserves ServeContent's removal
++// of representation headers for a 304 and does not add them to a 412.
++type precompressedResponseWriter struct {
++	http.ResponseWriter
++	encoding string
++	size     int64
++}
++
++func (wr precompressedResponseWriter) WriteHeader(code int) {
++	if code == http.StatusOK || code == http.StatusPartialContent {
++		h := wr.Header()
++		h.Set("Content-Encoding", wr.encoding)
++		// Preserve ServeContent's single-range or multipart length. A 200
++		// response serves the full sidecar, even when Range was ignored.
++		if code == http.StatusOK {
++			h.Set("Content-Length", strconv.FormatInt(wr.size, 10))
++		}
++	}
++	wr.ResponseWriter.WriteHeader(code)
++}
++
++// Unwrap returns the underlying ResponseWriter for http.ResponseController.
++func (wr precompressedResponseWriter) Unwrap() http.ResponseWriter {
++	return wr.ResponseWriter
++}
++
+ // statusOverrideResponseWriter intercepts WriteHeader calls
+ // to instead write the HTTP status code we want instead
+ // of the one http.ServeContent will use by default (usually 200)

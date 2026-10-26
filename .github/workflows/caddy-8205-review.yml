@@ -1,0 +1,25 @@
+name: Caddy requested sidecar review
+on:
+  push:
+    branches: [evidence/caddy-8205-precompressed-headers]
+    paths:
+      - 'reviews/caddy-8205/run.py'
+      - 'reviews/caddy-8205/production.patch'
+      - 'reviews/caddy-8205/precompressed_review_test.go'
+      - '.github/workflows/caddy-8205-review.yml'
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
+        with:
+          go-version: '1.27.3'
+          cache: false
+      - name: Test requested regression before and after patch
+        run: python3 reviews/caddy-8205/run.py

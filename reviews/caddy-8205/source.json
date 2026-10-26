@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/caddyserver/caddy",
+  "pr": 8205,
+  "source_revision": "ab11ecd6aba5508fa82ac6fff5789d938cffa02c",
+  "original_staticfiles_blob": "25a4af1e4c543280ff933baaca4d741ef3497e85",
+  "original_staticfiles_test_blob": "cf42e658d4ae50376eac51b58c3225e3c55b5142",
+  "maintainer_request": "https://github.com/caddyserver/caddy/pull/8205#discussion_r4255482391",
+  "review_scope": "Optional patch and regression tests for original author; no upstream PR, acceptance, CLA certification or complete CI claim",
+  "agent": "OpenAI Codex (GPT-6)",
+  "sha256": {
+    "production.patch": "9260436d78f72a08815f9d58c8676d72ff2cf3f551a1eede1b46734bca70da22",
+    "precompressed_review_test.go": "405b55823011c3a7e13e4377d34b0fb4c4701589b8d2727bfbd53ed3baf8e01a",
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  }
+}
