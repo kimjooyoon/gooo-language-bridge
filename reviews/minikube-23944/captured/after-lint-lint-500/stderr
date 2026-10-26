@@ -1,0 +1,2 @@
+curl: (22) The requested URL returned error: 500
+make: *** [out/linters/golangci-lint-v9.9.9] Error 22

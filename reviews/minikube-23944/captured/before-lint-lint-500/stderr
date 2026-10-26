@@ -1,0 +1,2 @@
+awk: can't open file out/linters/golangci-lint-9.9.9-checksums.txt
+ source line number 1

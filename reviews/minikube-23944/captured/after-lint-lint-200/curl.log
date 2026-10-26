@@ -1,0 +1,2 @@
+["--fail", "--silent", "--show-error", "--location", "--output", "out/linters/golangci-lint-9.9.9-checksums.txt", "https://github.com/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-checksums.txt"]
+["--fail", "--silent", "--show-error", "--location", "--output", "out/linters/golangci-lint-9.9.9-linux-amd64.tar.gz", "https://github.com/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-linux-amd64.tar.gz"]

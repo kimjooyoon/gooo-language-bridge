@@ -1,0 +1,2 @@
+["--fail", "--location", "--silent", "--show-error", "--output", "/dev/null", "--write-out", "%{url_effective}", "https://github.com/cli/cli/releases/latest"]
+["--fail", "--silent", "--show-error", "--location", "https://github.com/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz", "--output", "/tmp/gh.tar.gz"]

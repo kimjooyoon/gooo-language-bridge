@@ -1,0 +1,6 @@
++ OS=linux
++ ARCH=amd64
++ echo 'Installing latest kubectl for amd64'
+++ curl --fail --silent --show-error --location https://dl.k8s.io/release/stable.txt
+curl: (22) The requested URL returned error: 500
++ KUBECTL_VERSION=

@@ -1,0 +1,16 @@
+fixture status response
+HTTP code 500! Retrying in 2 ..
+fixture status response
+HTTP code 500! Retrying in 10 ..
+fixture status response
+HTTP code 500! Retrying in 50 ..
+fixture status response
+HTTP code 500! Retrying in 250 ..
+fixture status response
+HTTP code 500! Retrying in 1250 ..
+fixture status response
+HTTP code 500! Retrying in 6250 ..
+fixture status response
+HTTP code 500! Retrying in 31250 ..
+fixture status response
+HTTP code 500! Retrying in 156250 ..

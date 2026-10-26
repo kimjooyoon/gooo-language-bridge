@@ -1,0 +1,10 @@
++ OS=linux
++ ARCH=amd64
++ echo 'Installing latest kubectl for amd64'
+++ curl --fail --silent --show-error --location https://dl.k8s.io/release/stable.txt
++ KUBECTL_VERSION=v1.99.0
++ curl --fail --location --remote-name https://dl.k8s.io/release/v1.99.0/bin/linux/amd64/kubectl
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    45  100    45    0     0  54878      0 --:--:-- --:--:-- --:--:-- 45000
++ sudo install ./kubectl /usr/local/bin/kubectl

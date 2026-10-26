@@ -1,0 +1,3 @@
+set GitHub status fixture to fixture-description
+fixture status response
+HTTP code 500! Retrying in 2 ..

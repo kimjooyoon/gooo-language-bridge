@@ -1,0 +1,107 @@
+[
+  {
+    "file": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/conformance_tests.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/build_iso.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/cloud_shell_functional_tests_docker.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/common.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/cron/cleanup_and_reboot_Linux.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/installers/check_install_cni_plugins.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/installers/check_install_docker.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/installers/check_install_gh.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/installers/check_install_golang.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/kicbase_auto_build.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/linux_integration_tests_none.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/minikube_set_pending.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/jenkins/release_update_releases_json.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/prow/common.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/prow/installer/check_install_golang.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/prow/installer/check_install_kubectl.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/prow/integration_none_containerd_linux_x86.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/prow/integration_none_docker_linux_x86.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "hack/update/k8s-lib/bumpk8slib.sh",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "file": "test/stress/stress.sh",
+    "exit_code": 0,
+    "stderr": ""
+  }
+]

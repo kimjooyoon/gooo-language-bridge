@@ -1,0 +1,6 @@
++ CRICTL_VERSION=v1.99.0
++ curl --fail --location https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.99.0/crictl-v1.99.0-linux-amd64.tar.gz --output crictl-v1.99.0-linux-amd64.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    45  100    45    0     0  43062      0 --:--:-- --:--:-- --:--:-- 45000
++ printf continued

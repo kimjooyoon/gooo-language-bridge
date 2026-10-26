@@ -1,0 +1,91 @@
+{
+  "report": "/private/tmp/gooo-minikube-curl-20261027/checks/http-validation-1793041657010533000/report.json",
+  "report_sha256": "41a1a5f220d34b3298e10496af2952a3d31440f4682eceaf7e7d05140ffeb0c4",
+  "harness": "/tmp/gooo-minikube-curl-20261027/checks/verify_http_failures.py",
+  "harness_sha256": "b9bc6613172ff815fade8bd08b74ff37af361ec2e5c6dceec7095b30ef78e261",
+  "base": "34f70057d29a36eae8b8bec815b33ba1599ff80f",
+  "counts": {
+    "before": {
+      "pass": 13,
+      "fail": 18
+    },
+    "after": {
+      "pass": 31,
+      "fail": 0
+    }
+  },
+  "elapsed_seconds": 31.667,
+  "source_files_unchanged": true,
+  "progress_controls": [
+    {
+      "case": "after-single-single-200",
+      "curl_calls": 1,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    },
+    {
+      "case": "after-lookup-lookup-200",
+      "curl_calls": 2,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    },
+    {
+      "case": "after-download-download-200",
+      "curl_calls": 2,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    },
+    {
+      "case": "after-pipeline-single-200",
+      "curl_calls": 1,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    },
+    {
+      "case": "after-smoke_pipeline-single-200",
+      "curl_calls": 1,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    },
+    {
+      "case": "after-rootless_pipeline-single-200",
+      "curl_calls": 1,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    },
+    {
+      "case": "after-lint-lint-200",
+      "curl_calls": 2,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    },
+    {
+      "case": "after-gh_lookup-gh_lookup-200",
+      "curl_calls": 2,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    },
+    {
+      "case": "after-gh_archive-gh_archive-200",
+      "curl_calls": 2,
+      "silent_modes_preserved": true,
+      "silent_calls_show_errors": true
+    }
+  ],
+  "runtime": {
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "curl": "curl 8.7.1 (x86_64-apple-darwin25.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.68.1",
+    "bash": "GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)",
+    "make": "GNU Make 3.81"
+  },
+  "actions_shell_contract": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepsshell",
+  "limits": [
+    "Loopback HTTP only; actual curl/bash/make, captured source fragments.",
+    "No installation, Kubernetes, full CI, real GitHub POST, authentication or real download claim.",
+    "curl URLs redirected to loopback; curl transport timeout/config isolation added by harness.",
+    "sudo and gh-recipe extraction/move commands are inert recorded stubs; go env is a fixed fixture.",
+    "Workflow checks use the source step shell selection and curl line, not an actual hosted Actions runner.",
+    "Existing status-post retry exhaustion remains successful by design."
+  ]
+}

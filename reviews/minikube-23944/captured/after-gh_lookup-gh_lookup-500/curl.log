@@ -1,0 +1,1 @@
+["--fail", "--location", "--silent", "--show-error", "--output", "/dev/null", "--write-out", "%{url_effective}", "https://github.com/cli/cli/releases/latest"]

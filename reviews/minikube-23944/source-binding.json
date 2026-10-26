@@ -1,0 +1,316 @@
+{
+  "schema": "gooo-language-bridge/minikube-http-source-binding/v1",
+  "checked_at": "2026-10-26T19:12:22.861160+00:00",
+  "upstream": "https://github.com/kubernetes/minikube",
+  "need": "https://github.com/kubernetes/minikube/issues/23944",
+  "base": "34f70057d29a36eae8b8bec815b33ba1599ff80f",
+  "candidate": "93654435929c6df7c70d8e8003af659346faa3c9",
+  "candidate_url": "https://github.com/kimjooyoon/minikube/commit/93654435929c6df7c70d8e8003af659346faa3c9",
+  "modified_files": [
+    {
+      "path": ".github/workflows/functional_test.yml",
+      "bytes": 13832,
+      "sha256": "1f1ef24aab7dcf10390609064157c506a022ddfe189a96d2f416937b672a93ec",
+      "base_blob": "4b468c883be8d2a6257115aa0a635bb7220d97fc",
+      "head_blob": "ec3c1eea218911b93c64c5fe7ce7bee6119bd119"
+    },
+    {
+      "path": ".github/workflows/smoke-test.yml",
+      "bytes": 5235,
+      "sha256": "d9dff7dfd61c306ea3cbcdbd611c0985ff4086c54bdd61554c6959308dbdc1a4",
+      "base_blob": "753cbb0e199510648464e2e44ce56f3e9a8df8f8",
+      "head_blob": "fd1c272036a97793d04c07be2817c0519437bcb5"
+    },
+    {
+      "path": ".github/workflows/time-to-k8s-public-chart.yml",
+      "bytes": 2525,
+      "sha256": "429d9cf8ce257c4370084f85ef307f73291de963f42a7564590595e04e8255cb",
+      "base_blob": "17bfb22ac0ea8e2f1fb18b7b1254836e539941eb",
+      "head_blob": "2f3b8e8e859dab183be02323055c3ca80f247149"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 45843,
+      "sha256": "d4b6ce2a8b508e863f6ca3f5c67122a358bcfeb80fe66dce9f47f09fe5756759",
+      "base_blob": "291f8a3c5007485267bcd41df19559530d876792",
+      "head_blob": "5e774ec756ec9e433d67dd6af2f957a921a84664"
+    },
+    {
+      "path": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+      "bytes": 1720,
+      "sha256": "5dba1e81d5296c9a9e73320473192d4ffc649eee50694e3a62a812f283ef810f",
+      "base_blob": "348cd86a965a84937cbfaad77f605da2fbe92fcc",
+      "head_blob": "8cb1f1af1eb4abcf3a4f7a1ad90aeac4b32da998"
+    },
+    {
+      "path": "hack/conformance_tests.sh",
+      "bytes": 3482,
+      "sha256": "ed9b8c9bd3a4fa320f6310ef2d7a948e076cd3cc9d92ee96b0293b152e7af26c",
+      "base_blob": "8bc830ec314bee7f770dea7d21b823e143bddef2",
+      "head_blob": "72c540b63b92183838fa9e3a8ea03722ccaa9ed4"
+    },
+    {
+      "path": "hack/jenkins/build_iso.sh",
+      "bytes": 8688,
+      "sha256": "c37aa00d79722454602d06e952a7e996b504e3d20774dff9495ba29939e4a60d",
+      "base_blob": "8dfeded1f6e51c6f17479e9835556e1fa92f5058",
+      "head_blob": "16ecdfddd273f84ec114c45d32e4cb90e81d0995"
+    },
+    {
+      "path": "hack/jenkins/cloud_shell_functional_tests_docker.sh",
+      "bytes": 2494,
+      "sha256": "a7ad94ba14d9ab179c32708d94db1b08336d73b45cdbb9cfbff744e39cea3de7",
+      "base_blob": "79ed8ba4fb55d0cacc532d9b3459e6338586ea6c",
+      "head_blob": "cf19c93d71802b9131f49fc0b42401311d61cc94"
+    },
+    {
+      "path": "hack/jenkins/common.sh",
+      "bytes": 17399,
+      "sha256": "07f0356aa9f3d9ec5e3850876449fb1bbbf0889e2671cd8df38157004c4b36b2",
+      "base_blob": "18bdd0c2620b1e2d9c975baca411b27fc8955aee",
+      "head_blob": "962a8e4622e2207e3727e805142b74164d38830d"
+    },
+    {
+      "path": "hack/jenkins/cron/cleanup_and_reboot_Linux.sh",
+      "bytes": 4793,
+      "sha256": "25992df2fe22a5a1d4c4496a048ac24b68f789b85405234d82a5397d4f42289a",
+      "base_blob": "8d763a4b01bfceec0378c2192c30f87b6787386c",
+      "head_blob": "123ef67d9fb5476a978bf6aa0d4ffbb98e814bf7"
+    },
+    {
+      "path": "hack/jenkins/installers/check_install_cni_plugins.sh",
+      "bytes": 1084,
+      "sha256": "01664fee804c15d823ec41ab16180cf36afede7959661d1932529b1685a02431",
+      "base_blob": "57e4f0e39ee5a18829ccec491686c608400f3a4b",
+      "head_blob": "b5402093e0c8f8ee00f33150879e1340fd4d7284"
+    },
+    {
+      "path": "hack/jenkins/installers/check_install_docker.sh",
+      "bytes": 1238,
+      "sha256": "f93a17fb58ff163c9d9d18af93dd42cbcf08d2d931bf2751dfb9aeb817918584",
+      "base_blob": "f6cc2849f2ed9906bcf973fcf8a40bddc6e3e36e",
+      "head_blob": "d93e87995089e9523a856dec9e6e2f1805db6fe2"
+    },
+    {
+      "path": "hack/jenkins/installers/check_install_gh.sh",
+      "bytes": 1155,
+      "sha256": "33e6b7c9678c5858801b9c2dbaccd24cacca2a749d56dbe6489886d873626d87",
+      "base_blob": "9cdcb1cd561735e8ac2902335a830d7521dc81a7",
+      "head_blob": "de8602f65b0af64b31b8bb5fcb7d0927f9187dba"
+    },
+    {
+      "path": "hack/jenkins/installers/check_install_golang.sh",
+      "bytes": 2806,
+      "sha256": "e71205a4f6e07e89860e9dec4f29667e2bfd975c8144dd495df4bd63112079b0",
+      "base_blob": "5b03c18cd5ce2489902ae663b95dbe808ef387bf",
+      "head_blob": "7f10062b6d5f8317dadbf5974cd36bc4b68ecdda"
+    },
+    {
+      "path": "hack/jenkins/kicbase_auto_build.sh",
+      "bytes": 5889,
+      "sha256": "7aa185dc46b59e726a7d09bae98c4dd037a97f8f6cb44759c84efb1675d35c9d",
+      "base_blob": "a0174c02fdd754075c74c85f04017404b8600916",
+      "head_blob": "dd963213a26bac72090d0bc4185c8e8f8c55af7a"
+    },
+    {
+      "path": "hack/jenkins/linux_integration_tests_none.sh",
+      "bytes": 4518,
+      "sha256": "0c131111e68fa54bb0ce18c79e535883245784189d46c53165daaa357dfbf34f",
+      "base_blob": "aa81eb51faacd15c2376c451672e0a6eed643b4f",
+      "head_blob": "82375b33636af4121983a26e3ddb6562e1ee580b"
+    },
+    {
+      "path": "hack/jenkins/minikube_set_pending.sh",
+      "bytes": 3128,
+      "sha256": "275ffc9c859b814975d6bf1c374ca27626d8b8ccb48986a4c0c5681ed7d14f94",
+      "base_blob": "9a42f0c257e8d6e389d89d79e7ab803d44edf02d",
+      "head_blob": "4b18155b431bccf8022496b64f01197ce7dc5198"
+    },
+    {
+      "path": "hack/jenkins/release_update_releases_json.sh",
+      "bytes": 4024,
+      "sha256": "417c335a1412bf698b497802f4b15e8928a938f181dab238c53ec2addd1aac56",
+      "base_blob": "55cca7cd051c36872878b733ed02ee5b6d4ca047",
+      "head_blob": "b1d91d85be3f2afcefe252e7faf1f8839095ea3d"
+    },
+    {
+      "path": "hack/prow/common.sh",
+      "bytes": 7825,
+      "sha256": "21a1198d6c1e11d7a65595029fdbf4ae3b2fa963987ac297620c0ebd6d503627",
+      "base_blob": "befcf63d44d330abe512e229084040446b06023c",
+      "head_blob": "2fb90b6432bc993ceb887c51f3e599c2ba878a3a"
+    },
+    {
+      "path": "hack/prow/installer/check_install_golang.sh",
+      "bytes": 2251,
+      "sha256": "d9173e48b4eb542a3895407b782f4c6759fc23d9470e4a8da14c75cbebcd0fce",
+      "base_blob": "27f9d49180e180505b516b8f4c74d4e08cacf5ba",
+      "head_blob": "665b170d158aa150af785143c2adffd0933a18e8"
+    },
+    {
+      "path": "hack/prow/installer/check_install_kubectl.sh",
+      "bytes": 961,
+      "sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "base_blob": "03a67baf3a1812eef52b2452856292a1b33ea321",
+      "head_blob": "be9499ee96a27f7005417d94fb9dd45e6d3f2488"
+    },
+    {
+      "path": "hack/prow/integration_none_containerd_linux_x86.sh",
+      "bytes": 2251,
+      "sha256": "6a271f1c0832b3b707a8acd15072a3570d5717c30f96e2f6d9f73a28ef6cae38",
+      "base_blob": "52f5c87805b58209b35d5c2897b323e7eb30d2ce",
+      "head_blob": "c96df8376fd448cd9085c2610b45d9593be377f0"
+    },
+    {
+      "path": "hack/prow/integration_none_docker_linux_x86.sh",
+      "bytes": 3442,
+      "sha256": "e6863db3793400cce14c3a5efb161d5432cc05d1da9f507e0bd986aedd6ff3dc",
+      "base_blob": "533e32d02c28f9af6266786c3d1e97b7757861bf",
+      "head_blob": "1b140fa8f844c6f3effa5aa918a1d797c43b8bbe"
+    },
+    {
+      "path": "hack/prow/prow.mk",
+      "bytes": 4785,
+      "sha256": "46fb380f50a470a6a4e0babcd1f819e6afe09703a481c5936b48a6173da40e81",
+      "base_blob": "9d3e85558bce582fbc5674c2efedd678b8135bc3",
+      "head_blob": "7b5618fbb93bec51ebb8140a59ad9c9e0d5898f7"
+    },
+    {
+      "path": "hack/update/k8s-lib/bumpk8slib.sh",
+      "bytes": 1279,
+      "sha256": "0df7e0e143545f3e1c12a14b32e9977664933645c8f9a071c0c252d1b0e17d6c",
+      "base_blob": "dac21dfb276f9c658c538aeae4efa50a794c53f8",
+      "head_blob": "969691b547e282a481840a8b63eaacda8f73b973"
+    },
+    {
+      "path": "test/stress/stress.sh",
+      "bytes": 4141,
+      "sha256": "85c96a8bff049f919eb7c91ec873f16107935727d4e9f896807c0f564c41b113",
+      "base_blob": "7a23497f6a37c0a5ecf55e9de561c7a64691293d",
+      "head_blob": "26e8b8db1f5dd8fb2c43c9c9d15b40ecd285fb4d"
+    }
+  ],
+  "captured_http_sources": [
+    {
+      "path": ".github/workflows/functional_test.yml",
+      "before": {
+        "sha256": "6aac2c9af5287a2d9723c3520ec3a1b11be61cc20c78d87c9376ce284e48a099",
+        "bytes": 13688,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "1f1ef24aab7dcf10390609064157c506a022ddfe189a96d2f416937b672a93ec",
+        "bytes": 13832,
+        "matches_git_revision": true
+      }
+    },
+    {
+      "path": ".github/workflows/smoke-test.yml",
+      "before": {
+        "sha256": "cadb5e0567ed1b66985b36918f2297ac1884f9a4a7da8f9d87b5672cf89b148d",
+        "bytes": 5215,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "d9dff7dfd61c306ea3cbcdbd611c0985ff4086c54bdd61554c6959308dbdc1a4",
+        "bytes": 5235,
+        "matches_git_revision": true
+      }
+    },
+    {
+      "path": "Makefile",
+      "before": {
+        "sha256": "aeb5159f07ab0fabbeb8c2fe077cb18a17098f94d83d7cd762af4a90def466b4",
+        "bytes": 45750,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "d4b6ce2a8b508e863f6ca3f5c67122a358bcfeb80fe66dce9f47f09fe5756759",
+        "bytes": 45843,
+        "matches_git_revision": true
+      }
+    },
+    {
+      "path": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+      "before": {
+        "sha256": "5e32092653813c9cb36e13cb641d50def4f3f5443f74515920835b9fc1302654",
+        "bytes": 1659,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "5dba1e81d5296c9a9e73320473192d4ffc649eee50694e3a62a812f283ef810f",
+        "bytes": 1720,
+        "matches_git_revision": true
+      }
+    },
+    {
+      "path": "hack/jenkins/common.sh",
+      "before": {
+        "sha256": "159b03047bea982217db7c1ba8cd93c6b218b426e1a0a5f6b6c9f981c709ac72",
+        "bytes": 17198,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "07f0356aa9f3d9ec5e3850876449fb1bbbf0889e2671cd8df38157004c4b36b2",
+        "bytes": 17399,
+        "matches_git_revision": true
+      }
+    },
+    {
+      "path": "hack/jenkins/minikube_set_pending.sh",
+      "before": {
+        "sha256": "427d47c125f5335834d5817017f0b9e96fa9a6c9ad5a059076c3ae883cfeaddf",
+        "bytes": 3068,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "275ffc9c859b814975d6bf1c374ca27626d8b8ccb48986a4c0c5681ed7d14f94",
+        "bytes": 3128,
+        "matches_git_revision": true
+      }
+    },
+    {
+      "path": "hack/prow/installer/check_install_kubectl.sh",
+      "before": {
+        "sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+        "bytes": 862,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+        "bytes": 961,
+        "matches_git_revision": true
+      }
+    },
+    {
+      "path": "hack/prow/integration_none_containerd_linux_x86.sh",
+      "before": {
+        "sha256": "45af36a2e9d6cbbd8d4578a733a9c022dc502f119a00759331f5fdf41a8fe998",
+        "bytes": 2236,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "6a271f1c0832b3b707a8acd15072a3570d5717c30f96e2f6d9f73a28ef6cae38",
+        "bytes": 2251,
+        "matches_git_revision": true
+      }
+    },
+    {
+      "path": "hack/prow/prow.mk",
+      "before": {
+        "sha256": "61755f0ba281001e8386682ad72dc1cb33adfdb2e57f7114a1d64aa666882ffa",
+        "bytes": 4733,
+        "matches_git_revision": true
+      },
+      "after": {
+        "sha256": "46fb380f50a470a6a4e0babcd1f819e6afe09703a481c5936b48a6173da40e81",
+        "bytes": 4785,
+        "matches_git_revision": true
+      }
+    }
+  ],
+  "all_62_fragment_hashes_match": true,
+  "executed_harness_sha256": "b9bc6613172ff815fade8bd08b74ff37af361ec2e5c6dceec7095b30ef78e261",
+  "raw_report_sha256": "41a1a5f220d34b3298e10496af2952a3d31440f4682eceaf7e7d05140ffeb0c4",
+  "upstream_acceptance_claimed": false
+}

@@ -1,0 +1,2 @@
+["-Ls", "-o", "/dev/null", "-w", "%{url_effective}", "https://github.com/cli/cli/releases/latest"]
+["-sSL", "https://github.com/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz", "-o", "/tmp/gh.tar.gz"]

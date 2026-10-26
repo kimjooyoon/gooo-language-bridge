@@ -1,0 +1,2 @@
+["-sL", "https://dl.k8s.io/release/stable.txt"]
+["-LO", "https://dl.k8s.io/release/v1.99.0/bin/linux/amd64/kubectl"]

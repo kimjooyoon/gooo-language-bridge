@@ -1,0 +1,1491 @@
+{
+  "base": "34f70057d29a36eae8b8bec815b33ba1599ff80f",
+  "run": "/private/tmp/gooo-minikube-curl-20261027/checks/http-validation-1793041657010533000",
+  "elapsed_seconds": 31.667,
+  "source_files_unchanged_during_run": true,
+  "limits": [
+    "Loopback HTTP only; actual curl/bash/make, captured source fragments.",
+    "No installation, Kubernetes, full CI, real GitHub POST, authentication or real download claim.",
+    "curl URLs redirected to loopback; curl transport timeout/config isolation added by harness.",
+    "sudo and gh-recipe extraction/move commands are inert recorded stubs; go env is a fixed fixture.",
+    "Workflow checks use the source step shell selection and curl line, not an actual hosted Actions runner.",
+    "Existing status-post retry exhaustion remains successful by design."
+  ],
+  "results": [
+    {
+      "label": "before-single-single-200",
+      "version": "before",
+      "source": "hack/prow/integration_none_containerd_linux_x86.sh",
+      "source_sha256": "45af36a2e9d6cbbd8d4578a733a9c022dc502f119a00759331f5fdf41a8fe998",
+      "fragment_sha256": "d52f93983d802a27cc9e3465f55d11ce4059e63c1c2b1e4ea657f963b7668672",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/kubernetes-sigs/cri-tools/releases/download/v1.99.0/crictl-v1.99.0-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-single-single-404",
+      "version": "before",
+      "source": "hack/prow/integration_none_containerd_linux_x86.sh",
+      "source_sha256": "45af36a2e9d6cbbd8d4578a733a9c022dc502f119a00759331f5fdf41a8fe998",
+      "fragment_sha256": "d52f93983d802a27cc9e3465f55d11ce4059e63c1c2b1e4ea657f963b7668672",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/kubernetes-sigs/cri-tools/releases/download/v1.99.0/crictl-v1.99.0-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-single-single-500",
+      "version": "before",
+      "source": "hack/prow/integration_none_containerd_linux_x86.sh",
+      "source_sha256": "45af36a2e9d6cbbd8d4578a733a9c022dc502f119a00759331f5fdf41a8fe998",
+      "fragment_sha256": "d52f93983d802a27cc9e3465f55d11ce4059e63c1c2b1e4ea657f963b7668672",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/kubernetes-sigs/cri-tools/releases/download/v1.99.0/crictl-v1.99.0-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-lookup-lookup-200",
+      "version": "before",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "fragment_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": true,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-lookup-lookup-404",
+      "version": "before",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "fragment_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": true,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-lookup-lookup-500",
+      "version": "before",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "fragment_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": true,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-download-download-200",
+      "version": "before",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "fragment_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": true,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-download-download-404",
+      "version": "before",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "fragment_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": true,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-download-download-500",
+      "version": "before",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "fragment_sha256": "2c8d2d7fcf992759aa6948b66ad59e4b4baafa7f41132e5620d2bafa064eebd7",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": true,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-pipeline-single-200",
+      "version": "before",
+      "source": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+      "source_sha256": "5e32092653813c9cb36e13cb641d50def4f3f5443f74515920835b9fc1302654",
+      "fragment_sha256": "81ac7cb023cd4e87d6dcddb5dc8a0b949e6a70648973612ffd8fe510520796ad",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/rancher/k3d/main/install.sh"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-pipeline-single-404",
+      "version": "before",
+      "source": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+      "source_sha256": "5e32092653813c9cb36e13cb641d50def4f3f5443f74515920835b9fc1302654",
+      "fragment_sha256": "81ac7cb023cd4e87d6dcddb5dc8a0b949e6a70648973612ffd8fe510520796ad",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/rancher/k3d/main/install.sh"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-pipeline-single-500",
+      "version": "before",
+      "source": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+      "source_sha256": "5e32092653813c9cb36e13cb641d50def4f3f5443f74515920835b9fc1302654",
+      "fragment_sha256": "81ac7cb023cd4e87d6dcddb5dc8a0b949e6a70648973612ffd8fe510520796ad",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/rancher/k3d/main/install.sh"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-smoke_pipeline-single-200",
+      "version": "before",
+      "source": ".github/workflows/smoke-test.yml",
+      "source_sha256": "cadb5e0567ed1b66985b36918f2297ac1884f9a4a7da8f9d87b5672cf89b148d",
+      "fragment_sha256": "1dfa1eec984ffb19374fdbc2c13164a99bdc8cf0c4fbff3d44c629f3a080f815",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/minikube-machine/vmnet-helper/releases/latest/download/install.sh"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-smoke_pipeline-single-404",
+      "version": "before",
+      "source": ".github/workflows/smoke-test.yml",
+      "source_sha256": "cadb5e0567ed1b66985b36918f2297ac1884f9a4a7da8f9d87b5672cf89b148d",
+      "fragment_sha256": "1dfa1eec984ffb19374fdbc2c13164a99bdc8cf0c4fbff3d44c629f3a080f815",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/minikube-machine/vmnet-helper/releases/latest/download/install.sh"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-smoke_pipeline-single-500",
+      "version": "before",
+      "source": ".github/workflows/smoke-test.yml",
+      "source_sha256": "cadb5e0567ed1b66985b36918f2297ac1884f9a4a7da8f9d87b5672cf89b148d",
+      "fragment_sha256": "1dfa1eec984ffb19374fdbc2c13164a99bdc8cf0c4fbff3d44c629f3a080f815",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/minikube-machine/vmnet-helper/releases/latest/download/install.sh"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-rootless_pipeline-single-200",
+      "version": "before",
+      "source": ".github/workflows/functional_test.yml",
+      "source_sha256": "6aac2c9af5287a2d9723c3520ec3a1b11be61cc20c78d87c9376ce284e48a099",
+      "fragment_sha256": "9d1d63f81d5fe7345834e445b4375c641d20b090df7de8266a40a58c7b317d31",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-rootless_pipeline-single-404",
+      "version": "before",
+      "source": ".github/workflows/functional_test.yml",
+      "source_sha256": "6aac2c9af5287a2d9723c3520ec3a1b11be61cc20c78d87c9376ce284e48a099",
+      "fragment_sha256": "9d1d63f81d5fe7345834e445b4375c641d20b090df7de8266a40a58c7b317d31",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-rootless_pipeline-single-500",
+      "version": "before",
+      "source": ".github/workflows/functional_test.yml",
+      "source_sha256": "6aac2c9af5287a2d9723c3520ec3a1b11be61cc20c78d87c9376ce284e48a099",
+      "fragment_sha256": "9d1d63f81d5fe7345834e445b4375c641d20b090df7de8266a40a58c7b317d31",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-lint-lint-200",
+      "version": "before",
+      "source": "Makefile",
+      "source_sha256": "aeb5159f07ab0fabbeb8c2fe077cb18a17098f94d83d7cd762af4a90def466b4",
+      "fragment_sha256": "c895bb11f2babffc70f8c35405a6beabb8e5f2fcf2088b72387d0fcc2734851f",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-checksums.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": true,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-lint-lint-404",
+      "version": "before",
+      "source": "Makefile",
+      "source_sha256": "aeb5159f07ab0fabbeb8c2fe077cb18a17098f94d83d7cd762af4a90def466b4",
+      "fragment_sha256": "c895bb11f2babffc70f8c35405a6beabb8e5f2fcf2088b72387d0fcc2734851f",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-checksums.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": true,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-lint-lint-500",
+      "version": "before",
+      "source": "Makefile",
+      "source_sha256": "aeb5159f07ab0fabbeb8c2fe077cb18a17098f94d83d7cd762af4a90def466b4",
+      "fragment_sha256": "c895bb11f2babffc70f8c35405a6beabb8e5f2fcf2088b72387d0fcc2734851f",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-checksums.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": true,
+      "extraction_or_move_called": false,
+      "contract_pass": false
+    },
+    {
+      "label": "before-gh_lookup-gh_lookup-200",
+      "version": "before",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "61755f0ba281001e8386682ad72dc1cb33adfdb2e57f7114a1d64aa666882ffa",
+      "fragment_sha256": "947e5eab80ad91d48c9d90825f77998df754708b1841e4f6d93765ab76761f97",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": true,
+      "contract_pass": true
+    },
+    {
+      "label": "before-gh_lookup-gh_lookup-404",
+      "version": "before",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "61755f0ba281001e8386682ad72dc1cb33adfdb2e57f7114a1d64aa666882ffa",
+      "fragment_sha256": "947e5eab80ad91d48c9d90825f77998df754708b1841e4f6d93765ab76761f97",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": true,
+      "contract_pass": false
+    },
+    {
+      "label": "before-gh_lookup-gh_lookup-500",
+      "version": "before",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "61755f0ba281001e8386682ad72dc1cb33adfdb2e57f7114a1d64aa666882ffa",
+      "fragment_sha256": "947e5eab80ad91d48c9d90825f77998df754708b1841e4f6d93765ab76761f97",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": true,
+      "contract_pass": false
+    },
+    {
+      "label": "before-gh_archive-gh_archive-200",
+      "version": "before",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "61755f0ba281001e8386682ad72dc1cb33adfdb2e57f7114a1d64aa666882ffa",
+      "fragment_sha256": "947e5eab80ad91d48c9d90825f77998df754708b1841e4f6d93765ab76761f97",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": true,
+      "contract_pass": true
+    },
+    {
+      "label": "before-gh_archive-gh_archive-404",
+      "version": "before",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "61755f0ba281001e8386682ad72dc1cb33adfdb2e57f7114a1d64aa666882ffa",
+      "fragment_sha256": "947e5eab80ad91d48c9d90825f77998df754708b1841e4f6d93765ab76761f97",
+      "exit_code": 0,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": true,
+      "contract_pass": false
+    },
+    {
+      "label": "before-gh_archive-gh_archive-500",
+      "version": "before",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "61755f0ba281001e8386682ad72dc1cb33adfdb2e57f7114a1d64aa666882ffa",
+      "fragment_sha256": "947e5eab80ad91d48c9d90825f77998df754708b1841e4f6d93765ab76761f97",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": true,
+      "contract_pass": false
+    },
+    {
+      "label": "before-retry_common-retry-500",
+      "version": "before",
+      "source": "hack/jenkins/common.sh",
+      "source_sha256": "159b03047bea982217db7c1ba8cd93c6b218b426e1a0a5f6b6c9f981c709ac72",
+      "fragment_sha256": "c473157c6b629feb46642e615bad1e757d75e3c7a62ee8ad01d5552f1458353e",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-retry_common-retry_exhausted-500",
+      "version": "before",
+      "source": "hack/jenkins/common.sh",
+      "source_sha256": "159b03047bea982217db7c1ba8cd93c6b218b426e1a0a5f6b6c9f981c709ac72",
+      "fragment_sha256": "c473157c6b629feb46642e615bad1e757d75e3c7a62ee8ad01d5552f1458353e",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-retry_pending-retry-500",
+      "version": "before",
+      "source": "hack/jenkins/minikube_set_pending.sh",
+      "source_sha256": "427d47c125f5335834d5817017f0b9e96fa9a6c9ad5a059076c3ae883cfeaddf",
+      "fragment_sha256": "ca0be6a6d8f604afc9b7e55139d1c49d3cd20b860f86798a022a70e2fe75230f",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "before-retry_pending-retry_exhausted-500",
+      "version": "before",
+      "source": "hack/jenkins/minikube_set_pending.sh",
+      "source_sha256": "427d47c125f5335834d5817017f0b9e96fa9a6c9ad5a059076c3ae883cfeaddf",
+      "fragment_sha256": "ca0be6a6d8f604afc9b7e55139d1c49d3cd20b860f86798a022a70e2fe75230f",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-single-single-200",
+      "version": "after",
+      "source": "hack/prow/integration_none_containerd_linux_x86.sh",
+      "source_sha256": "6a271f1c0832b3b707a8acd15072a3570d5717c30f96e2f6d9f73a28ef6cae38",
+      "fragment_sha256": "889e859b789ec7f8ff4f7f81bae1890fff1d34c7bb1f921714a4e8c56e309345",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/kubernetes-sigs/cri-tools/releases/download/v1.99.0/crictl-v1.99.0-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-single-single-404",
+      "version": "after",
+      "source": "hack/prow/integration_none_containerd_linux_x86.sh",
+      "source_sha256": "6a271f1c0832b3b707a8acd15072a3570d5717c30f96e2f6d9f73a28ef6cae38",
+      "fragment_sha256": "889e859b789ec7f8ff4f7f81bae1890fff1d34c7bb1f921714a4e8c56e309345",
+      "exit_code": 22,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/kubernetes-sigs/cri-tools/releases/download/v1.99.0/crictl-v1.99.0-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-single-single-500",
+      "version": "after",
+      "source": "hack/prow/integration_none_containerd_linux_x86.sh",
+      "source_sha256": "6a271f1c0832b3b707a8acd15072a3570d5717c30f96e2f6d9f73a28ef6cae38",
+      "fragment_sha256": "889e859b789ec7f8ff4f7f81bae1890fff1d34c7bb1f921714a4e8c56e309345",
+      "exit_code": 22,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/kubernetes-sigs/cri-tools/releases/download/v1.99.0/crictl-v1.99.0-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-lookup-lookup-200",
+      "version": "after",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "fragment_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": true,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-lookup-lookup-404",
+      "version": "after",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "fragment_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "exit_code": 22,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-lookup-lookup-500",
+      "version": "after",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "fragment_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "exit_code": 22,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-download-download-200",
+      "version": "after",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "fragment_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": true,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-download-download-404",
+      "version": "after",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "fragment_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "exit_code": 22,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-download-download-500",
+      "version": "after",
+      "source": "hack/prow/installer/check_install_kubectl.sh",
+      "source_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "fragment_sha256": "89330d2540b7e9a50c7479dabae2b4ff06f8eb93f9ece7c360a1aaf3984e870a",
+      "exit_code": 22,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/release/stable.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/release/v1.99.0/bin/linux/amd64/kubectl"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-pipeline-single-200",
+      "version": "after",
+      "source": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+      "source_sha256": "5dba1e81d5296c9a9e73320473192d4ffc649eee50694e3a62a812f283ef810f",
+      "fragment_sha256": "be18c366c97cfc046be897998872fcdbf9b0227e2732f65df6856486fc5665ce",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/rancher/k3d/main/install.sh"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-pipeline-single-404",
+      "version": "after",
+      "source": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+      "source_sha256": "5dba1e81d5296c9a9e73320473192d4ffc649eee50694e3a62a812f283ef810f",
+      "fragment_sha256": "be18c366c97cfc046be897998872fcdbf9b0227e2732f65df6856486fc5665ce",
+      "exit_code": 22,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/rancher/k3d/main/install.sh"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-pipeline-single-500",
+      "version": "after",
+      "source": "hack/benchmark/time-to-k8s/time-to-k8s.sh",
+      "source_sha256": "5dba1e81d5296c9a9e73320473192d4ffc649eee50694e3a62a812f283ef810f",
+      "fragment_sha256": "be18c366c97cfc046be897998872fcdbf9b0227e2732f65df6856486fc5665ce",
+      "exit_code": 22,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/rancher/k3d/main/install.sh"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-smoke_pipeline-single-200",
+      "version": "after",
+      "source": ".github/workflows/smoke-test.yml",
+      "source_sha256": "d9dff7dfd61c306ea3cbcdbd611c0985ff4086c54bdd61554c6959308dbdc1a4",
+      "fragment_sha256": "c21b0ed1fc3b82e7440040a36353c1cef2aef5473e93f40084d4a84ce3935e5e",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/minikube-machine/vmnet-helper/releases/latest/download/install.sh"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-smoke_pipeline-single-404",
+      "version": "after",
+      "source": ".github/workflows/smoke-test.yml",
+      "source_sha256": "d9dff7dfd61c306ea3cbcdbd611c0985ff4086c54bdd61554c6959308dbdc1a4",
+      "fragment_sha256": "c21b0ed1fc3b82e7440040a36353c1cef2aef5473e93f40084d4a84ce3935e5e",
+      "exit_code": 22,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/minikube-machine/vmnet-helper/releases/latest/download/install.sh"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-smoke_pipeline-single-500",
+      "version": "after",
+      "source": ".github/workflows/smoke-test.yml",
+      "source_sha256": "d9dff7dfd61c306ea3cbcdbd611c0985ff4086c54bdd61554c6959308dbdc1a4",
+      "fragment_sha256": "c21b0ed1fc3b82e7440040a36353c1cef2aef5473e93f40084d4a84ce3935e5e",
+      "exit_code": 22,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/minikube-machine/vmnet-helper/releases/latest/download/install.sh"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-rootless_pipeline-single-200",
+      "version": "after",
+      "source": ".github/workflows/functional_test.yml",
+      "source_sha256": "1f1ef24aab7dcf10390609064157c506a022ddfe189a96d2f416937b672a93ec",
+      "fragment_sha256": "f56d6448d286626ee628e4fc7ea12ae39af47f0c8c816ddc04d054ac35ff50e4",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/"
+        }
+      ],
+      "installed": true,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-rootless_pipeline-single-404",
+      "version": "after",
+      "source": ".github/workflows/functional_test.yml",
+      "source_sha256": "1f1ef24aab7dcf10390609064157c506a022ddfe189a96d2f416937b672a93ec",
+      "fragment_sha256": "f56d6448d286626ee628e4fc7ea12ae39af47f0c8c816ddc04d054ac35ff50e4",
+      "exit_code": 22,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-rootless_pipeline-single-500",
+      "version": "after",
+      "source": ".github/workflows/functional_test.yml",
+      "source_sha256": "1f1ef24aab7dcf10390609064157c506a022ddfe189a96d2f416937b672a93ec",
+      "fragment_sha256": "f56d6448d286626ee628e4fc7ea12ae39af47f0c8c816ddc04d054ac35ff50e4",
+      "exit_code": 22,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-lint-lint-200",
+      "version": "after",
+      "source": "Makefile",
+      "source_sha256": "d4b6ce2a8b508e863f6ca3f5c67122a358bcfeb80fe66dce9f47f09fe5756759",
+      "fragment_sha256": "7569a5e6c5fa1554b3d1c554f7f28da5d3044e84dbe6c1574110469fc4eafbf5",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-checksums.txt"
+        },
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-linux-amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": true,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-lint-lint-404",
+      "version": "after",
+      "source": "Makefile",
+      "source_sha256": "d4b6ce2a8b508e863f6ca3f5c67122a358bcfeb80fe66dce9f47f09fe5756759",
+      "fragment_sha256": "7569a5e6c5fa1554b3d1c554f7f28da5d3044e84dbe6c1574110469fc4eafbf5",
+      "exit_code": 2,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-checksums.txt"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-lint-lint-500",
+      "version": "after",
+      "source": "Makefile",
+      "source_sha256": "d4b6ce2a8b508e863f6ca3f5c67122a358bcfeb80fe66dce9f47f09fe5756759",
+      "fragment_sha256": "7569a5e6c5fa1554b3d1c554f7f28da5d3044e84dbe6c1574110469fc4eafbf5",
+      "exit_code": 2,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/golangci/golangci-lint/releases/download/v9.9.9/golangci-lint-9.9.9-checksums.txt"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-gh_lookup-gh_lookup-200",
+      "version": "after",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "46fb380f50a470a6a4e0babcd1f819e6afe09703a481c5936b48a6173da40e81",
+      "fragment_sha256": "837465c4bd43c4cf81d397b9c1240e65153c35320d541b041cd68b3753ac9621",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": true,
+      "contract_pass": true
+    },
+    {
+      "label": "after-gh_lookup-gh_lookup-404",
+      "version": "after",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "46fb380f50a470a6a4e0babcd1f819e6afe09703a481c5936b48a6173da40e81",
+      "fragment_sha256": "837465c4bd43c4cf81d397b9c1240e65153c35320d541b041cd68b3753ac9621",
+      "exit_code": 2,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-gh_lookup-gh_lookup-500",
+      "version": "after",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "46fb380f50a470a6a4e0babcd1f819e6afe09703a481c5936b48a6173da40e81",
+      "fragment_sha256": "837465c4bd43c4cf81d397b9c1240e65153c35320d541b041cd68b3753ac9621",
+      "exit_code": 2,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-gh_archive-gh_archive-200",
+      "version": "after",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "46fb380f50a470a6a4e0babcd1f819e6afe09703a481c5936b48a6173da40e81",
+      "fragment_sha256": "837465c4bd43c4cf81d397b9c1240e65153c35320d541b041cd68b3753ac9621",
+      "exit_code": 0,
+      "http_status": 200,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": true,
+      "contract_pass": true
+    },
+    {
+      "label": "after-gh_archive-gh_archive-404",
+      "version": "after",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "46fb380f50a470a6a4e0babcd1f819e6afe09703a481c5936b48a6173da40e81",
+      "fragment_sha256": "837465c4bd43c4cf81d397b9c1240e65153c35320d541b041cd68b3753ac9621",
+      "exit_code": 2,
+      "http_status": 404,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-gh_archive-gh_archive-500",
+      "version": "after",
+      "source": "hack/prow/prow.mk",
+      "source_sha256": "46fb380f50a470a6a4e0babcd1f819e6afe09703a481c5936b48a6173da40e81",
+      "fragment_sha256": "837465c4bd43c4cf81d397b9c1240e65153c35320d541b041cd68b3753ac9621",
+      "exit_code": 2,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/latest"
+        },
+        {
+          "method": "GET",
+          "path": "/cli/cli/releases/download/vlatest/gh_latest_linux_amd64.tar.gz"
+        }
+      ],
+      "installed": false,
+      "continued": false,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-retry_common-retry-500",
+      "version": "after",
+      "source": "hack/jenkins/common.sh",
+      "source_sha256": "07f0356aa9f3d9ec5e3850876449fb1bbbf0889e2671cd8df38157004c4b36b2",
+      "fragment_sha256": "d7715b3b02ab445d00a373e26467190b54b7c5f8e0586581bdda8e416d4e8f4b",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-retry_common-retry_exhausted-500",
+      "version": "after",
+      "source": "hack/jenkins/common.sh",
+      "source_sha256": "07f0356aa9f3d9ec5e3850876449fb1bbbf0889e2671cd8df38157004c4b36b2",
+      "fragment_sha256": "d7715b3b02ab445d00a373e26467190b54b7c5f8e0586581bdda8e416d4e8f4b",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-retry_pending-retry-500",
+      "version": "after",
+      "source": "hack/jenkins/minikube_set_pending.sh",
+      "source_sha256": "275ffc9c859b814975d6bf1c374ca27626d8b8ccb48986a4c0c5681ed7d14f94",
+      "fragment_sha256": "cf2b4a9065f8e732343d9c95709fcb3b518b0848ac0f4c120392c3450c324946",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    },
+    {
+      "label": "after-retry_pending-retry_exhausted-500",
+      "version": "after",
+      "source": "hack/jenkins/minikube_set_pending.sh",
+      "source_sha256": "275ffc9c859b814975d6bf1c374ca27626d8b8ccb48986a4c0c5681ed7d14f94",
+      "fragment_sha256": "cf2b4a9065f8e732343d9c95709fcb3b518b0848ac0f4c120392c3450c324946",
+      "exit_code": 0,
+      "http_status": 500,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        },
+        {
+          "method": "POST",
+          "path": "/repos/kubernetes/minikube/statuses/deadbeef"
+        }
+      ],
+      "installed": false,
+      "continued": true,
+      "installed_linter": false,
+      "extraction_or_move_called": false,
+      "contract_pass": true
+    }
+  ],
+  "counts": {
+    "before": {
+      "pass": 13,
+      "fail": 18
+    },
+    "after": {
+      "pass": 31,
+      "fail": 0
+    }
+  },
+  "decision": "PASS"
+}

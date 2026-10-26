@@ -1,0 +1,9 @@
+set GitHub status fixture to fixture-description
+HTTP code 500999! Retrying in 2 ..
+HTTP code 500999! Retrying in 10 ..
+HTTP code 500999! Retrying in 50 ..
+HTTP code 500999! Retrying in 250 ..
+HTTP code 500999! Retrying in 1250 ..
+HTTP code 500999! Retrying in 6250 ..
+HTTP code 500999! Retrying in 31250 ..
+HTTP code 500999! Retrying in 156250 ..
