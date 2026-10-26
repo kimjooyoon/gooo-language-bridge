@@ -30,7 +30,24 @@ logs. It downloads Caddy dependencies only in the disposable hosted runner.
 
 The branch-specific workflow uses one standard Linux job with a 12-minute limit.
 It does not upload caches or artifacts; raw command logs are retained in the job
-log. Execution results will be recorded after the job finishes.
+log. [Execution 40371660532](https://github.com/kimjooyoon/gooo-language-bridge/actions/runs/40371660532)
+succeeded on Go 1.27.3, Linux/amd64. The experiment took 96.508 seconds:
+
+- Original source plus the new tests: the two If-Match cases failed with leaked
+  sidecar encoding/length; the ignored-Range case failed with the missing
+  recorder Content-Length. The other 10 required cases passed.
+- Patched source: the full fileserver package passed in `-short` mode; all 13
+  required cases passed. There were 65 passing test/subtest terminal events,
+  zero failures and zero skips. Parent events are included in that count.
+
+See the [summary](results/summary.json), [original JSON events](results/before.stdout),
+[patched JSON events](results/after.stdout), and [execution identity](execution.json).
+All captured file hashes and the executed patch/test bytes were checked on
+retrieval. The workflow ran execution commit
+`6b543c2e576f59c8165e45f6207b3e85e24214f4`; this later documentation/results commit
+adds the receipt without changing the executed source or triggering another job.
+The run covers this package in short mode, without a race detector, cross-platform
+matrix or live HTTP-server exercise.
 
 This is AI-generated review support prepared by OpenAI Codex (GPT-6), not an
 upstream pull request or a claim of maintainer acceptance, operator code review,

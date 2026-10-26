@@ -1,0 +1,361 @@
+{
+  "after": {
+    "all_terminal_counts": {
+      "pass": 65
+    },
+    "event_count": 309,
+    "failed_tests": [],
+    "package_terminal": "pass",
+    "required_leaf_count": 13,
+    "required_leaves": {
+      "TestPrecompressedErrorResponseHeaders/invalid_status_code": "pass",
+      "TestPrecompressedErrorResponseHeaders/method_not_allowed": "pass",
+      "TestPrecompressedErrorResponseHeaders/unreadable_etag_file_for_sidecar": "pass",
+      "TestPrecompressedRangeResponse/full_response": "pass",
+      "TestPrecompressedRangeResponse/range_response": "pass",
+      "TestPrecompressedServeContentResponseHeaders/HEAD": "pass",
+      "TestPrecompressedServeContentResponseHeaders/matching_If-None-Match": "pass",
+      "TestPrecompressedServeContentResponseHeaders/matching_If-None-Match_overridden_to_200": "pass",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Match": "pass",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Match_overridden_to_200": "pass",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Range": "pass",
+      "TestPrecompressedServeContentResponseHeaders/multipart_range": "pass",
+      "TestPrecompressedServeContentResponseHeaders/unsatisfiable_range": "pass"
+    }
+  },
+  "before": {
+    "all_terminal_counts": {
+      "fail": 4,
+      "pass": 12
+    },
+    "event_count": 99,
+    "failed_tests": [
+      "TestPrecompressedServeContentResponseHeaders",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Match",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Match_overridden_to_200",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Range"
+    ],
+    "package_terminal": "fail",
+    "required_leaf_count": 13,
+    "required_leaves": {
+      "TestPrecompressedErrorResponseHeaders/invalid_status_code": "pass",
+      "TestPrecompressedErrorResponseHeaders/method_not_allowed": "pass",
+      "TestPrecompressedErrorResponseHeaders/unreadable_etag_file_for_sidecar": "pass",
+      "TestPrecompressedRangeResponse/full_response": "pass",
+      "TestPrecompressedRangeResponse/range_response": "pass",
+      "TestPrecompressedServeContentResponseHeaders/HEAD": "pass",
+      "TestPrecompressedServeContentResponseHeaders/matching_If-None-Match": "pass",
+      "TestPrecompressedServeContentResponseHeaders/matching_If-None-Match_overridden_to_200": "pass",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Match": "fail",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Match_overridden_to_200": "fail",
+      "TestPrecompressedServeContentResponseHeaders/mismatched_If-Range": "fail",
+      "TestPrecompressedServeContentResponseHeaders/multipart_range": "pass",
+      "TestPrecompressedServeContentResponseHeaders/unsatisfiable_range": "pass"
+    }
+  },
+  "decision": "PASS",
+  "elapsed_seconds": 96.508,
+  "environment": {
+    "GOFLAGS": "-mod=readonly",
+    "GOMAXPROCS": "2",
+    "GOMEMLIMIT": "512MiB",
+    "GOTOOLCHAIN": "local",
+    "GOWORK": "off"
+  },
+  "files_sha256": {
+    "after-staticfiles.go": "c1432d85d4fe5cc4e0bc345c071d4b85b2aef9ab5a2a082bb64521a6451390f5",
+    "after.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "after.stdout": "933050dcb488a74d56e0f7e749d7e28285e689a86d8c3a01cc8dca420fc49c74",
+    "before-staticfiles.go": "2be72d2e7ee273c46dc38365c4900724c0b6c3a83eae6a732004b7227258a18a",
+    "before.stderr": "2ebf7af39fb5593a5e21c1c5da138eff81ada9fbd1a09fae240e2b91d7960ab8",
+    "before.stdout": "1f3eef8411379309451032ad51c8b027626a98a5d4cd8f1988b99b87d9f0b3e0",
+    "git-checkout.stderr": "5b88a2077297d68acd80fbf4b166937dd67877130c3b4d2b43ba2fd1c0183217",
+    "git-checkout.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git-fetch.stderr": "285476d3011b1345230e5066cf5025a115caa061449bb5ddaf6efd3b8044cb3a",
+    "git-fetch.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git-fetched.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git-fetched.stdout": "9e4124ac10dcf926a740affc94ecc9a5c970202424d62ff5a826c111c3262798",
+    "git-head.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git-head.stdout": "9e4124ac10dcf926a740affc94ecc9a5c970202424d62ff5a826c111c3262798",
+    "git-init.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git-init.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git-source-blob.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git-source-blob.stdout": "c14557c52828baf0932eeda3b920dfadc3ea680991dba98319e43841989328e7",
+    "git-worktree-blob.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git-worktree-blob.stdout": "c14557c52828baf0932eeda3b920dfadc3ea680991dba98319e43841989328e7",
+    "go-identity.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "go-identity.stdout": "c304fd9e7db4b763305ab5665277977dc5f658878c83fd3bedffe59b7e605fde",
+    "go-version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "go-version.stdout": "5707bf75dd54b4fdd5ac209444d48c9c4179ebf8510f80e2f7293dfbedc1012b",
+    "patch-apply.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "patch-apply.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "patch-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "patch-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "patch-scope.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "patch-scope.stdout": "e75368a6db80b3b37f996bfa6804029a79096f7a4dacf17925095ac219b3c632",
+    "precompressed_review_test.go": "405b55823011c3a7e13e4377d34b0fb4c4701589b8d2727bfbd53ed3baf8e01a",
+    "production.patch": "9260436d78f72a08815f9d58c8676d72ff2cf3f551a1eede1b46734bca70da22",
+    "run-step-helper.py": "774baaeb3776da7ebc27ccdf0824d8f507840aed801bf5e1aec46b3bb2c31146",
+    "runner.py": "7b19fac24fb463867fbc15ea64163b684a717b022f33ba147689ceaf46d1ba05"
+  },
+  "github": {
+    "GITHUB_JOB": "review",
+    "GITHUB_REF": "refs/heads/evidence/caddy-8205-precompressed-headers",
+    "GITHUB_REPOSITORY": "kimjooyoon/gooo-language-bridge",
+    "GITHUB_RUN_ATTEMPT": "1",
+    "GITHUB_RUN_ID": "40371660532",
+    "GITHUB_SHA": "6b543c2e576f59c8165e45f6207b3e85e24214f4",
+    "GITHUB_WORKFLOW": "Caddy requested sidecar review",
+    "RUNNER_ARCH": "X64",
+    "RUNNER_OS": "Linux"
+  },
+  "go_identity": {
+    "GOARCH": "amd64",
+    "GOCACHE": "/home/runner/.cache/go-build",
+    "GOFLAGS": "-mod=readonly",
+    "GOMODCACHE": "/home/runner/go/pkg/mod",
+    "GOOS": "linux",
+    "GOPROXY": "https://proxy.golang.org,direct",
+    "GOROOT": "/opt/hostedtoolcache/go/1.27.3/x64",
+    "GOSUMDB": "sum.golang.org",
+    "GOTOOLCHAIN": "local",
+    "GOVERSION": "go1.27.3",
+    "GOWORK": "off"
+  },
+  "go_version": "go version go1.27.3 linux/amd64",
+  "limits": {
+    "before_seconds": 480,
+    "per_stream_bytes": 8388608,
+    "per_test_binary_seconds": 60,
+    "total_seconds": 630
+  },
+  "packet_sha256": {
+    "precompressed_review_test.go": "405b55823011c3a7e13e4377d34b0fb4c4701589b8d2727bfbd53ed3baf8e01a",
+    "production.patch": "9260436d78f72a08815f9d58c8676d72ff2cf3f551a1eede1b46734bca70da22",
+    "run-step-helper.py": "774baaeb3776da7ebc27ccdf0824d8f507840aed801bf5e1aec46b3bb2c31146",
+    "runner.py": "7b19fac24fb463867fbc15ea64163b684a717b022f33ba147689ceaf46d1ba05"
+  },
+  "patched_source_sha256": "c1432d85d4fe5cc4e0bc345c071d4b85b2aef9ab5a2a082bb64521a6451390f5",
+  "runtime": {
+    "machine": "x86_64",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "release": "7.0.0-1017-azure",
+    "system": "Linux"
+  },
+  "schema": "gooo-language-bridge/caddy-8205-review/v1",
+  "scope": "native fileserver package review support; no upstream acceptance claim",
+  "source": {
+    "checked_revision": "ab11ecd6aba5508fa82ac6fff5789d938cffa02c",
+    "fetched_revision": "ab11ecd6aba5508fa82ac6fff5789d938cffa02c",
+    "module_sha256": {
+      "go.mod": "11dc25302f5f96afbc2f6fed77013a12ad19c1cdc1fcabdea349351d219e759f",
+      "go.sum": "3c6598493f4b5b39f8abde2805fba5c5eef50fb62f496c18c9509e995e48fdf2"
+    },
+    "observed_git_blob": "25a4af1e4c543280ff933baaca4d741ef3497e85",
+    "original_git_blob": "25a4af1e4c543280ff933baaca4d741ef3497e85",
+    "path": "modules/caddyhttp/fileserver/staticfiles.go",
+    "repository": "https://github.com/caddyserver/caddy.git",
+    "revision": "ab11ecd6aba5508fa82ac6fff5789d938cffa02c",
+    "sha256": "2be72d2e7ee273c46dc38365c4900724c0b6c3a83eae6a732004b7227258a18a"
+  },
+  "started_utc": "2026-10-26T17:46:08.160699+00:00",
+  "steps": [
+    {
+      "command": [
+        "go",
+        "version"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel",
+      "elapsed_seconds": 0.003,
+      "exit_code": 0,
+      "label": "go-version",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "go",
+        "env",
+        "-json",
+        "GOVERSION",
+        "GOOS",
+        "GOARCH",
+        "GOROOT",
+        "GOTOOLCHAIN",
+        "GOMODCACHE",
+        "GOCACHE",
+        "GOPROXY",
+        "GOSUMDB",
+        "GOFLAGS",
+        "GOWORK"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel",
+      "elapsed_seconds": 0.003,
+      "exit_code": 0,
+      "label": "go-identity",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "git",
+        "init",
+        "--object-format=sha1",
+        "-q",
+        "source"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel",
+      "elapsed_seconds": 0.003,
+      "exit_code": 0,
+      "label": "git-init",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "git",
+        "fetch",
+        "--depth=1",
+        "https://github.com/caddyserver/caddy.git",
+        "ab11ecd6aba5508fa82ac6fff5789d938cffa02c"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.984,
+      "exit_code": 0,
+      "label": "git-fetch",
+      "timeout_seconds": 120
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "FETCH_HEAD"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.001,
+      "exit_code": 0,
+      "label": "git-fetched",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "git",
+        "checkout",
+        "--detach",
+        "ab11ecd6aba5508fa82ac6fff5789d938cffa02c"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.05,
+      "exit_code": 0,
+      "label": "git-checkout",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.001,
+      "exit_code": 0,
+      "label": "git-head",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD:modules/caddyhttp/fileserver/staticfiles.go"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.001,
+      "exit_code": 0,
+      "label": "git-source-blob",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "git",
+        "hash-object",
+        "modules/caddyhttp/fileserver/staticfiles.go"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.001,
+      "exit_code": 0,
+      "label": "git-worktree-blob",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--numstat",
+        "/tmp/gooo-caddy8205-l4y8nbel/evidence/production.patch"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.001,
+      "exit_code": 0,
+      "label": "patch-scope",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-p=2",
+        "-json",
+        "-count=1",
+        "-timeout=60s",
+        "-short",
+        "-run",
+        "^(TestPrecompressedErrorResponseHeaders|TestPrecompressedRangeResponse|TestPrecompressedServeContentResponseHeaders)$",
+        "./modules/caddyhttp/fileserver"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 92.554,
+      "exit_code": 1,
+      "label": "before",
+      "timeout_seconds": 480
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/tmp/gooo-caddy8205-l4y8nbel/evidence/production.patch"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.003,
+      "exit_code": 0,
+      "label": "patch-check",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "/tmp/gooo-caddy8205-l4y8nbel/evidence/production.patch"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 0.001,
+      "exit_code": 0,
+      "label": "patch-apply",
+      "timeout_seconds": 60
+    },
+    {
+      "command": [
+        "go",
+        "test",
+        "-p=2",
+        "-json",
+        "-count=1",
+        "-timeout=60s",
+        "-short",
+        "./modules/caddyhttp/fileserver"
+      ],
+      "cwd": "/tmp/gooo-caddy8205-l4y8nbel/source",
+      "elapsed_seconds": 2.866,
+      "exit_code": 0,
+      "label": "after",
+      "timeout_seconds": 526.359
+    }
+  ]
+}

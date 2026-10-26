@@ -1,0 +1,13 @@
+{
+  "workflow_run": "https://github.com/kimjooyoon/gooo-language-bridge/actions/runs/40371660532",
+  "run_id": 40371660532,
+  "job_id": 121743700740,
+  "attempt": 1,
+  "conclusion": "success",
+  "execution_commit": "6b543c2e576f59c8165e45f6207b3e85e24214f4",
+  "experiment_seconds": 96.508,
+  "scope": "Go1.27.3 linux/amd64; original focused precompressed tests; patched full fileserver package in -short mode; no race flag or full Caddy matrix",
+  "recorded_files": 35,
+  "all_captured_file_hashes_verified": true,
+  "source_and_test_bytes_match_execution_commit": true
+}

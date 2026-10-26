@@ -1,0 +1,13 @@
+{
+	"GOARCH": "amd64",
+	"GOCACHE": "/home/runner/.cache/go-build",
+	"GOFLAGS": "-mod=readonly",
+	"GOMODCACHE": "/home/runner/go/pkg/mod",
+	"GOOS": "linux",
+	"GOPROXY": "https://proxy.golang.org,direct",
+	"GOROOT": "/opt/hostedtoolcache/go/1.27.3/x64",
+	"GOSUMDB": "sum.golang.org",
+	"GOTOOLCHAIN": "local",
+	"GOVERSION": "go1.27.3",
+	"GOWORK": "off"
+}
