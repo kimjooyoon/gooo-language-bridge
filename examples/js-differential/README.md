@@ -27,13 +27,23 @@ python3 tools/compare_js.py \
   --out evidence/my-normalize-report
 ```
 
-Use a fresh output directory; existing directories are refused. This example
-reproduces the [reported Goja normalization boundary](https://github.com/dop251/goja/issues/820):
+Use a fresh output directory; existing directories are refused. Both commits
+above predate the repair. This historical example reproduces the
+[reported Goja normalization boundary](https://github.com/dop251/goja/issues/820):
 24 cases, 12 head differences from Node, all also present in the base. It exits
 **1**, intentionally. It does not fix the bug. Original Node/Goja snapshot bytes,
 stdout/stderr for every step, source revision/tree, module files and license,
 runtime identities, observer binary hashes and file digests remain in the report.
 The observer template and the actual rendered Go source are both retained.
+
+[Goja #825](https://github.com/dop251/goja/pull/825) merged on October 26, 2026,
+preserving lone UTF-16 surrogates during normalization. Its
+[accepted source and regression tests](https://github.com/dop251/goja/commit/6b6a90e519465e9b51198b64bff8aedc2cfd9b1e)
+preserve `0xD800` in `"\ud800".normalize().charCodeAt(0)` instead of replacing
+it with `0xFFFD`. Inspect UTF-16 units inside JavaScript before exporting a Go
+string, which can lose this distinction. The command above intentionally keeps
+its pre-fix pins and expected exit 1; its saved results do not describe the
+merged revision or establish which published releases include the repair.
 
 ## Choose an engine
 
