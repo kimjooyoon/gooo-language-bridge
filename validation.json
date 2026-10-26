@@ -1,0 +1,17 @@
+{
+  "validated_at": "2026-10-26T14:27:10.672428+00:00",
+  "passed": true,
+  "observation_sha256": "f39a357ede3ed79aad6ed9ea07ed9e8383c1f8057f3399d511b3cf7428107af7",
+  "validator_sha256": "621abcfa5554f8ed9cec2a1b32434c5a7d41a4fd5a15081c324cf96dae1eec5b",
+  "checks": [
+    "122 tracked source files unchanged",
+    "observer, injected copy, supervisor and binary unchanged",
+    "all 14 runtime/build/version raw log hashes match",
+    "four controls match expectations",
+    "cycle started, never returned before deadline, SIGQUIT stack reaches resolve",
+    "all subprocess groups closed",
+    "no baseline or inline-cycle execution"
+  ],
+  "native_calls_total_seconds": 4.141543,
+  "interpretation": "cycle exit 2 is supervisor-triggered SIGQUIT, not a returned library error; deadline measured from subprocess start"
+}

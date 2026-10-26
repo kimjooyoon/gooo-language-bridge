@@ -1,0 +1,47 @@
+{
+  "revision": "ad54769aba4d63f437e1df88bd9bc16072fd00e7",
+  "steps": [
+    {
+      "label": "init",
+      "argv": [
+        "git",
+        "init",
+        "--bare",
+        "/tmp/gooo-toml1137-pointer-cycle-20261025/repo.git"
+      ],
+      "exit": 0,
+      "seconds": 0.015
+    },
+    {
+      "label": "fetch",
+      "argv": [
+        "git",
+        "--git-dir=/tmp/gooo-toml1137-pointer-cycle-20261025/repo.git",
+        "fetch",
+        "--depth=1",
+        "--no-tags",
+        "https://github.com/pelletier/go-toml.git",
+        "ad54769aba4d63f437e1df88bd9bc16072fd00e7:refs/review/pr1137"
+      ],
+      "exit": 0,
+      "seconds": 0.515
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "--git-dir=/tmp/gooo-toml1137-pointer-cycle-20261025/repo.git",
+        "worktree",
+        "add",
+        "--detach",
+        "/tmp/gooo-toml1137-pointer-cycle-20261025/source",
+        "refs/review/pr1137"
+      ],
+      "exit": 0,
+      "seconds": 0.025
+    }
+  ],
+  "base_not_executed": true,
+  "inline_cycle_not_executed": true,
+  "at": "2026-10-25T15:41:49.607548+00:00"
+}
