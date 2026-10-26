@@ -153,12 +153,11 @@ def run_step(label, command, cwd, env, out, steps, timeout=120):
                     error = label + ' output exceeds 8 MiB'
                 if time.monotonic() - started > timeout:
                     error = label + ' timed out'
-                if error:
-                    kill_tree(process)
-                if process.poll() is not None:
+                if error or process.poll() is not None:
                     break
         finally:
-            if process.poll() is None:
+            # The leader can exit while descendants still hold the output files.
+            if os.name == 'posix' or process.poll() is None:
                 kill_tree(process)
         record.update(exit_code=process.returncode, elapsed_seconds=round(time.monotonic() - started, 3))
         if error:

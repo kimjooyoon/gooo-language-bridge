@@ -118,9 +118,11 @@ its normal ECMAScript runtime. Supply trusted corpuses: time/output limits are
 not a security sandbox. Scripts are limited to 1 MiB, each output stream to
 8 MiB (monitored while running), execution to 1..60 seconds and individual build/
 fetch steps to 120 seconds. Oversized output can exceed the threshold between
-monitor checks before the process is stopped. Owned processes are stopped on a
-timeout or interruption. macOS and Linux are the native validation environments;
-the Windows task-tree cleanup path is implemented but not validated here.
+monitor checks before the process is stopped. On macOS and Linux, each step
+stops its owned process group before reading captured output, even when the
+leader has already exited. This also covers timeouts and interruptions. The
+Windows task-tree cleanup path runs for a still-running leader and has not been
+validated here.
 
 ## Review an unmerged head
 
