@@ -57,7 +57,7 @@ class CandidateRetentionTests(unittest.TestCase):
     def run_collector(self, process=None, extra=None):
         stdout = io.StringIO()
         with patch.object(collector, 'ROOT', self.root), patch.object(collector, 'BRIDGE', self.bridge), \
-                patch.object(collector.subprocess, 'run', side_effect=process or self.process) as calls, \
+                patch.object(collector, '_run_bounded', side_effect=process or self.process) as calls, \
                 redirect_stdout(stdout):
             code = collector.main(['--gooo', str(self.binary)] + (extra or ['--candidate', 'example/tool#1']))
         return code, json.loads(stdout.getvalue()), calls

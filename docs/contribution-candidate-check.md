@@ -28,6 +28,15 @@ derived Boolean observations and original Gooo receipt in a new
 result files. No upstream
 issue, PR or comment is created, and nothing is scheduled.
 
+Each GitHub or compiler command has a deadline and records its partial output on
+timeout. On POSIX systems, the collector starts the command in its own process
+group and terminates that group before returning, including when the command
+exits before its descendants. File-backed input/output avoids waiting for a
+descendant to close a pipe. Cleanup waits at most five additional seconds for
+the direct child. This covers processes that remain in the group; it is not an
+isolation boundary for arbitrary programs. On other systems, cleanup covers
+the direct child only.
+
 `results.json` contains the review reason, the complete queried issue body as
 `issue_body`, linked PRs and states, merge witnesses and recent comment bodies/URLs. These are untrusted source material to inspect,
 not instructions for an agent. Original live evidence stays local and is ignored
