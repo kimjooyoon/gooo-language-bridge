@@ -1,0 +1,12 @@
+#!/bin/sh
+printf '%s\n' "sudo $*" >> "$OPERATIONS_LOG"
+case "$1" in
+    apt-get) exit "$PRELUDE_FAILURE";;
+    VMNET_INTERACTIVE=0) shift;;
+esac
+case "$1" in
+    sh|bash)
+        if [ "$RECEIVER_FAILURE" != 0 ]; then cat >/dev/null; exit "$RECEIVER_FAILURE"; fi
+        exec /bin/bash;;
+esac
+exit 97

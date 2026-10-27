@@ -1,0 +1,8 @@
+{
+  "case_capture_hashes_verified": 110,
+  "original_cases": 10,
+  "patched_cases": 10,
+  "other_24_source_entries_exact": true,
+  "execution_report_hash": "a24fbf03a7107da88cff19b715253c3aacda325db8dcf8633dbf4ffc39997b09",
+  "harness_hash": "3d5a7e2d41a31f0c7e921b9ef227560de9d997de0cd8129fd448d90cce9680d6"
+}

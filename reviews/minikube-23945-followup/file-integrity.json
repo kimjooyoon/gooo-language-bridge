@@ -1,0 +1,913 @@
+{
+  "schema": "gooo/captured-file-integrity/v1",
+  "files": {
+    "LICENSE.upstream": {
+      "sha256": "d37370a858c97dfbb12d3157ee36f8cbfe9a41a24f00a1f0e4b20e0a76e17842",
+      "bytes": 11374
+    },
+    "README.md": {
+      "sha256": "dc222d1a286151ea10344e67e60e6095b03839361a793d560e25875accfe4af1",
+      "bytes": 3808
+    },
+    "root-validation-audit.json": {
+      "sha256": "60e7dafbabac736982af4694969108fe144633d5953e551ef2372b6e67d64b35",
+      "bytes": 311
+    },
+    "run.py": {
+      "sha256": "190938cfe86a51ee201645c2601e0e4f926d286f1ed158b379a85183b7c0c1f4",
+      "bytes": 2884
+    },
+    "tested-source.json": {
+      "sha256": "4935797b83c241e55c407237fc0d0d43d1635cfff751cdfeeb9e6da44e7026d6",
+      "bytes": 5850
+    },
+    "validation/after-rootless-http-200/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-rootless-http-200/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-rootless-http-200/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-http-200/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-http-200/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-rootless-http-200/continued": {
+      "sha256": "0dec6069d55174d6223c08b49a7cfc291aefc5cd366d7c8f7b0606325e92e6ea",
+      "bytes": 9
+    },
+    "validation/after-rootless-http-200/curl.jsonl": {
+      "sha256": "e87e0514b85d431bd9ae0ee25100144a58d6956f84be20d40839c795c183f48f",
+      "bytes": 51
+    },
+    "validation/after-rootless-http-200/installed": {
+      "sha256": "a51a6c19a1ffc7416827e89adf20749d23ad42452c396cf7e627409f2896922c",
+      "bytes": 9
+    },
+    "validation/after-rootless-http-200/operations.log": {
+      "sha256": "efda1700ad8db091800d842246dbd400a81a1456e94189476bbd48e422226364",
+      "bytes": 111
+    },
+    "validation/after-rootless-http-200/run.sh": {
+      "sha256": "32a953f03f902eac84528476d333b1675f54152c403f603ad954619b6453e1f9",
+      "bytes": 208
+    },
+    "validation/after-rootless-http-200/stderr": {
+      "sha256": "c065fd9ace9ab66f819ab3781c8fbd5bebdf15982f66fbfb0d1e383a56d4490f",
+      "bytes": 317
+    },
+    "validation/after-rootless-http-200/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-rootless-http-404/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-rootless-http-404/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-rootless-http-404/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-http-404/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-http-404/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-rootless-http-404/curl.jsonl": {
+      "sha256": "e87e0514b85d431bd9ae0ee25100144a58d6956f84be20d40839c795c183f48f",
+      "bytes": 51
+    },
+    "validation/after-rootless-http-404/operations.log": {
+      "sha256": "a9106dda5d3a5a70d727da27052de2bb51091db28429da9bf4200835b7bd83be",
+      "bytes": 42
+    },
+    "validation/after-rootless-http-404/run.sh": {
+      "sha256": "32a953f03f902eac84528476d333b1675f54152c403f603ad954619b6453e1f9",
+      "bytes": 208
+    },
+    "validation/after-rootless-http-404/stderr": {
+      "sha256": "bc63f8f6dab583ccbc3450ed284c6016f5232dbae12766eafc56a7dc7af4fd35",
+      "bytes": 366
+    },
+    "validation/after-rootless-http-404/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-rootless-http-500/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-rootless-http-500/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-rootless-http-500/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-http-500/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-http-500/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-rootless-http-500/curl.jsonl": {
+      "sha256": "e87e0514b85d431bd9ae0ee25100144a58d6956f84be20d40839c795c183f48f",
+      "bytes": 51
+    },
+    "validation/after-rootless-http-500/operations.log": {
+      "sha256": "a9106dda5d3a5a70d727da27052de2bb51091db28429da9bf4200835b7bd83be",
+      "bytes": 42
+    },
+    "validation/after-rootless-http-500/run.sh": {
+      "sha256": "32a953f03f902eac84528476d333b1675f54152c403f603ad954619b6453e1f9",
+      "bytes": 208
+    },
+    "validation/after-rootless-http-500/stderr": {
+      "sha256": "4427d2630a137a36a5e1089f8cb138e736fed443f56a6782ae1934412c7b9fc9",
+      "bytes": 366
+    },
+    "validation/after-rootless-http-500/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-rootless-prelude-failure/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-rootless-prelude-failure/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-rootless-prelude-failure/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-prelude-failure/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-prelude-failure/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-rootless-prelude-failure/operations.log": {
+      "sha256": "27f7e0a8e576640668578a7a7d1dfbe26c07606b0f674018f69ac12894683acf",
+      "bytes": 34
+    },
+    "validation/after-rootless-prelude-failure/run.sh": {
+      "sha256": "32a953f03f902eac84528476d333b1675f54152c403f603ad954619b6453e1f9",
+      "bytes": 208
+    },
+    "validation/after-rootless-prelude-failure/stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-rootless-prelude-failure/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-rootless-receiver-failure/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-rootless-receiver-failure/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-rootless-receiver-failure/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-receiver-failure/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-rootless-receiver-failure/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-rootless-receiver-failure/curl.jsonl": {
+      "sha256": "e87e0514b85d431bd9ae0ee25100144a58d6956f84be20d40839c795c183f48f",
+      "bytes": 51
+    },
+    "validation/after-rootless-receiver-failure/operations.log": {
+      "sha256": "a9106dda5d3a5a70d727da27052de2bb51091db28429da9bf4200835b7bd83be",
+      "bytes": 42
+    },
+    "validation/after-rootless-receiver-failure/run.sh": {
+      "sha256": "32a953f03f902eac84528476d333b1675f54152c403f603ad954619b6453e1f9",
+      "bytes": 208
+    },
+    "validation/after-rootless-receiver-failure/stderr": {
+      "sha256": "9944683ebe4a3c5d34dcd8523afc55d0358b3dcbb9d4f144c542257cd46d2580",
+      "bytes": 317
+    },
+    "validation/after-rootless-receiver-failure/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-rootless-step.txt": {
+      "sha256": "d0f9272dc4c9c7c080f3c48a47445378994a83ccfdb43b62978e421d20fb9827",
+      "bytes": 343
+    },
+    "validation/after-smoke-http-200/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-smoke-http-200/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-smoke-http-200/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-http-200/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-http-200/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-smoke-http-200/continued": {
+      "sha256": "0dec6069d55174d6223c08b49a7cfc291aefc5cd366d7c8f7b0606325e92e6ea",
+      "bytes": 9
+    },
+    "validation/after-smoke-http-200/curl.jsonl": {
+      "sha256": "a9a2b35b2d26f06573bf9fc8d6d32f021cb9f7ba4893e74bb1431586298a1077",
+      "bytes": 141
+    },
+    "validation/after-smoke-http-200/installed": {
+      "sha256": "a51a6c19a1ffc7416827e89adf20749d23ad42452c396cf7e627409f2896922c",
+      "bytes": 9
+    },
+    "validation/after-smoke-http-200/operations.log": {
+      "sha256": "4ab45b4db0dc09a27b660cc8d0e530cc8c487ff4bd0a5a2a3c2a7a4bd1fdf58c",
+      "bytes": 49
+    },
+    "validation/after-smoke-http-200/run.sh": {
+      "sha256": "71cd86407c7bbe1ac72285299405373dc51d4030087e20deca686c01a18146e9",
+      "bytes": 230
+    },
+    "validation/after-smoke-http-200/stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-smoke-http-200/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-smoke-http-404/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-smoke-http-404/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-smoke-http-404/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-http-404/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-http-404/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-smoke-http-404/curl.jsonl": {
+      "sha256": "a9a2b35b2d26f06573bf9fc8d6d32f021cb9f7ba4893e74bb1431586298a1077",
+      "bytes": 141
+    },
+    "validation/after-smoke-http-404/operations.log": {
+      "sha256": "4ab45b4db0dc09a27b660cc8d0e530cc8c487ff4bd0a5a2a3c2a7a4bd1fdf58c",
+      "bytes": 49
+    },
+    "validation/after-smoke-http-404/run.sh": {
+      "sha256": "71cd86407c7bbe1ac72285299405373dc51d4030087e20deca686c01a18146e9",
+      "bytes": 230
+    },
+    "validation/after-smoke-http-404/stderr": {
+      "sha256": "0fb219efe96c7b0a4962325763ebbe3324456de8ca7b7d1e71142d92a6d8eab2",
+      "bytes": 49
+    },
+    "validation/after-smoke-http-404/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-smoke-http-500/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-smoke-http-500/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-smoke-http-500/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-http-500/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-http-500/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-smoke-http-500/curl.jsonl": {
+      "sha256": "a9a2b35b2d26f06573bf9fc8d6d32f021cb9f7ba4893e74bb1431586298a1077",
+      "bytes": 141
+    },
+    "validation/after-smoke-http-500/operations.log": {
+      "sha256": "4ab45b4db0dc09a27b660cc8d0e530cc8c487ff4bd0a5a2a3c2a7a4bd1fdf58c",
+      "bytes": 49
+    },
+    "validation/after-smoke-http-500/run.sh": {
+      "sha256": "71cd86407c7bbe1ac72285299405373dc51d4030087e20deca686c01a18146e9",
+      "bytes": 230
+    },
+    "validation/after-smoke-http-500/stderr": {
+      "sha256": "791af8bf7f783dc792c7e0c6f7e33a003a645617f014bf217a030a01ebdb7bf2",
+      "bytes": 49
+    },
+    "validation/after-smoke-http-500/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-smoke-prelude-failure/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-smoke-prelude-failure/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-smoke-prelude-failure/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-prelude-failure/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-prelude-failure/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-smoke-prelude-failure/operations.log": {
+      "sha256": "87d89ee5b272c36b727791e3e197162a1c3f81c5dd9be9ccbc18ccff9daa68a1",
+      "bytes": 19
+    },
+    "validation/after-smoke-prelude-failure/run.sh": {
+      "sha256": "71cd86407c7bbe1ac72285299405373dc51d4030087e20deca686c01a18146e9",
+      "bytes": 230
+    },
+    "validation/after-smoke-prelude-failure/stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-smoke-prelude-failure/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-smoke-receiver-failure/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/after-smoke-receiver-failure/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/after-smoke-receiver-failure/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-receiver-failure/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/after-smoke-receiver-failure/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/after-smoke-receiver-failure/curl.jsonl": {
+      "sha256": "a9a2b35b2d26f06573bf9fc8d6d32f021cb9f7ba4893e74bb1431586298a1077",
+      "bytes": 141
+    },
+    "validation/after-smoke-receiver-failure/operations.log": {
+      "sha256": "4ab45b4db0dc09a27b660cc8d0e530cc8c487ff4bd0a5a2a3c2a7a4bd1fdf58c",
+      "bytes": 49
+    },
+    "validation/after-smoke-receiver-failure/run.sh": {
+      "sha256": "71cd86407c7bbe1ac72285299405373dc51d4030087e20deca686c01a18146e9",
+      "bytes": 230
+    },
+    "validation/after-smoke-receiver-failure/stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-smoke-receiver-failure/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/after-smoke-step.txt": {
+      "sha256": "fbef94d5d601d67edf82df82f50045cfcf4f5e217dcf8ccd4bd56b9f3621e667",
+      "bytes": 352
+    },
+    "validation/before-rootless-http-200/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-rootless-http-200/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-rootless-http-200/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-http-200/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-http-200/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-rootless-http-200/continued": {
+      "sha256": "0dec6069d55174d6223c08b49a7cfc291aefc5cd366d7c8f7b0606325e92e6ea",
+      "bytes": 9
+    },
+    "validation/before-rootless-http-200/curl.jsonl": {
+      "sha256": "de8d38c257f3d33f9e444b22da1537776a27fc57b345e9dc56d2ebd6d169be93",
+      "bytes": 27
+    },
+    "validation/before-rootless-http-200/installed": {
+      "sha256": "a51a6c19a1ffc7416827e89adf20749d23ad42452c396cf7e627409f2896922c",
+      "bytes": 9
+    },
+    "validation/before-rootless-http-200/operations.log": {
+      "sha256": "efda1700ad8db091800d842246dbd400a81a1456e94189476bbd48e422226364",
+      "bytes": 111
+    },
+    "validation/before-rootless-http-200/run.sh": {
+      "sha256": "da9620f8a1acfc6f919bc78dbd6f876e95d3700d67d05c1d894d387f2c76f1ef",
+      "bytes": 171
+    },
+    "validation/before-rootless-http-200/stderr": {
+      "sha256": "281bb953d9b5ea0368a54d8936d33a842e873261cb05949e6e9f4f0b763841f8",
+      "bytes": 317
+    },
+    "validation/before-rootless-http-200/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-rootless-http-404/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-rootless-http-404/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-rootless-http-404/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-http-404/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-http-404/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-rootless-http-404/continued": {
+      "sha256": "0dec6069d55174d6223c08b49a7cfc291aefc5cd366d7c8f7b0606325e92e6ea",
+      "bytes": 9
+    },
+    "validation/before-rootless-http-404/curl.jsonl": {
+      "sha256": "de8d38c257f3d33f9e444b22da1537776a27fc57b345e9dc56d2ebd6d169be93",
+      "bytes": 27
+    },
+    "validation/before-rootless-http-404/installed": {
+      "sha256": "a51a6c19a1ffc7416827e89adf20749d23ad42452c396cf7e627409f2896922c",
+      "bytes": 9
+    },
+    "validation/before-rootless-http-404/operations.log": {
+      "sha256": "efda1700ad8db091800d842246dbd400a81a1456e94189476bbd48e422226364",
+      "bytes": 111
+    },
+    "validation/before-rootless-http-404/run.sh": {
+      "sha256": "da9620f8a1acfc6f919bc78dbd6f876e95d3700d67d05c1d894d387f2c76f1ef",
+      "bytes": 171
+    },
+    "validation/before-rootless-http-404/stderr": {
+      "sha256": "e5e54280650d3a36722c8a0fe1dd017e0cf112bb3fd938f07452b20c8a2207bf",
+      "bytes": 317
+    },
+    "validation/before-rootless-http-404/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-rootless-http-500/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-rootless-http-500/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-rootless-http-500/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-http-500/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-http-500/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-rootless-http-500/continued": {
+      "sha256": "0dec6069d55174d6223c08b49a7cfc291aefc5cd366d7c8f7b0606325e92e6ea",
+      "bytes": 9
+    },
+    "validation/before-rootless-http-500/curl.jsonl": {
+      "sha256": "de8d38c257f3d33f9e444b22da1537776a27fc57b345e9dc56d2ebd6d169be93",
+      "bytes": 27
+    },
+    "validation/before-rootless-http-500/installed": {
+      "sha256": "a51a6c19a1ffc7416827e89adf20749d23ad42452c396cf7e627409f2896922c",
+      "bytes": 9
+    },
+    "validation/before-rootless-http-500/operations.log": {
+      "sha256": "efda1700ad8db091800d842246dbd400a81a1456e94189476bbd48e422226364",
+      "bytes": 111
+    },
+    "validation/before-rootless-http-500/run.sh": {
+      "sha256": "da9620f8a1acfc6f919bc78dbd6f876e95d3700d67d05c1d894d387f2c76f1ef",
+      "bytes": 171
+    },
+    "validation/before-rootless-http-500/stderr": {
+      "sha256": "18fdc7b06d80f2a8630c0b0ced65b6662cb3cf40a84b4b8265f8f6a65e59bed8",
+      "bytes": 317
+    },
+    "validation/before-rootless-http-500/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-rootless-prelude-failure/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-rootless-prelude-failure/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-rootless-prelude-failure/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-prelude-failure/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-prelude-failure/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-rootless-prelude-failure/operations.log": {
+      "sha256": "27f7e0a8e576640668578a7a7d1dfbe26c07606b0f674018f69ac12894683acf",
+      "bytes": 34
+    },
+    "validation/before-rootless-prelude-failure/run.sh": {
+      "sha256": "da9620f8a1acfc6f919bc78dbd6f876e95d3700d67d05c1d894d387f2c76f1ef",
+      "bytes": 171
+    },
+    "validation/before-rootless-prelude-failure/stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-rootless-prelude-failure/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-rootless-receiver-failure/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-rootless-receiver-failure/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-rootless-receiver-failure/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-receiver-failure/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-rootless-receiver-failure/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-rootless-receiver-failure/curl.jsonl": {
+      "sha256": "de8d38c257f3d33f9e444b22da1537776a27fc57b345e9dc56d2ebd6d169be93",
+      "bytes": 27
+    },
+    "validation/before-rootless-receiver-failure/operations.log": {
+      "sha256": "a9106dda5d3a5a70d727da27052de2bb51091db28429da9bf4200835b7bd83be",
+      "bytes": 42
+    },
+    "validation/before-rootless-receiver-failure/run.sh": {
+      "sha256": "da9620f8a1acfc6f919bc78dbd6f876e95d3700d67d05c1d894d387f2c76f1ef",
+      "bytes": 171
+    },
+    "validation/before-rootless-receiver-failure/stderr": {
+      "sha256": "fdbceb406da7386a6361c8e95311496645e3701f6439c639061ae383f789bb28",
+      "bytes": 317
+    },
+    "validation/before-rootless-receiver-failure/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-rootless-step.txt": {
+      "sha256": "a08d782f2702f6d396431dc91dc5164b070fed7b172a496094e2e97ccd2c0646",
+      "bytes": 306
+    },
+    "validation/before-smoke-http-200/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-smoke-http-200/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-smoke-http-200/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-http-200/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-http-200/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-smoke-http-200/continued": {
+      "sha256": "0dec6069d55174d6223c08b49a7cfc291aefc5cd366d7c8f7b0606325e92e6ea",
+      "bytes": 9
+    },
+    "validation/before-smoke-http-200/curl.jsonl": {
+      "sha256": "4c67808b5f265b1b95e466aad8319f2d3458c3c96a36b44d4f55bf7349a13e7d",
+      "bytes": 98
+    },
+    "validation/before-smoke-http-200/installed": {
+      "sha256": "a51a6c19a1ffc7416827e89adf20749d23ad42452c396cf7e627409f2896922c",
+      "bytes": 9
+    },
+    "validation/before-smoke-http-200/operations.log": {
+      "sha256": "4ab45b4db0dc09a27b660cc8d0e530cc8c487ff4bd0a5a2a3c2a7a4bd1fdf58c",
+      "bytes": 49
+    },
+    "validation/before-smoke-http-200/run.sh": {
+      "sha256": "537bde48543a29062ba0029be433082c73313ab4a8aa88d0e15c12d919e2f53d",
+      "bytes": 177
+    },
+    "validation/before-smoke-http-200/stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-smoke-http-200/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-smoke-http-404/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-smoke-http-404/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-smoke-http-404/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-http-404/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-http-404/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-smoke-http-404/continued": {
+      "sha256": "0dec6069d55174d6223c08b49a7cfc291aefc5cd366d7c8f7b0606325e92e6ea",
+      "bytes": 9
+    },
+    "validation/before-smoke-http-404/curl.jsonl": {
+      "sha256": "4c67808b5f265b1b95e466aad8319f2d3458c3c96a36b44d4f55bf7349a13e7d",
+      "bytes": 98
+    },
+    "validation/before-smoke-http-404/operations.log": {
+      "sha256": "4ab45b4db0dc09a27b660cc8d0e530cc8c487ff4bd0a5a2a3c2a7a4bd1fdf58c",
+      "bytes": 49
+    },
+    "validation/before-smoke-http-404/run.sh": {
+      "sha256": "537bde48543a29062ba0029be433082c73313ab4a8aa88d0e15c12d919e2f53d",
+      "bytes": 177
+    },
+    "validation/before-smoke-http-404/stderr": {
+      "sha256": "0fb219efe96c7b0a4962325763ebbe3324456de8ca7b7d1e71142d92a6d8eab2",
+      "bytes": 49
+    },
+    "validation/before-smoke-http-404/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-smoke-http-500/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-smoke-http-500/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-smoke-http-500/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-http-500/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-http-500/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-smoke-http-500/continued": {
+      "sha256": "0dec6069d55174d6223c08b49a7cfc291aefc5cd366d7c8f7b0606325e92e6ea",
+      "bytes": 9
+    },
+    "validation/before-smoke-http-500/curl.jsonl": {
+      "sha256": "4c67808b5f265b1b95e466aad8319f2d3458c3c96a36b44d4f55bf7349a13e7d",
+      "bytes": 98
+    },
+    "validation/before-smoke-http-500/operations.log": {
+      "sha256": "4ab45b4db0dc09a27b660cc8d0e530cc8c487ff4bd0a5a2a3c2a7a4bd1fdf58c",
+      "bytes": 49
+    },
+    "validation/before-smoke-http-500/run.sh": {
+      "sha256": "537bde48543a29062ba0029be433082c73313ab4a8aa88d0e15c12d919e2f53d",
+      "bytes": 177
+    },
+    "validation/before-smoke-http-500/stderr": {
+      "sha256": "791af8bf7f783dc792c7e0c6f7e33a003a645617f014bf217a030a01ebdb7bf2",
+      "bytes": 49
+    },
+    "validation/before-smoke-http-500/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-smoke-prelude-failure/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-smoke-prelude-failure/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-smoke-prelude-failure/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-prelude-failure/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-prelude-failure/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-smoke-prelude-failure/operations.log": {
+      "sha256": "87d89ee5b272c36b727791e3e197162a1c3f81c5dd9be9ccbc18ccff9daa68a1",
+      "bytes": 19
+    },
+    "validation/before-smoke-prelude-failure/run.sh": {
+      "sha256": "537bde48543a29062ba0029be433082c73313ab4a8aa88d0e15c12d919e2f53d",
+      "bytes": 177
+    },
+    "validation/before-smoke-prelude-failure/stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-smoke-prelude-failure/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-smoke-receiver-failure/bin/brew": {
+      "sha256": "75302331e84285a449c2e12825904135889a768851d1b670305381d91fd19d99",
+      "bytes": 79
+    },
+    "validation/before-smoke-receiver-failure/bin/curl": {
+      "sha256": "76b572e3c6bdfe9ca691a361aedacd556925f46b20a956aecd0237c0c3ebb4a4",
+      "bytes": 478
+    },
+    "validation/before-smoke-receiver-failure/bin/docker": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-receiver-failure/bin/dockerd-rootless-setuptool.sh": {
+      "sha256": "0c67a0c61653c38156261fff662f69598c6404823b9f873b4336d30659826bb4",
+      "bytes": 66
+    },
+    "validation/before-smoke-receiver-failure/bin/sudo": {
+      "sha256": "61af306e51b705402b9715a17a2448fbcd75aee5c5059da22fb31e741025fb3e",
+      "bytes": 300
+    },
+    "validation/before-smoke-receiver-failure/curl.jsonl": {
+      "sha256": "4c67808b5f265b1b95e466aad8319f2d3458c3c96a36b44d4f55bf7349a13e7d",
+      "bytes": 98
+    },
+    "validation/before-smoke-receiver-failure/operations.log": {
+      "sha256": "4ab45b4db0dc09a27b660cc8d0e530cc8c487ff4bd0a5a2a3c2a7a4bd1fdf58c",
+      "bytes": 49
+    },
+    "validation/before-smoke-receiver-failure/run.sh": {
+      "sha256": "537bde48543a29062ba0029be433082c73313ab4a8aa88d0e15c12d919e2f53d",
+      "bytes": 177
+    },
+    "validation/before-smoke-receiver-failure/stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-smoke-receiver-failure/stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation/before-smoke-step.txt": {
+      "sha256": "16ed8bfe9b316bcd9bab1336559c99c806a2507225752239a240b3d4c5ae5e12",
+      "bytes": 299
+    },
+    "validation/report.json": {
+      "sha256": "a24fbf03a7107da88cff19b715253c3aacda325db8dcf8633dbf4ffc39997b09",
+      "bytes": 27477
+    },
+    "validation/sources/after/.github/workflows/functional_test.yml": {
+      "sha256": "0dc5f22c2bbb857406066e4d2ce152545cc21c06871ce0f13b2fe7d55fda138a",
+      "bytes": 13831
+    },
+    "validation/sources/after/.github/workflows/smoke-test.yml": {
+      "sha256": "0d0d95d3997cc7cff45004c9d4185897a3aa5e45d146bdcf8a9ce1d0a9b94c02",
+      "bytes": 5268
+    },
+    "validation/sources/before/.github/workflows/functional_test.yml": {
+      "sha256": "6aac2c9af5287a2d9723c3520ec3a1b11be61cc20c78d87c9376ce284e48a099",
+      "bytes": 13688
+    },
+    "validation/sources/before/.github/workflows/smoke-test.yml": {
+      "sha256": "cadb5e0567ed1b66985b36918f2297ac1884f9a4a7da8f9d87b5672cf89b148d",
+      "bytes": 5215
+    },
+    "verify_workflow_pipelines.py": {
+      "sha256": "3d5a7e2d41a31f0c7e921b9ef227560de9d997de0cd8129fd448d90cce9680d6",
+      "bytes": 10572
+    },
+    "workflow-syntax.json": {
+      "sha256": "80949d0433da89da2b472b9107b717bdeb2168c3cdfa24ac199386b64e6cb15f",
+      "bytes": 3732
+    },
+    "working-source.json": {
+      "sha256": "3f92fd81d27d76df860363c725ab9457a957d1d0cbe7b0418d209367d5878186",
+      "bytes": 297
+    }
+  }
+}

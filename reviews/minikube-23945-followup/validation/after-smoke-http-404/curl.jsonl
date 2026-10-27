@@ -1,0 +1,1 @@
+["--fail", "--silent", "--show-error", "--location", "https://github.com/minikube-machine/vmnet-helper/releases/latest/download/install.sh"]

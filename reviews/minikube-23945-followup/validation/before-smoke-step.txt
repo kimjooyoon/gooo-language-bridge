@@ -1,0 +1,6 @@
+      - name: Install vfkit and vmnet-helper (macos)
+        timeout-minutes: 1
+        if: matrix.driver == 'vfkit'
+        run: |
+          brew install vfkit
+          curl -fsSL https://github.com/minikube-machine/vmnet-helper/releases/latest/download/install.sh | sudo VMNET_INTERACTIVE=0 bash

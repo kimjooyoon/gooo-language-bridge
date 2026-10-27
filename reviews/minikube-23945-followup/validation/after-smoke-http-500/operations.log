@@ -1,0 +1,2 @@
+brew install vfkit
+sudo VMNET_INTERACTIVE=0 bash

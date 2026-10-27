@@ -1,0 +1,11 @@
+#!/usr/bin/python3
+import json, os, subprocess, sys, urllib.parse
+args=sys.argv[1:]
+with open(os.environ['CURL_LOG'], 'a') as out: out.write(json.dumps(args)+'\n')
+mapped=[]
+for arg in args:
+    if arg.startswith(('https://', 'http://')):
+        parsed=urllib.parse.urlsplit(arg)
+        arg=os.environ['LOOPBACK_ORIGIN']+parsed.path
+    mapped.append(arg)
+raise SystemExit(subprocess.call(['/usr/bin/curl', '--disable', '--connect-timeout', '2', '--max-time', '3', *mapped]))
