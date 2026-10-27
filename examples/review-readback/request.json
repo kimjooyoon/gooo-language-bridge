@@ -1,0 +1,13 @@
+{
+  "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "event": "COMMENT",
+  "body": "Review\nbody.",
+  "comments": [
+    {
+      "path": "module.go",
+      "line": 7,
+      "side": "RIGHT",
+      "body": "Keep the original value."
+    }
+  ]
+}

@@ -18,6 +18,10 @@ If you already have Go test captures, the
 selected cases without rerunning a build. Keep the source/runtime and original
 failure context separately; the helper does not authenticate them.
 
+For an already submitted review, the [saved reply check](docs/review-readback.md)
+compares its captured body and anchors with the original request. Missing fields
+lead to existing comment GETs; a match establishes no permission or freshness.
+
 For an architecture dependent result, the [Go integer parsing example](docs/go-integer-width.md)
 shows how to retain a runtime witness, original failure and successful comparison
 while preserving the destination type's overflow checks.
