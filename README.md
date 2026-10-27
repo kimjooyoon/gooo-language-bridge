@@ -140,6 +140,11 @@ new failures, resolved failures and controls even when both commands failed,
 without rebuilding a project or installing Gooo. Missing or incomplete records
 remain invalid; a difference alone is not a correctness verdict.
 
+The [saved review reply check](docs/review-readback.md) compares an already
+submitted GitHub review with captured replies. Missing comment-line evidence
+leads to existing comment GETs, while original bodies and anchors remain bound.
+It neither fetches nor publishes, and never recommends another POST.
+
 The [32 bit Go integer parsing guide](docs/go-integer-width.md) answers a real
 Cast maintainer request with an executed Linux/386 comparison. It explains the
 parser-width trap, shows all nine boundary results, and links the complete

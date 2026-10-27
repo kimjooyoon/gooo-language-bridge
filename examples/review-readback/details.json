@@ -1,0 +1,23 @@
+[
+  {
+    "id": 50,
+    "pull_request_review_id": 40,
+    "html_url": "https://github.com/example/project/pull/12#discussion_r50",
+    "user": {
+      "login": "reviewer"
+    },
+    "pull_request_url": "https://api.github.com/repos/example/project/pulls/12",
+    "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "original_commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "path": "module.go",
+    "body": "Keep the original value.",
+    "position": 19,
+    "original_position": 19,
+    "line": 7,
+    "original_line": 7,
+    "side": "RIGHT",
+    "start_line": null,
+    "original_start_line": null,
+    "start_side": null
+  }
+]
