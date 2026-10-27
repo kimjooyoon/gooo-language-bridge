@@ -134,6 +134,12 @@ project; a local passing bridge is never counted as an accepted contribution.
 
 ## Reusable native experiment reports
 
+The [recorded Go test comparison](examples/go-test-comparison/README.md) reads
+two saved `go test -json` captures with an explicit case list. It separates
+new failures, resolved failures and controls even when both commands failed,
+without rebuilding a project or installing Gooo. Missing or incomplete records
+remain invalid; a difference alone is not a correctness verdict.
+
 The [32 bit Go integer parsing guide](docs/go-integer-width.md) answers a real
 Cast maintainer request with an executed Linux/386 comparison. It explains the
 parser-width trap, shows all nine boundary results, and links the complete

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "TestReviewEmbeddedSetReject/slice",
+    "package": "github.com/urfave/cli/v3",
+    "test": "TestReviewEmbeddedSetReject/slice"
+  },
+  {
+    "id": "TestReviewEmbeddedSetReject/map",
+    "package": "github.com/urfave/cli/v3",
+    "test": "TestReviewEmbeddedSetReject/map"
+  },
+  {
+    "id": "TestReviewEmbeddedSetNormalize/slice",
+    "package": "github.com/urfave/cli/v3",
+    "test": "TestReviewEmbeddedSetNormalize/slice"
+  },
+  {
+    "id": "TestReviewEmbeddedSetNormalize/map",
+    "package": "github.com/urfave/cli/v3",
+    "test": "TestReviewEmbeddedSetNormalize/map"
+  },
+  {
+    "id": "TestReviewSetControls/scalar_override_rejects",
+    "package": "github.com/urfave/cli/v3",
+    "test": "TestReviewSetControls/scalar_override_rejects"
+  },
+  {
+    "id": "TestReviewSetControls/programmatic_command_set_dispatches",
+    "package": "github.com/urfave/cli/v3",
+    "test": "TestReviewSetControls/programmatic_command_set_dispatches"
+  },
+  {
+    "id": "TestReviewSetControls/native_slice_accumulates",
+    "package": "github.com/urfave/cli/v3",
+    "test": "TestReviewSetControls/native_slice_accumulates"
+  },
+  {
+    "id": "TestReviewAggregateIntent",
+    "package": "github.com/urfave/cli/v3",
+    "test": "TestReviewAggregateIntent"
+  }
+]
