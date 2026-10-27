@@ -1,0 +1,22 @@
+[
+  {
+    "id": "new-failure",
+    "package": "example.test/captured",
+    "test": "TestReject"
+  },
+  {
+    "id": "resolved",
+    "package": "example.test/captured",
+    "test": "TestAggregate"
+  },
+  {
+    "id": "still-failing",
+    "package": "example.test/captured",
+    "test": "TestKnownFailure"
+  },
+  {
+    "id": "control",
+    "package": "example.test/captured",
+    "test": "TestControl"
+  }
+]

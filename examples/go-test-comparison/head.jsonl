@@ -1,0 +1,10 @@
+{"Action": "start", "Package": "example.test/captured"}
+{"Action": "run", "Package": "example.test/captured", "Test": "TestReject"}
+{"Action": "fail", "Package": "example.test/captured", "Test": "TestReject"}
+{"Action": "run", "Package": "example.test/captured", "Test": "TestAggregate"}
+{"Action": "pass", "Package": "example.test/captured", "Test": "TestAggregate"}
+{"Action": "run", "Package": "example.test/captured", "Test": "TestKnownFailure"}
+{"Action": "fail", "Package": "example.test/captured", "Test": "TestKnownFailure"}
+{"Action": "run", "Package": "example.test/captured", "Test": "TestControl"}
+{"Action": "pass", "Package": "example.test/captured", "Test": "TestControl"}
+{"Action": "fail", "Package": "example.test/captured"}
