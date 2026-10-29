@@ -145,6 +145,11 @@ submitted GitHub review with captured replies. Missing comment-line evidence
 leads to existing comment GETs, while original bodies and anchors remain bound.
 It neither fetches nor publishes, and never recommends another POST.
 
+For published Gist evidence, the [saved file-byte check](docs/gist-readback.md)
+binds a requested commit to its filenames and exact blob bytes. It keeps API text
+differences or truncation separate from the Git bytes and never recommends
+reposting. Saved inputs can be checked with Python alone.
+
 The [32 bit Go integer parsing guide](docs/go-integer-width.md) answers a real
 Cast maintainer request with an executed Linux/386 comparison. It explains the
 parser-width trap, shows all nine boundary results, and links the complete
