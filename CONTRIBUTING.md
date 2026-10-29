@@ -22,6 +22,11 @@ For an already submitted review, the [saved reply check](docs/review-readback.md
 compares its captured body and anchors with the original request. Missing fields
 lead to existing comment GETs; a match establishes no permission or freshness.
 
+For already published Gist files, the [saved byte check](docs/gist-readback.md)
+compares a complete expected manifest with a pinned commit/tree/blob capture.
+API text differences remain separate from Git bytes; they do not request another
+publication.
+
 For an architecture dependent result, the [Go integer parsing example](docs/go-integer-width.md)
 shows how to retain a runtime witness, original failure and successful comparison
 while preserving the destination type's overflow checks.
