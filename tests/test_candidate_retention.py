@@ -143,7 +143,8 @@ class CandidateRetentionTests(unittest.TestCase):
         draft = {'number': 5, 'url': 'https://github.com/example/tool/pull/5',
                  'title': 'Unlinked owner work', 'author': {'login': 'example'},
                  'isDraft': True, 'baseRefName': 'main', 'baseRefOid': 'a' * 40,
-                 'headRefName': 'feat/parser-recovery', 'headRefOid': 'b' * 40}
+                 'headRefName': 'feat/parser-recovery', 'headRefOid': 'b' * 40,
+                 'reviews': {'nodes': [], 'pageInfo': {'hasPreviousPage': False}}}
         inventory = {'nodes': [draft], 'pageInfo': {'hasNextPage': True}}
         self.response['data']['r0']['openPullRequests'] = inventory
         code, _, calls = self.run_collector()

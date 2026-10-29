@@ -111,7 +111,9 @@ GitHub's run and commit metadata provide the execution context.
 
 Before starting a candidate, use the [read-only contribution check](docs/contribution-candidate-check.md)
 to collect recent merge witnesses, linked open/closed PRs and recent comments in
-one bounded GitHub query. Gooo assigns a next-review reason; it never approves
+one bounded GitHub query. The sampled open PRs include formal review bodies and
+reviewed commits so earlier work can be inspected before repeating it.
+Gooo assigns a next-review reason; it never approves
 submission or declares the work unclaimed. Offline CI checks all 32 policy inputs.
 
 The [response planner](docs/contribution-response-planning.md) and
