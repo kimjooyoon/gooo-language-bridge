@@ -18,6 +18,7 @@ KEY = 'bridge/contribution:Review'
 ACTIVITY = 'urn:gooo:contribution:review'
 FIELDS = ('issue_open', 'open_pr', 'prior_pr', 'history_complete', 'recent_merge')
 MAX_LIVE_ATTEMPTS = 8
+MAX_PR_REVIEWS = 3
 
 
 def review(row):
@@ -64,10 +65,15 @@ def request(candidates):
   nodes { number url mergedAt } pageInfo { hasNextPage }
  }
  openPullRequests:pullRequests(first:20,states:OPEN,orderBy:{field:UPDATED_AT,direction:DESC}) {
-  nodes { number url title author { login } isDraft baseRefName baseRefOid headRefName headRefOid }
+  nodes { number url title author { login } isDraft baseRefName baseRefOid headRefName headRefOid
+   reviews(last:%d) {
+    nodes { id url author { login } state submittedAt commit { oid } body }
+    pageInfo { hasPreviousPage }
+   }
+  }
   pageInfo { hasNextPage }
  }
-''' % (r, r, r)
+''' % (r, r, r, MAX_PR_REVIEWS)
         for i, number in issues:
             definitions.append('$issue%d:Int!' % i)
             variables['issue%d' % i] = number
@@ -106,6 +112,48 @@ def check_pr_identity(row):
         raise ValueError('invalid pull request identity')
 
 
+def check_pr_reviews(pr):
+    connection = pr.get('reviews')
+    if not isinstance(connection, dict):
+        raise ValueError('missing or invalid formal review capture')
+    try:
+        page(connection, 'hasPreviousPage')
+    except (KeyError, TypeError) as error:
+        raise ValueError('missing or invalid formal review pagination') from error
+    if len(connection['nodes']) > MAX_PR_REVIEWS:
+        raise ValueError('formal review sample exceeds query bound')
+    ids, urls = set(), set()
+    for row in connection['nodes']:
+        if (not isinstance(row, dict)
+                or not {'id', 'url', 'author', 'state', 'submittedAt', 'commit', 'body'} <= set(row)):
+            raise ValueError('missing formal review metadata')
+        identity, url = row['id'], row['url']
+        if (not isinstance(identity, str) or not identity.strip()
+                or not isinstance(url, str)
+                or not re.fullmatch(re.escape(pr['url']) + r'#pullrequestreview-[1-9][0-9]*', url, re.I)
+                or identity in ids or url.lower() in urls):
+            raise ValueError('invalid or duplicate formal review identity')
+        ids.add(identity)
+        urls.add(url.lower())
+        if (row['state'] not in ('PENDING', 'COMMENTED', 'APPROVED', 'CHANGES_REQUESTED', 'DISMISSED')
+                or not isinstance(row['body'], str)):
+            raise ValueError('invalid formal review state or body')
+        author, commit, submitted = row['author'], row['commit'], row['submittedAt']
+        # Explicit nulls retain unavailable attribution; omitted fields fail above.
+        if author is not None and (not isinstance(author, dict)
+                                   or not isinstance(author.get('login'), str)
+                                   or not author['login'].strip()):
+            raise ValueError('invalid formal review author')
+        if commit is not None and (not isinstance(commit, dict)
+                                   or not isinstance(commit.get('oid'), str)
+                                   or not re.fullmatch(r'[0-9a-fA-F]{40}', commit['oid'])):
+            raise ValueError('invalid formal review revision')
+        if submitted is not None:
+            if not isinstance(submitted, str):
+                raise ValueError('invalid formal review timestamp')
+            timestamp(submitted)
+
+
 def open_pr_inventory(repository):
     connection = repository['openPullRequests']
     has_more = page(connection, 'hasNextPage')
@@ -131,6 +179,7 @@ def open_pr_inventory(repository):
         for field in ('baseRefOid', 'headRefOid'):
             if not isinstance(pr[field], str) or not re.fullmatch(r'[0-9a-fA-F]{40}', pr[field]):
                 raise ValueError('invalid open pull request revision')
+        check_pr_reviews(pr)
     return rows, has_more
 
 

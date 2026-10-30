@@ -1,6 +1,7 @@
 """Candidate review must expose unknowns, preserve prior work and fail closed."""
 from copy import deepcopy
 from datetime import datetime, timezone
+import re
 import unittest
 
 from tools.check_candidates import ACTIVITY, FIELDS, packets, request, review, verify_receipt
@@ -28,7 +29,127 @@ class CandidateReviewTests(unittest.TestCase):
         return {'number': 5, 'url': 'https://github.com/example/tool/pull/5',
                 'title': 'Parser recovery in progress', 'author': {'login': 'example'},
                 'isDraft': True, 'baseRefName': 'main', 'baseRefOid': 'a' * 40,
-                'headRefName': 'feat/parser-recovery', 'headRefOid': 'B' * 40}
+                'headRefName': 'feat/parser-recovery', 'headRefOid': 'B' * 40,
+                'reviews': {'nodes': [], 'pageInfo': {'hasPreviousPage': False}}}
+
+    def formal_review(self, number=1):
+        return {'id': 'PRR_example_%d' % number,
+                'url': 'https://github.com/example/tool/pull/5#pullrequestreview-%d' % (50 + number),
+                'author': {'login': 'kimjooyoon'}, 'state': 'COMMENTED',
+                'submittedAt': '2026-10-20T12:00:00Z', 'commit': {'oid': 'B' * 40},
+                'body': 'Prior exact-head review with a fixed evidence link. 한글 🙂'}
+
+    def review_response(self, nodes, has_previous=False):
+        changed = deepcopy(self.response)
+        draft = self.open_draft()
+        draft['reviews'] = {'nodes': nodes, 'pageInfo': {'hasPreviousPage': has_previous}}
+        changed['data']['r0']['openPullRequests']['nodes'] = [draft]
+        return changed
+
+    def test_body_only_formal_review_preserves_prior_work_without_changing_issue_observations(self):
+        baseline = self.result(self.response)
+        prior = self.formal_review()
+        changed = self.review_response([prior])
+        self.assertEqual(changed['data']['r0']['i0']['comments']['nodes'], [])
+        row = self.result(changed)
+        self.assertEqual(row['repository_open_prs'][0]['reviews']['nodes'], [prior])
+        self.assertEqual(row['repository_open_prs'][0]['headRefOid'], prior['commit']['oid'])
+        self.assertEqual(row['observation'], baseline['observation'])
+        self.assertEqual(row['expected_review_reason'], 'MANUAL_TRIAGE_REQUIRED')
+        self.assertEqual(row['linked_prs'], [])
+
+    def test_formal_review_retains_historical_and_unknown_attribution(self):
+        variants = [dict(self.formal_review(), commit={'oid': 'c' * 40}),
+                    dict(self.formal_review(), commit=None),
+                    dict(self.formal_review(), author=None),
+                    dict(self.formal_review(), submittedAt=None),
+                    dict(self.formal_review(), state='PENDING', submittedAt=None,
+                         commit=None, author=None, body='')]
+        baseline = self.result(self.response)
+        for prior in variants:
+            with self.subTest(review=prior):
+                row = self.result(self.review_response([prior]))
+                self.assertEqual(row['repository_open_prs'][0]['reviews']['nodes'], [prior])
+                self.assertEqual(row['repository_open_prs'][0]['headRefOid'], 'B' * 40)
+                self.assertEqual(row['observation'], baseline['observation'])
+                self.assertEqual(row['expected_review_reason'], 'MANUAL_TRIAGE_REQUIRED')
+
+    def test_formal_review_states_allow_empty_bodies(self):
+        for state in ('PENDING', 'COMMENTED', 'APPROVED', 'CHANGES_REQUESTED', 'DISMISSED'):
+            prior = dict(self.formal_review(), state=state, body='')
+            with self.subTest(state=state):
+                row = self.result(self.review_response([prior]))
+                self.assertEqual(row['repository_open_prs'][0]['reviews']['nodes'], [prior])
+                self.assertEqual(row['expected_review_reason'], 'MANUAL_TRIAGE_REQUIRED')
+
+    def test_review_pagination_is_retained_separately_from_issue_history(self):
+        empty = self.result(self.review_response([]))
+        prior = self.formal_review()
+        truncated = self.result(self.review_response([prior], has_previous=True))
+        self.assertEqual(empty['repository_open_prs'][0]['reviews'],
+                         {'nodes': [], 'pageInfo': {'hasPreviousPage': False}})
+        self.assertEqual(truncated['repository_open_prs'][0]['reviews'],
+                         {'nodes': [prior], 'pageInfo': {'hasPreviousPage': True}})
+        self.assertEqual(truncated['observation'], empty['observation'])
+        self.assertTrue(truncated['observation']['history_complete'])
+        self.assertEqual(truncated['expected_review_reason'], 'MANUAL_TRIAGE_REQUIRED')
+        changed = self.review_response([prior])
+        changed['data']['r0']['i0']['comments']['pageInfo']['hasPreviousPage'] = True
+        row = self.result(changed)
+        self.assertFalse(row['repository_open_prs'][0]['reviews']['pageInfo']['hasPreviousPage'])
+        self.assertFalse(row['observation']['history_complete'])
+        self.assertEqual(row['expected_review_reason'], 'REVIEW_TRUNCATED_HISTORY')
+
+    def test_missing_or_malformed_formal_review_capture_is_not_an_empty_collection(self):
+        invalid = (None, {}, {'nodes': []}, {'pageInfo': {'hasPreviousPage': False}},
+                   {'nodes': None, 'pageInfo': {'hasPreviousPage': False}},
+                   {'nodes': [], 'pageInfo': {}},
+                   {'nodes': [], 'pageInfo': {'hasPreviousPage': 0}},
+                   {'nodes': [], 'pageInfo': {'hasPreviousPage': 'false'}})
+        for connection in invalid:
+            changed = self.review_response([])
+            changed['data']['r0']['openPullRequests']['nodes'][0]['reviews'] = connection
+            with self.subTest(connection=connection), self.assertRaises((KeyError, ValueError, TypeError)):
+                self.result(changed)
+        changed = self.review_response([])
+        del changed['data']['r0']['openPullRequests']['nodes'][0]['reviews']
+        with self.assertRaises((KeyError, ValueError, TypeError)):
+            self.result(changed)
+
+    def test_formal_review_fields_and_parent_identity_are_required(self):
+        prior = self.formal_review()
+        for field in prior:
+            missing = dict(prior)
+            del missing[field]
+            with self.subTest(missing=field), self.assertRaises((KeyError, ValueError, TypeError)):
+                self.result(self.review_response([missing]))
+        invalid_values = {
+            'id': ('', None, 1),
+            'url': ('https://github.com/other/tool/pull/5#pullrequestreview-51',
+                    'https://github.com/example/tool/pull/6#pullrequestreview-51',
+                    'https://github.com/example/tool/pull/5#discussion_r51', None),
+            'author': ({}, {'login': ''}, {'login': None}, {'login': 1}, 'kimjooyoon'),
+            'state': ('', 'UNKNOWN', 'COMMENT', None, 1),
+            'submittedAt': ('', 1, []),
+            'commit': ({}, {'oid': 'a' * 39}, {'oid': 'z' * 40}, {'oid': None}, 'a' * 40),
+            'body': (None, 1, []),
+        }
+        for field, values in invalid_values.items():
+            for value in values:
+                with self.subTest(field=field, value=value), self.assertRaises((KeyError, ValueError, TypeError)):
+                    self.result(self.review_response([dict(prior, **{field: value})]))
+
+    def test_formal_review_sample_bound_and_duplicate_identities(self):
+        reviews = [self.formal_review(number) for number in range(1, 4)]
+        self.assertEqual(self.result(self.review_response(reviews))['repository_open_prs'][0]
+                         ['reviews']['nodes'], reviews)
+        first, second = reviews[:2]
+        invalid = (reviews + [self.formal_review(4)], [first, dict(first)],
+                   [first, dict(second, id=first['id'])],
+                   [first, dict(second, url=first['url'])])
+        for nodes in invalid:
+            with self.subTest(nodes=nodes), self.assertRaises(ValueError):
+                self.result(self.review_response(nodes))
 
     def test_unlinked_owner_draft_keeps_branch_evidence_without_claiming_issue_link(self):
         draft = self.open_draft()
@@ -181,6 +302,21 @@ class CandidateReviewTests(unittest.TestCase):
         self.assertEqual(query.count('openPullRequests:'), 2)
         compact = ''.join(query.split())
         self.assertEqual(compact.count('openPullRequests:pullRequests(first:20,states:OPEN,'), 2)
+        self.assertEqual(compact.count('reviews(last:3){'), 2)
+        for match in re.finditer(r'\breviews\(last:3\)\s*\{', query):
+            start, depth = match.end(), 1
+            end = start
+            while depth:
+                if query[end] == '{':
+                    depth += 1
+                elif query[end] == '}':
+                    depth -= 1
+                end += 1
+            captured = query[start:end - 1]
+            for field in ('id', 'url', 'state', 'submittedAt', 'body'):
+                self.assertRegex(captured, r'\b' + field + r'\b')
+            for selection in ('author{login}', 'commit{oid}', 'pageInfo{hasPreviousPage}'):
+                self.assertIn(selection, ''.join(captured.split()))
         for field in ('isDraft', 'baseRefName', 'baseRefOid', 'headRefName', 'headRefOid'):
             self.assertEqual(query.count(field), 2)
         for candidates in ([], ['x/y#1'] * 2, ['x/y#1', 'X/Y#1'], ['x/y#0'],
